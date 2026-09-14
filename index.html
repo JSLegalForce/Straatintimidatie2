@@ -195,6 +195,36 @@ figure.illu svg text.il-main{font-size:16px}
   *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}
 }
 
+
+/* Zichtbare iconen naast iedere paginakop en relevante opsomming */
+.ptitle.with-page-icon{
+  display:flex;align-items:center;gap:13px;line-height:1.22;margin-bottom:12px;
+}
+.page-title-icon{
+  width:42px;height:42px;border-radius:11px;background:var(--icoon-bg);
+  border:1px solid #dfe6f3;display:inline-grid;place-items:center;
+  flex:0 0 42px;color:var(--blauw);
+}
+.page-title-icon svg{width:23px;height:23px;stroke-width:1.9}
+.ptitle-title{min-width:0}
+.main ul:not(.lo):not(.punten):not(.bb-l){
+  list-style:none;padding-left:0;
+}
+.main ul:not(.lo):not(.punten):not(.bb-l)>li{
+  position:relative;padding-left:29px;margin:9px 0;
+}
+.main ul:not(.lo):not(.punten):not(.bb-l)>li>.list-icon{
+  top:.3em;color:var(--blauw-licht);
+}
+.figcap{display:flex;align-items:center;gap:8px}
+.figcap .inline-icon{width:18px;height:18px;display:inline-flex;color:var(--blauw-mid)}
+.figcap .inline-icon svg{width:18px;height:18px}
+@media(max-width:640px){
+  .page-title-icon{width:38px;height:38px;flex-basis:38px}
+  .page-title-icon svg{width:21px;height:21px}
+  .ptitle.with-page-icon{gap:10px}
+}
+
 </style>
 </head>
 <body>
@@ -260,6 +290,41 @@ function enhanceIconSystem(){
   });
 }
 
+
+function choosePageTitleIcon(text){
+  const t=String(text||'').toLowerCase();
+  if(/leerdoel/.test(t))return 'target';
+  if(/samengevat|samenvatting|kernpunten|overzicht/.test(t))return 'clipboardCheck';
+  if(/rechtspraak|gerechtshof|rechtbank|rechter|arrest/.test(t))return 'landmark';
+  if(/proces-verbaal|proces verbaal|\bpv\b|vastleggen/.test(t))return 'filePen';
+  if(/bewijs|camerabeeld|waarneming|getuige/.test(t))return 'fileSearch';
+  if(/letterlijke|woorden|uitlating|gezegd/.test(t))return 'quote';
+  if(/afstand|gedrag|benaderen|context/.test(t))return 'usersDistance';
+  if(/plaats|tijd|openbaar/.test(t))return 'calendarClock';
+  if(/wet|artikel|bestanddeel|strafbaar|juridisch|delict/.test(t))return 'balans';
+  if(/voorbeeld|situatie|casus|praktijk/.test(t))return 'oog';
+  if(/let op|valkuil|aandacht/.test(t))return 'waarschuwing';
+  if(/onthoud/.test(t))return 'shieldCheck';
+  if(/toets|vraag/.test(t))return 'helpCircle';
+  if(/opzet|stap|werkwijze/.test(t))return 'list';
+  return 'bookOpen';
+}
+function enhanceVisibleIcons(){
+  document.querySelectorAll('h2.ptitle').forEach(title=>{
+    if(title.classList.contains('with-page-icon'))return;
+    const visibleText=title.textContent.trim();
+    const icon=choosePageTitleIcon(visibleText);
+    title.innerHTML=iconMarkup(icon,'page-title-icon')+'<span class="ptitle-title">'+title.innerHTML+'</span>';
+    title.classList.add('with-page-icon');
+  });
+  document.querySelectorAll('.main ul:not(.lo):not(.punten):not(.bb-l)>li').forEach(li=>{
+    if(!li.querySelector(':scope > .list-icon'))li.insertAdjacentHTML('afterbegin',iconMarkup('vink','list-icon'));
+  });
+  document.querySelectorAll('.figcap').forEach(caption=>{
+    if(!caption.querySelector('.inline-icon'))caption.insertAdjacentHTML('afterbegin',iconMarkup('info','inline-icon'));
+  });
+}
+
 const app=document.getElementById('app');
 const L=n=>'ABCDEFGH'[n];
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -287,7 +352,7 @@ function shuffle(n){const a=[];for(let i=0;i<n;i++)a.push(i);for(let i=n-1;i>0;i
 function buildSteps(){steps=[];D.topics.forEach((t,ti)=>{t.pages.forEach((p,pi)=>steps.push({type:'page',ti,pi}));t.vragen.forEach((q,qi)=>steps.push({type:'q',ti,qi}));});}
 const qAnsweredCount=()=>Object.keys(answers).length;
 const onderwerpenKlaar=()=>qAnsweredCount()>=D.totaalVragen;
-function setScreen(html){app.innerHTML=html;enhanceIconSystem();window.scrollTo(0,0);}
+function setScreen(html){app.innerHTML=html;enhanceIconSystem();enhanceVisibleIcons();window.scrollTo(0,0);}
 const vnv=id=>document.getElementById(id).value.trim();
 
 function intake(){
