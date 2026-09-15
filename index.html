@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>
-:root{--blauw:#1a2a5e;--blauw-licht:#2d4099;--blauw-mid:#243580;--grijs-licht:#f2f4f8;--grijs-mid:#dde2ef;--wit:#fff;--groen:#1a7a4a;--groen-licht:#e6f4ed;--oranje:#e6960a;--oranje-licht:#fff8e6;--rood:#b52a2a;--rood-licht:#faeaea;--tekst:#1a2a5e;--tekst-mid:#4a5578;--zilver:#8a9ab5;--radius:12px;--shadow:0 4px 24px rgba(26,42,94,.09);--shadow-sm:0 2px 10px rgba(26,42,94,.06);--ui:'Outfit',system-ui,sans-serif;--lees:'Source Serif 4',Georgia,serif;--kolom:760px}
+:root{--blauw:#1a2a5e;--blauw-licht:#2d4099;--blauw-mid:#243580;--grijs-licht:#f2f4f8;--grijs-mid:#dde2ef;--wit:#fff;--groen:#1a7a4a;--groen-licht:#e6f4ed;--oranje:#e6960a;--oranje-licht:#fff8e6;--rood:#b52a2a;--rood-licht:#faeaea;--tekst:#1a2a5e;--tekst-mid:#4a5578;--zilver:#8a9ab5;--radius:12px;--shadow:0 4px 24px rgba(26,42,94,.09);--shadow-sm:0 2px 10px rgba(26,42,94,.06);--ui:'Outfit',system-ui,sans-serif;--lees:'Source Serif 4',Georgia,serif;--kolom:1180px}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--ui);background:var(--grijs-licht);color:var(--tekst);line-height:1.5;-webkit-font-smoothing:antialiased}
 :focus-visible{outline:3px solid var(--blauw-licht);outline-offset:2px;border-radius:8px}
@@ -250,6 +250,19 @@ figure.illu svg text.il-main{font-size:16px}
 .law-mini-icon{width:32px;height:32px}.law-mini-icon svg{width:18px;height:18px}.law-mini p{font-size:.98rem!important;line-height:1.55!important;margin:0!important}
 .law-definition{display:flex;align-items:flex-start;gap:11px;background:#eef3fb;border:1px solid #d4deef;border-radius:10px;padding:12px 14px}.law-definition-icon{width:30px;height:30px}.law-definition-icon svg{width:17px;height:17px}.law-definition p{font-size:.96rem!important;line-height:1.5!important;margin:2px 0 0!important}
 @media(max-width:680px){.law-card{padding:18px 15px}.law-grid{grid-template-columns:1fr}.law-quote{padding:14px 15px}.law-text{font-size:1.01rem!important}}
+/* JSLF RESPONSIVE LEARNING DESIGN v2 */
+:root{--content-readable:68ch;--gap-lg:clamp(16px,2vw,28px)}
+main{width:min(100% - 32px,var(--kolom));max-width:var(--kolom);padding:14px 0 28px}
+.card{padding:clamp(18px,2.2vw,30px) clamp(18px,3vw,38px);overflow:hidden}
+.main{max-width:none}.main>p,.main>.lees{max-width:var(--content-readable)}
+.ptitle{font-size:clamp(1.35rem,2vw,1.65rem)}.tophead{margin-bottom:14px}.kaart{margin-top:10px}.nav{clear:both;padding-top:4px}
+@media(min-width:900px){.learning-page .main{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap-lg);align-items:start}.learning-page .main>*{grid-column:1/-1;margin-top:0}.learning-page .main>p,.learning-page .main>.lees{grid-column:1/9}.learning-page .main>.kaart:nth-of-type(2n+1):not(.k-letop):not(.k-onthoud){grid-column:1/7}.learning-page .main>.kaart:nth-of-type(2n):not(.k-letop):not(.k-onthoud){grid-column:7/-1}.learning-page .main>.k-letop,.learning-page .main>.k-onthoud,.learning-page .main>.bronnen-blok{grid-column:1/-1}.law-page .main{grid-template-columns:minmax(0,1.55fr) minmax(300px,.85fr)}.law-page .main>*{grid-column:auto}.law-page .main>.ptitle,.law-page .main>.pintro,.law-page .main>p:first-of-type{grid-column:1/-1;max-width:75ch}.law-page .main>.kaart:first-of-type{grid-column:1;grid-row:span 2;margin-top:0}.law-page .main>.kaart:nth-of-type(2),.law-page .main>.kaart:nth-of-type(3){grid-column:2;margin-top:0}.law-page .main>.kaart:nth-of-type(n+4),.law-page .main>.bronnen-blok{grid-column:1/-1}.question-page{max-width:920px;margin-inline:auto}.question-page .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}.case-page .main{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.case-page .main>.ptitle,.case-page .main>.pintro,.case-page .main>.bronnen-blok{grid-column:1/-1}}
+.kaart{box-shadow:none;border-color:#d7deec}.k-kader{background:#f5f7fc}.k-praktijk{background:#eff8f7}.k-onthoud{background:#eaf6ef}.k-letop{background:#fff8e8}
+@media(min-width:700px) and (max-width:899px){main{width:min(100% - 28px,860px)}.card{padding:22px 26px}}
+@media(max-width:699px){main{width:100%;padding:10px 12px 22px}.card{padding:17px 15px 19px}.ptitle{font-size:1.32rem}.main p,.lees,.kaart-b p,.kaart-b li{font-size:1rem;line-height:1.55}.kaart{padding:12px 14px}.btn{min-height:46px}.opts{grid-template-columns:1fr!important}.opt{min-height:48px}.bronnen-blok{overflow-wrap:anywhere}svg,img{max-width:100%;height:auto}}
+@media(max-width:360px){main{padding-inline:8px}.card{padding-inline:12px}.nav{flex-wrap:wrap}.nav .sp{display:none}.nav .btn{flex:1 1 46%}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -577,5 +590,9 @@ function certificaat(pct){
 }
 intake();
 </script>
+<script>
+(function(){function c(){const x=document.querySelector('#app > .card,main .card');if(!x)return;x.classList.remove('learning-page','law-page','question-page','case-page');const t=(x.textContent||'').toLowerCase();if(x.querySelector('.q-text,.opts'))x.classList.add('question-page');else{x.classList.add('learning-page');if(t.includes('artikel 429ter')&&(t.includes('wettekst')||t.includes('juridisch kader')))x.classList.add('law-page');if(t.includes('praktijkcasus')||t.includes('situatie'))x.classList.add('case-page')}}const a=document.getElementById('app')||document.body;new MutationObserver(c).observe(a,{childList:true,subtree:true});c()})();
+</script>
+
 </body>
 </html>
