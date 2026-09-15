@@ -1,0 +1,53 @@
+name: Responsive redesign v2
+on: [push]
+permissions:
+  contents: write
+jobs:
+  redesign:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ux-responsive-redesign
+      - name: Transform
+        shell: bash
+        run: |
+          python3 -c "from pathlib import Path; p=Path('index.html'); s=p.read_text(); s=s.replace('--kolom:760px','--kolom:1180px',1); p.write_text(s)"
+          cat > /tmp/responsive.css <<'EOF'
+          /* JSLF RESPONSIVE LEARNING DESIGN v2 */
+          :root{--content-readable:68ch;--gap-lg:clamp(16px,2vw,28px)}
+          main{width:min(100% - 32px,var(--kolom));max-width:var(--kolom);padding:14px 0 28px}
+          .card{padding:clamp(18px,2.2vw,30px) clamp(18px,3vw,38px);overflow:hidden}
+          .main{max-width:none}.main>p,.main>.lees{max-width:var(--content-readable)}
+          .ptitle{font-size:clamp(1.35rem,2vw,1.65rem)}.tophead{margin-bottom:14px}.kaart{margin-top:10px}.nav{clear:both;padding-top:4px}
+          @media(min-width:900px){.learning-page .main{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap-lg);align-items:start}.learning-page .main>*{grid-column:1/-1;margin-top:0}.learning-page .main>p,.learning-page .main>.lees{grid-column:1/9}.learning-page .main>.kaart:nth-of-type(2n+1):not(.k-letop):not(.k-onthoud){grid-column:1/7}.learning-page .main>.kaart:nth-of-type(2n):not(.k-letop):not(.k-onthoud){grid-column:7/-1}.learning-page .main>.k-letop,.learning-page .main>.k-onthoud,.learning-page .main>.bronnen-blok{grid-column:1/-1}.law-page .main{grid-template-columns:minmax(0,1.55fr) minmax(300px,.85fr)}.law-page .main>*{grid-column:auto}.law-page .main>.ptitle,.law-page .main>.pintro,.law-page .main>p:first-of-type{grid-column:1/-1;max-width:75ch}.law-page .main>.kaart:first-of-type{grid-column:1;grid-row:span 2;margin-top:0}.law-page .main>.kaart:nth-of-type(2),.law-page .main>.kaart:nth-of-type(3){grid-column:2;margin-top:0}.law-page .main>.kaart:nth-of-type(n+4),.law-page .main>.bronnen-blok{grid-column:1/-1}.question-page{max-width:920px;margin-inline:auto}.question-page .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}.case-page .main{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.case-page .main>.ptitle,.case-page .main>.pintro,.case-page .main>.bronnen-blok{grid-column:1/-1}}
+          .kaart{box-shadow:none;border-color:#d7deec}.k-kader{background:#f5f7fc}.k-praktijk{background:#eff8f7}.k-onthoud{background:#eaf6ef}.k-letop{background:#fff8e8}
+          @media(min-width:700px) and (max-width:899px){main{width:min(100% - 28px,860px)}.card{padding:22px 26px}}
+          @media(max-width:699px){main{width:100%;padding:10px 12px 22px}.card{padding:17px 15px 19px}.ptitle{font-size:1.32rem}.main p,.lees,.kaart-b p,.kaart-b li{font-size:1rem;line-height:1.55}.kaart{padding:12px 14px}.btn{min-height:46px}.opts{grid-template-columns:1fr!important}.opt{min-height:48px}.bronnen-blok{overflow-wrap:anywhere}svg,img{max-width:100%;height:auto}}
+          @media(max-width:360px){main{padding-inline:8px}.card{padding-inline:12px}.nav{flex-wrap:wrap}.nav .sp{display:none}.nav .btn{flex:1 1 46%}}
+          @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+          EOF
+          cat > /tmp/classifier.js <<'EOF'
+          <script>
+          (function(){function c(){const x=document.querySelector('#app > .card,main .card');if(!x)return;x.classList.remove('learning-page','law-page','question-page','case-page');const t=(x.textContent||'').toLowerCase();if(x.querySelector('.q-text,.opts'))x.classList.add('question-page');else{x.classList.add('learning-page');if(t.includes('artikel 429ter')&&(t.includes('wettekst')||t.includes('juridisch kader')))x.classList.add('law-page');if(t.includes('praktijkcasus')||t.includes('situatie'))x.classList.add('case-page')}}const a=document.getElementById('app')||document.body;new MutationObserver(c).observe(a,{childList:true,subtree:true});c()})();
+          </script>
+          EOF
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html'); s=p.read_text()
+          if 'JSLF RESPONSIVE LEARNING DESIGN v2' not in s:
+              css=Path('/tmp/responsive.css').read_text(); js=Path('/tmp/classifier.js').read_text()
+              s=s.replace('</style>',css+'\n</style>',1).replace('</body>',js+'\n</body>',1)
+          p.write_text(s)
+          PY
+      - name: QA and commit
+        run: |
+          grep -q 'JSLF RESPONSIVE LEARNING DESIGN v2' index.html
+          grep -q 'function setScreen' index.html
+          grep -q 'eindtoets' index.html
+          grep -q 'certificaat' index.html
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Apply responsive learning design' || true
+          git push origin HEAD:ux-responsive-redesign
