@@ -796,3 +796,95 @@ input.f:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(36
   .cert{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ══ Rechter-illustratieset (vaste referentie JS Legal Force) ══ */
+.art-rechter{--rh:260px;position:relative;flex:none;margin:0 auto;padding:0;max-width:100%;align-items:stretch}
+.rs-hero{--rh:clamp(300px,28vw,380px)}
+.rs-groot{--rh:clamp(250px,23vw,310px)}
+.rs-ecli{--rh:clamp(230px,21vw,280px)}
+.rs-mid{--rh:clamp(220px,20vw,270px)}
+.rs-proces{--rh:clamp(160px,16vw,230px)}
+.rs-klein{--rh:clamp(130px,12vw,180px)}
+/* rechter + rechtszaal */
+.rj-zaal{height:var(--rh);width:calc(var(--rh) * 1.2);display:block}
+.rj-zaal img{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:cover;object-position:34% 10%;border-radius:22px;box-shadow:var(--sh);background:#e6effc}
+.rj-zaal.rj-dicht{width:calc(var(--rh) * .9)}
+.rj-zaal.rj-dicht img{object-position:30% 6%}
+.rj-deco{position:absolute;z-index:0;right:-14px;top:-14px;width:46%;aspect-ratio:1;border-radius:50%;background:linear-gradient(160deg,#dfeafb,#c9dbf6)}
+/* medaillon */
+.rj-med{height:var(--rh);width:calc(var(--rh) * .943);display:block}
+.rj-med img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 12px 16px rgba(17,37,88,.16))}
+.media .art-rechter,.sum-row .art-rechter{margin:0 auto}
+
+/* jurisprudentie-leerplaat */
+.juris-page.jp{display:block}
+.jp-hero{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:stretch;background:linear-gradient(125deg,#f7faff 0%,#eaf1fc 52%,#dbe7fa 100%);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--sh-s)}
+.jp-hero::before{content:"";position:absolute;z-index:-1;left:-80px;bottom:-120px;width:280px;aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.6)}
+.jp-hero::after{content:"";position:absolute;z-index:-1;right:28%;top:-90px;width:200px;aspect-ratio:1;border-radius:50%;background:rgba(201,219,246,.42)}
+.jp-copy{min-width:0;align-self:center;padding:clamp(20px,2.6vw,34px) clamp(20px,2.4vw,32px)}
+.jp-copy .ptitle{margin-bottom:12px}
+.jp-art{position:relative;min-width:0;display:flex;align-items:flex-end;justify-content:flex-end}
+.jp-art .rj-fill{height:auto;min-height:var(--rh);align-self:stretch;margin:0}
+.jp-art .rj-fill .rj-deco{display:none}
+.jp-art .rj-fill img{border-radius:0;box-shadow:none;background:transparent;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 11%);mask-image:linear-gradient(90deg,transparent 0,#000 11%)}
+.jp-boa .jp-art{padding:18px 26px 0 8px}
+.juris-meta{margin:0 0 4px}
+.uitspraak{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);border:1px solid #cfdbef;border-radius:12px;padding:6px 12px 6px 6px;font-family:var(--ui);font-size:.9rem;box-shadow:var(--sh-s)}
+.uitspraak .di{width:28px;height:28px;padding:4px;border-radius:8px;background:var(--blue-l);--duo:#fff}
+.uitspraak .ecli-l{color:var(--blue);text-transform:uppercase}
+.us-v{font-weight:700}
+.us-v i{font-style:normal;white-space:nowrap}
+.jp-track{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;padding:0}
+.jp-track li{display:inline-flex;align-items:center;gap:6px;padding:4px 12px 4px 5px;border-radius:99px;background:rgba(255,255,255,.75);border:1px solid var(--line);font-family:var(--ui);font-weight:600;font-size:.86rem;color:var(--mute)}
+.jp-track li .di{width:26px;height:26px;padding:4px;border-radius:50%;background:var(--blue-ll);--duo:#fff}
+.jp-track li.done{color:var(--navy2)}
+.jp-track li.cur{background:var(--navy2);border-color:var(--navy2);color:#fff;box-shadow:var(--sh-s)}
+.jp-track li.cur .di{background:rgba(255,255,255,.16);color:#fff;--duo:rgba(255,255,255,.22)}
+.jp .juris-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+.jp .juris-cards.n1>*,.jp .juris-cards.n3>:last-child,.jp .juris-cards>.kcard{grid-column:1/-1}
+.jp .kcard-les{max-width:none}
+
+/* procesvisual en bewijsplaten */
+.pr-rechter .art-rechter{--rh:100%;height:100%;width:auto;aspect-ratio:.943}
+.pr-art.pr-rechter img{-webkit-mask-image:none;mask-image:none}
+.pr-ovj{position:relative}
+.pr-ovj::before{content:"";position:absolute;left:50%;bottom:0;height:86%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:linear-gradient(160deg,#dbe8fb,#bcd3f5)}
+.pr-ovj img{position:relative}
+.vis-chain{grid-template-columns:minmax(0,.75fr) minmax(0,1.45fr) minmax(0,.75fr)}
+.ch-rechter .art-rechter{--rh:auto;width:100%;height:auto;aspect-ratio:.943}
+.ch-end.ch-rechter img{-webkit-mask-image:none;mask-image:none}
+.tl-art.has-rechter::before{display:none}
+.tl-art .art-rechter img{height:100%}
+.fig-bewijs{grid-template-columns:minmax(0,.5fr) minmax(0,2fr) minmax(0,.78fr);row-gap:4px}
+.bw-side-r{align-self:end;display:flex;justify-content:center}
+.bw-side-r .art-rechter{--rh:auto;width:100%;height:auto;aspect-ratio:.943}
+.bw-side-r img{-webkit-mask-image:none;mask-image:none}
+.fig-bewijs>.bw-rules{grid-column:2;margin-top:10px}
+
+@media (max-width:1000px){
+  .rs-hero{--rh:250px}.rs-groot{--rh:230px}.rs-ecli{--rh:220px}.rs-mid{--rh:210px}.rs-proces{--rh:170px}.rs-klein{--rh:150px}
+  .jp .juris-cards{grid-template-columns:minmax(0,1fr)}
+  .fig-bewijs{grid-template-columns:minmax(0,1fr)}
+  .fig-bewijs>.bw-rules{grid-column:auto}
+  .pr-art{height:170px}
+  .bw-side-l{display:none}
+  .bw-side-r{display:flex;margin-top:4px}
+  .bw-side-r .art-rechter{--rh:210px;width:calc(var(--rh) * .943);height:var(--rh);aspect-ratio:auto}
+}
+@media (max-width:760px){
+  .rs-hero{--rh:190px}.rs-groot{--rh:185px}.rs-ecli{--rh:180px}.rs-mid{--rh:175px}.rs-proces{--rh:100%}.rs-klein{--rh:140px}
+  .rj-zaal,.rj-zaal.rj-dicht{width:100%}
+  .rj-deco{right:-6px;top:-8px;width:30%}
+  .rj-zaal img{object-position:34% 12%}
+  .jp-hero{grid-template-columns:minmax(0,1fr);border-radius:18px}
+  .jp-art{order:-1;justify-content:center}
+  .jp-art .rj-fill{min-height:0;height:var(--rh);width:100%}
+  .jp-art .rj-fill img{-webkit-mask-image:linear-gradient(#000 72%,transparent);mask-image:linear-gradient(#000 72%,transparent)}
+  .jp-boa .jp-art{padding:14px 0 0}
+  .jp-copy{padding:4px 16px 18px}
+  .jp-track li{font-size:.8rem}
+  .q-side .art-rechter{--rh:170px}
+  .pr-art{height:150px}
+  .bw-side-r .art-rechter{--rh:175px}
+  .uitspraak{font-size:.82rem}
+}

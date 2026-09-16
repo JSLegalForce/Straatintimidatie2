@@ -1,4 +1,4 @@
-const ASSET_V='0d751232';
+const ASSET_V='r71671c7';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -100,7 +100,7 @@ const L_SPEC={
 '1.7':{t:'split',a:'scene-plein-dag',rows:['schild']},
 '1.8':{t:'split',a:'wetboek',rev:1,rows:['wet']},
 '1.9':{t:'split',a:'weegschaal',rows:['document']},
-'1.10':{t:'juris',a:'rechter',lab:['Feiten','Beoordeling','Wat betekent dit?'],ic:['rechtbank','wet','lamp']},
+'1.10':{t:'juris',a:'rechter',rsz:'hero',lab:['Feiten','Beoordeling','Wat betekent dit?'],ic:['rechtbank','wet','lamp']},
 '1.11':{t:'split',a:{icon:'parlement',orbit:['wet','kalender','wereld']},rev:1,rows:['wet','parlement']},
 '1.12':{t:'wet'},
 '1.13':{t:'split',a:{icon:'kalender',orbit:['boek','wet','document']},rows:['boek','kalender']},
@@ -156,23 +156,23 @@ const L_SPEC={
 '3.14':{t:'vooruit'},
 /* 5 Rechtspraak */
 '4.0':{t:'lo',a:'rechter'},
-'4.1':{t:'split',a:'scene-rechtszaal',rows:['kalender']},
+'4.1':{t:'split',a:'rechter-dicht',rows:['kalender']},
 '4.2':{t:'split',a:{vis:'bronnen'},rev:1,rows:['rechtbank','wet','lamp']},
 '4.3':{t:'info',v:'tijdlijn'},
-'4.4':{t:'juris',a:'rechter',lab:['Feiten']},
-'4.5':{t:'juris',a:'rechter-gevouwen',lab:['Bewijs en beslissing'],ic:['pv']},
+'4.4':{t:'juris',a:'rechter',rsz:'hero',lab:['Feiten']},
+'4.5':{t:'juris',a:'rechter-dicht',rsz:'groot',lab:['Bewijs en beslissing'],ic:['pv']},
 '4.6':{t:'juris',a:'boa-notitie',lab:['Wat leer je hiervan?'],les:1},
 '4.7':{t:'juris',a:'rechter',lab:['Feiten']},
-'4.8':{t:'juris',a:'rechter-gevouwen',lab:['Beoordeling'],ic:['wet']},
+'4.8':{t:'juris',a:'rechter-dicht',rsz:'groot',lab:['Beoordeling'],ic:['wet']},
 '4.9':{t:'juris',a:'boa-uitleg',lab:['Wat leer je hiervan?'],les:1},
-'4.10':{t:'juris',a:'scene-rechtszaal',lab:['Feiten'],ic:['mensen']},
+'4.10':{t:'juris',a:'rechter',lab:['Feiten'],ic:['mensen']},
 '4.11':{t:'juris',a:'boa-dossier',lab:['Wat leer je hiervan?'],les:1},
-'4.12':{t:'letop',a:'rechter-gevouwen'},
-'4.13':{t:'punten',a:'rechter',p:[1]},
+'4.12':{t:'letop',a:{icon:'rechtbank',orbit:['document','vink','zoeken']}},
+'4.13':{t:'punten',a:'rechter-dicht',p:[1]},
 '4.14':{t:'punten',a:'boa-observeer',p:[2,3]},
-'4.15':{t:'punten',a:'rechter-gevouwen',p:[4]},
-'4.16':{t:'onthoud',a:'rechter',icons:['kalender','oog','wet']},
-'4.17':{t:'onthoud',a:'scene-rechtszaal',icons:['context','locatie']},
+'4.15':{t:'punten',a:'rechter-med',p:[4]},
+'4.16':{t:'onthoud',a:'rechter-med',icons:['kalender','oog','wet']},
+'4.17':{t:'onthoud',a:{icon:'context',orbit:['locatie','klok','wet']},icons:['context','locatie']},
 '4.18':{t:'vooruit'},
 /* 6 Bewijs en proces-verbaal */
 '5.0':{t:'lo',a:'boa-armen'},
@@ -185,7 +185,7 @@ const L_SPEC={
 '5.7':{t:'info',v:'bewijsopbouw'},
 '5.8':{t:'split',a:{vis:'bewijsketen'},rows:['dossier'],wide:1},
 '5.9':{t:'bronrijen',a:'rechter',rows:['oog','getuige']},
-'5.10':{t:'bronrijen',a:'rechter-gevouwen',rows:['persoon','camera']},
+'5.10':{t:'bronrijen',a:'rechter-med',rows:['persoon','camera']},
 '5.11':{t:'praktijk',a:'boa-notitie',ic:'oog',icons:['citaat','locatie','afstand','duur','reactie']},
 '5.12':{t:'proces',ic:'wet'},
 '5.13':{t:'split',a:'boa-observeer',rows:['context']},
@@ -223,7 +223,7 @@ const L_SPEC={
 '7.2':{t:'recap',n:1,a:'wetboek'},
 '7.3':{t:'recap',n:2,a:{vis:'bestanddelen'}},
 '7.4':{t:'recap',n:3,a:'weegschaal'},
-'7.5':{t:'recap',n:4,a:'rechter'},
+'7.5':{t:'recap',n:4,a:'rechter-med'},
 '7.6':{t:'recap',n:5,a:'boa-dossier'},
 '7.7':{t:'recap',n:6,a:'pv-document'},
 '7.8':{t:'split',a:'boa-uitleg',rows:['route','rechter']},
@@ -235,16 +235,16 @@ const Q_ART={
 '1.0':'wetboek','1.1':'doelwit','1.2':'vraag','1.3':'boa-uitleg',
 '2.0':'wetboek','2.1':'weegschaal','2.2':'scene-online','2.3':'boa-uitleg','2.4':'vraag','2.5':'scene-plein-dag',
 '3.0':'weegschaal','3.1':'vraag','3.2':'doelwit','3.3':'boa-notitie',
-'4.0':'pv-document','4.1':'scene-rechtszaal','4.2':'vraag','4.3':'wetboek','4.4':'doelwit',
+'4.0':'pv-document','4.1':'rechter-med','4.2':'vraag','4.3':'wetboek','4.4':'doelwit',
 '5.0':'boa-notitie','5.1':'vraag','5.2':'pv-document',
 '6.0':'wetboek','6.1':'vraag','6.2':'boa-dossier'
 };
 const ART_ALT={
 'boa-armen':'Boa in donkerblauw handhavingsuniform','boa-observeer':'Boa die de situatie alert observeert','boa-notitie':'Boa met notitieblok voor het vastleggen van waarnemingen','boa-uitleg':'Boa die iets uitlegt','boa-dossier':'Boa met proces-verbaal',
-'rechter':'Nederlandse rechter in zwarte toga met witte bef','rechter-gevouwen':'Nederlandse rechter in zwarte toga met witte bef','ovj':'Officier van justitie met dossier',
+'rechter':'Nederlandse rechter in zwarte toga met witte bef en een dossier in de hand, in een Nederlandse rechtszaal','rechter-dicht':'Nederlandse rechter in zwarte toga met witte bef en een dossier in de hand, in een Nederlandse rechtszaal','rechter-med':'Nederlandse rechter in zwarte toga met witte bef, met de rechtszaal op de achtergrond','ovj':'Officier van justitie met dossier',
 'burger-vrouw':'Volwassen vrouw in straatkleding','burger-man':'Volwassen man in straatkleding','burger-vrouw2':'Volwassen vrouw in straatkleding','burger-man2':'Volwassen man in straatkleding',
 'scene-winkelstraat':'Winkelstraat: een man loopt dicht achter een voorbijganger en maakt opmerkingen','scene-plein-dag':'Druk plein bij daglicht','scene-steeg-nacht':'Smal steegje in het donker',
-'scene-online':'Openbaar bericht op sociale media','scene-rechtszaal':'Rechter in de rechtszaal','wetboek':'Wetboek van Strafrecht, artikel 429ter',
+'scene-online':'Openbaar bericht op sociale media','wetboek':'Wetboek van Strafrecht, artikel 429ter',
 'pv-document':'Proces-verbaal met handtekening','doelwit':'Doelwit met pijl','vraag':'Vraagteken','weegschaal':'Weegschaal'
 };
 
@@ -262,6 +262,18 @@ function boaHTML(name,o){
   if(p.prop&&!o.bust)h+='<span class="boa-prop prop-'+p.prop+'">'+IMG(p.prop,'')+'</span>';
   if(p.chip&&!o.nochip&&!o.bust)h+='<span class="boa-chip">'+di(p.chip)+'</span>';
   return h+'</figure>';
+}
+/* ── Rechter-illustratie (vaste visuele referentie: rechter in toga met bef, Nederlandse rechtszaal) ──
+   v: 'zaal' (rechter + rechtszaal), 'dicht' (dichter op de rechter), 'medaillon' (rechter steekt uit een rechtszaalcirkel)
+   sz: hero | groot | ecli | mid | proces | klein  → hoogte via --rh */
+const RECHTER_V={'rechter':'zaal','rechter-dicht':'dicht','rechter-med':'medaillon'};
+const RSZ={lo:'hero',juris:'ecli',split:'groot',punten:'mid',onthoud:'mid',letop:'mid',bronrijen:'groot'};
+function rechterHTML(o){
+  o=o||{};const v=o.v||'zaal';
+  const alt=o.alt!=null?o.alt:(ART_ALT[v==='medaillon'?'rechter-med':'rechter']);
+  const cls='art art-rechter rs-'+(o.sz||'groot')+(o.cls?' '+o.cls:'');
+  if(v==='medaillon')return '<figure class="'+cls+' rj-med"><img src="assets/illustraties/rechter-medaillon.webp?v='+ASSET_V+'" alt="'+alt+'" decoding="async"></figure>';
+  return '<figure class="'+cls+' rj-zaal'+(v==='dicht'?' rj-dicht':'')+'"><span class="rj-deco" aria-hidden="true"></span><img src="assets/illustraties/rechter-zaal.webp?v='+ASSET_V+'" alt="'+alt+'" decoding="async"></figure>';
 }
 const ARW='<span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>';
 const VIS={
@@ -296,7 +308,7 @@ const VIS={
       +'<div class="ch-end">'+boaHTML('boa-armen',{side:'l',sz:'vis',bust:1,alt:''})+'<span>Boa</span></div>'
       +'<div class="ch-mid"><div class="ch-src">'+b.map((x,i)=>'<div class="ch-s">'+di(x[0])+'<b>'+x[1]+'</b></div>'+(i<3?'<span class="bd-plus" aria-hidden="true">+</span>':'')).join('')+'</div>'
       +'<div class="ch-row"><span class="ch-down" aria-hidden="true">↓</span><div class="ch-dos">'+di('dossier')+'<b>Dossier</b></div><span class="ch-down" aria-hidden="true">↓</span><div class="ch-dos ch-r">'+di('rechtbank')+'<b>Rechter</b></div></div></div>'
-      +'<div class="ch-end">'+IMG('rechter','')+'<span>Rechter</span></div></div>';
+      +'<div class="ch-end ch-rechter">'+rechterHTML({v:'medaillon',sz:'klein',alt:''})+'<span>Rechter</span></div></div>';
   },
   pvtoets(){
     const s=[['locatie','Plaats'],['citaat','Gedraging'],['context','Context'],['oog','Waarnemer']];
@@ -314,7 +326,7 @@ const VIS={
     const s=[['boa','Boa','Waarnemen en vastleggen'],['pv-document','Proces-verbaal','Feiten en omstandigheden'],['ovj','Officier van justitie','Beoordeelt het dossier'],['rechter','Rechter','Bepaalt de kwalificatie']];
     return '<div class="vis vis-proces" role="img" aria-label="Van straat naar rechter: boa, proces-verbaal, officier van justitie, rechter">'
       +'<div class="pr-kop">Van straat naar rechter</div><ol class="pr-steps">'
-      +s.map((x,i)=>'<li class="pr-step"><div class="pr-art'+(x[0]==='pv-document'?' pr-obj':'')+(x[0]==='boa'?' pr-boa':'')+'">'+(x[0]==='boa'?boaHTML('boa-armen',{side:'l',sz:'vis',bust:1,alt:''}):IMG(x[0],''))+'</div><span class="pr-n">'+(i+1)+'</span><b>'+x[1]+'</b><small>'+x[2]+'</small></li>').join('')+'</ol></div>';
+      +s.map((x,i)=>'<li class="pr-step"><div class="pr-art'+(x[0]==='pv-document'?' pr-obj':'')+(x[0]==='boa'?' pr-boa':'')+(x[0]==='ovj'?' pr-ovj':'')+(x[0]==='rechter'?' pr-rechter':'')+'">'+(x[0]==='boa'?boaHTML('boa-armen',{side:'l',sz:'vis',bust:1,alt:''}):x[0]==='rechter'?rechterHTML({v:'medaillon',sz:'proces',alt:''}):IMG(x[0],''))+'</div><span class="pr-n">'+(i+1)+'</span><b>'+x[1]+'</b><small>'+x[2]+'</small></li>').join('')+'</ol></div>';
   }
 };
 /* Vervangers van de oorspronkelijke figuren: zelfde labels, rijkere vormgeving */
@@ -345,15 +357,16 @@ const FIG={
   },
   tijdlijn(){
     const s=[['Rb Rotterdam — 2 okt 2024','eerste strafzaak'],['Rb Midden-Nederland — 7 okt 2024','kwalificatie: vernederend'],['Rb Amsterdam — 21 feb 2025','meervoudige kamer']];
-    return '<div class="fig fig-tl"><div class="tl-art">'+IMG('rechter')+'</div><div class="tl-main"><ol class="tl">'+s.map(x=>'<li>'+di('rechtbank')+'<div><b>'+x[0]+'</b><small>'+x[1]+'</small></div></li>').join('')+'</ol>'
+    return '<div class="fig fig-tl"><div class="tl-art has-rechter">'+rechterHTML({v:'medaillon',sz:'groot'})+'</div><div class="tl-main"><ol class="tl">'+s.map(x=>'<li>'+di('rechtbank')+'<div><b>'+x[0]+'</b><small>'+x[1]+'</small></div></li>').join('')+'</ol>'
       +'<p class="fig-note">'+di('kalender')+'Eerste gepubliceerde strafzaken sinds 1 juli 2024.</p></div></div>';
   },
   bewijsopbouw(){
     const s=[['oog','Eigen waarneming','woorden, gebaren, afstand'],['persoon','Slachtofferverklaring','waargenomen; woorden'],['getuige','Getuigenverklaring','wat zij zelf zagen'],['bodycam','Camera-/bodycam','gedraging, duur, context'],['ballon','Verklaring verdachte','erkenning, ontkenning'],['locatie','Overige informatie','locatie, tijdstip, data']];
-    return '<div class="fig fig-bewijs"><div class="bw-side">'+boaHTML('boa-armen',{side:'l',sz:'vis',bust:1})+'</div><div class="bw-main"><div class="bw-grid">'+s.map((x,i)=>'<div class="bw"><span class="bw-n">'+(i+1)+'</span>'+di(x[0])+'<div><b>'+x[1]+'</b><small>'+x[2]+'</small></div></div>').join('')+'</div>'
+    return '<div class="fig fig-bewijs"><div class="bw-side bw-side-l">'+boaHTML('boa-armen',{side:'l',sz:'vis',bust:1})+'</div><div class="bw-main"><div class="bw-grid">'+s.map((x,i)=>'<div class="bw"><span class="bw-n">'+(i+1)+'</span>'+di(x[0])+'<div><b>'+x[1]+'</b><small>'+x[2]+'</small></div></div>').join('')+'</div>'
       +'<div class="bw-arrow" aria-hidden="true">↓</div><div class="bw-sum">'+di('dossier')+'<div><b>Opbouw bewijs</b><small>rechter beoordeelt alles samen</small></div></div>'
       +'<div class="bw-arrow" aria-hidden="true">↓</div><div class="bw-judge">'+di('rechtbank')+'<b>Beoordeling door de rechter</b></div>'
-      +'<div class="bw-rules"><p>'+di('oog')+'Leg vast wat je zelf ziet en hoort.</p><p>'+di('lijst')+'Maak onderscheid tussen waarneming, verklaring en conclusie.</p></div></div><div class="bw-side">'+IMG('rechter')+'</div></div>';
+      +'</div><div class="bw-side bw-side-r">'+rechterHTML({v:'medaillon',sz:'groot'})+'</div>'
+      +'<div class="bw-rules"><p>'+di('oog')+'Leg vast wat je zelf ziet en hoort.</p><p>'+di('lijst')+'Maak onderscheid tussen waarneming, verklaring en conclusie.</p></div></div>';
   },
   tikpv(){
     return '<div class="fig fig-tik"><div class="tk-row"><div class="tk tk-s">'+di('pv')+'<b>Tik-pv (verkort)</b><span>eenvoudige,</span><span>duidelijke zaak</span><div class="tk-lines"><i></i><i></i><i></i></div></div>'
@@ -626,6 +639,7 @@ function artHTML(a,opt){
   if(!a)return '';
   if(typeof a==='string'){
     if(a.startsWith('boa-'))return boaHTML(a,{side:opt.rev?'l':'r',sz:opt.sz||TPL_SZ[opt.t]||'mid'});
+    if(RECHTER_V[a])return rechterHTML({v:RECHTER_V[a],sz:opt.rsz||RSZ[opt.t]||'mid'});
     const scene=a.startsWith('scene-'), obj=['wetboek','pv-document','doelwit','vraag','weegschaal'].includes(a);
     if(a==='scene-winkelstraat')return '<figure class="art art-scene has-boa">'+IMG(a)+'<img class="scene-boa" src="assets/illustraties/boa-hero.webp?v='+ASSET_V+'" alt="Boa die de situatie observeert" decoding="async"></figure>';
     return '<figure class="art '+(scene?'art-scene':obj?'art-obj':'art-char')+'">'+(scene||obj?'':'<div class="blob"></div>')+IMG(a)+'</figure>';
@@ -889,18 +903,52 @@ T.vooruit=(P,spec,st)=>{
   s.classList.add('next-split');
   return s;
 };
+/* jurisprudentie als leerplaat: kop met rechter + rechtszaal, uitspraakgegevens, opbouw, kaarten */
+const JP_STAP=[['rechtbank','Uitspraak'],['document','Feiten'],['wet','Beoordeling'],['lamp','Wat leer je hiervan?']];
+function jpStap(lab){lab=String(lab||'').toLowerCase();if(/feit/.test(lab))return 1;if(/beoordel|bewijs|beslis/.test(lab))return 2;if(/leer|betekent|betekenis/.test(lab))return 3;return 0;}
+function uitspraakInfo(st,P){
+  const plat=h=>String(h||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
+  let src=P.bron?P.bron.textContent:'';
+  if(!/ECLI:/.test(src)){
+    /* vervolgpagina van dezelfde uitspraak: ECLI van de openingspagina tonen (bron blijft ongewijzigd) */
+    const pages=D.topics[st.ti].pages;
+    const basis=t=>String(t||'').replace(/\s*\(vervolg\)\s*$/,'').replace(/\s+[—–-]\s+betekenis\s*$/,'').trim();
+    const b=basis(pages[st.pi].titel);
+    for(let j=st.pi-1;j>=0;j--){
+      if(basis(pages[j].titel)!==b)break;
+      const i=pages[j].html.indexOf('bronnen-blok');
+      if(i>-1&&/ECLI:/.test(pages[j].html.slice(i))){src=plat(pages[j].html.slice(i));break;}
+    }
+  }
+  const e=src.match(/ECLI:[A-Z]{2}:[A-Z]+:\d{4}:\d+/);
+  if(!e)return null;
+  const m=src.slice(0,e.index).match(/((?:Rb|Hof|HR|Rechtbank|Gerechtshof)\s[^,.\d]*?)\s+(\d{1,2}\s+[a-z]+\s+\d{4}),?\s*$/);
+  return {ecli:e[0],hof:m?m[1].trim():'',datum:m?m[2]:''};
+}
 T.juris=(P,spec,st)=>{
-  const box=el('div','juris-page');
-  const media=el('div','media',artHTML(spec.a,spec));
-  const copy=el('div','copy');
+  const isBoa=typeof spec.a==='string'&&spec.a.startsWith('boa-');
+  const box=el('div','juris-page jp '+(isBoa?'jp-boa':'jp-rechter'));
+  const hero=el('div','jp-hero');
+  const copy=el('div','jp-copy');
   const ch=soortChip(P,'rechtbank');if(ch)copy.appendChild(ch);
   copy.appendChild(el('p','kicker',spec.les?'Betekenis voor de praktijk':'Jurisprudentie'));
   copy.appendChild(titleEl(P));
-  let ecli=null;
-  if(P.bron){const m=P.bron.textContent.match(/ECLI:[A-Z]{2}:[A-Z]+:\d{4}:\d+/);if(m)ecli=m[0];}
-  const meta=el('div','juris-meta');
-  if(ecli)meta.appendChild(el('span','ecli',di('rechtbank')+'<span class="ecli-l">ECLI</span><span class="ecli-v">'+esc(ecli)+'</span>'));
-  if(meta.childNodes.length)copy.appendChild(meta);
+  const u=uitspraakInfo(st,P);
+  if(u){
+    const meta=el('div','juris-meta');
+    if(u.hof)meta.appendChild(el('span','uitspraak',di('rechtbank')+'<span class="ecli-l">Uitspraak</span><span class="us-v">'+esc(u.hof)+(u.datum?' · <i>'+esc(u.datum)+'</i>':'')+'</span>'));
+    meta.appendChild(el('span','ecli',di('document')+'<span class="ecli-l">ECLI</span><span class="ecli-v">'+esc(u.ecli)+'</span>'));
+    copy.appendChild(meta);
+  }
+  const cur=(spec.lab||['Feiten']).map(jpStap);
+  const laagste=Math.min.apply(null,cur);
+  const tr=el('ol','jp-track');tr.setAttribute('aria-label','Opbouw van de bespreking van de uitspraak');
+  JP_STAP.forEach((x,i)=>{const on=cur.indexOf(i)>-1;const li=el('li',on?'cur':(i<laagste?'done':''),di(x[0])+'<span>'+x[1]+'</span>');if(on)li.setAttribute('aria-current','step');tr.appendChild(li);});
+  copy.appendChild(tr);
+  hero.appendChild(copy);
+  const art=isBoa?boaHTML(spec.a,{side:'r',sz:'groot'}):rechterHTML({v:RECHTER_V[spec.a]||'zaal',sz:spec.rsz||'ecli',cls:'rj-fill'});
+  hero.appendChild(el('div','jp-art',art));
+  box.appendChild(hero);
   const cards=el('div','juris-cards');
   let i=0;
   P.rest.forEach(n=>{
@@ -916,8 +964,8 @@ T.juris=(P,spec,st)=>{
       const w=el('div');w.appendChild(el('h3','jcard-h',esc(lab)));w.appendChild(pp);c.appendChild(w);cards.appendChild(c);i++;
     });
   });
-  copy.appendChild(cards);
-  box.appendChild(copy);box.appendChild(media);
+  cards.classList.add('n'+i);
+  box.appendChild(cards);
   return box;
 };
 T.punten=(P,spec,st)=>{
