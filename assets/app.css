@@ -749,6 +749,42 @@ input.f:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(36
   .cert .meta{grid-template-columns:1fr}
 }
 
+
+/* ── BOA-illustratieset ── */
+.art-boa{--bh:260px;position:relative;display:block;flex:none;height:var(--bh);width:calc(var(--bh) * .98);max-width:100%;margin:0 auto;padding:0}
+.art-boa .boa-bg{position:absolute;left:50%;top:3%;width:calc(var(--bh) * .92);max-width:100%;height:auto;transform:translateX(-50%);z-index:0}
+.art-boa .boa-fig{position:absolute;left:50%;bottom:0;height:100%;width:auto;max-width:none;transform:translateX(-50%);z-index:1;-webkit-mask-image:linear-gradient(#000 86%,transparent 99%);mask-image:linear-gradient(#000 86%,transparent 99%);filter:drop-shadow(0 10px 18px rgba(17,37,88,.18))}
+.art-boa.is-buste .boa-fig{height:94%}
+.art-boa.is-buste .boa-bg{top:8%;width:88%}
+.sz-hero{--bh:clamp(300px,27vw,380px)}
+.sz-groot{--bh:clamp(250px,22vw,300px)}
+.sz-mid{--bh:clamp(225px,19vw,270px)}
+.sz-klein{--bh:clamp(150px,13vw,180px)}
+.sz-vis{--bh:auto;width:100%;height:auto;aspect-ratio:.96}
+.sz-vis .boa-bg{width:92%}
+.boa-prop{position:absolute;z-index:2;bottom:5%;width:34%;filter:drop-shadow(0 12px 16px rgba(17,37,88,.25))}
+.boa-prop img{width:100%;height:auto}
+.face-l .boa-prop{left:0;transform:rotate(-8deg)}
+.face-r .boa-prop{right:0;transform:rotate(8deg)}
+.boa-chip{position:absolute;z-index:2;top:22%;width:54px;height:54px;border-radius:50%;background:#fff;box-shadow:var(--sh-s);display:grid;place-items:center}
+.boa-chip .di{width:30px;height:30px}
+.face-l .boa-chip{left:4%}.face-r .boa-chip{right:4%}
+.hero-art{min-height:0}
+.hero-art .art-boa{margin:0 auto}
+.res-art{min-height:0}
+.art-scene.has-boa{position:relative;overflow:hidden}
+.art-scene .scene-boa{position:absolute;left:-2%;bottom:-40%;height:120%;width:auto;max-width:none;z-index:2;filter:drop-shadow(8px 10px 18px rgba(17,37,88,.35))}
+.pr-boa{border-bottom:3px solid #c3d3ee}
+.pr-boa .art-boa{height:100%;width:auto;aspect-ratio:.96}
+.bw-side .art-boa,.ch-end .art-boa,.pvq-char .art-boa{-webkit-mask-image:none}
+@media (max-width:1000px){
+  .sz-hero{--bh:250px}.sz-groot{--bh:235px}.sz-mid{--bh:215px}.sz-klein{--bh:160px}
+}
+@media (max-width:760px){
+  .sz-hero{--bh:clamp(170px,50vw,190px)}.sz-groot{--bh:clamp(165px,48vw,188px)}.sz-mid{--bh:clamp(160px,46vw,180px)}.sz-klein{--bh:140px}
+  .boa-chip{width:40px;height:40px}.boa-chip .di{width:22px;height:22px}
+  .q-side .art-boa{--bh:170px}
+}
 /* ── print (certificaat) ── */
 @media print{
   @page{size:A4 landscape;margin:12mm}
