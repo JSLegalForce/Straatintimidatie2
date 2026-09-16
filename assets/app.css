@@ -1390,3 +1390,10 @@ input.f:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(36
 @media (min-width:1001px){
   .card.qcard.answered .q-layout{grid-template-columns:var(--qa-cols,minmax(0,1fr) minmax(0,1.1fr))}
 }
+/* middenformaat: uitlegkaarten in logische volgorde onder de wettekst */
+@media (min-width:761px) and (max-width:1000px){
+  .wet-page{grid-template-columns:minmax(0,1fr);grid-template-areas:"top" "wk" "ugl" "ug"}
+  .wet-page>.ug-l{grid-area:ugl;margin-top:12px}
+  .wet-page>.uitleg-grid:not(.ug-l){grid-area:ug;margin-top:10px}
+  .wet-page.wet-solo>.uitleg-grid:not(.ug-l){display:none}
+}
