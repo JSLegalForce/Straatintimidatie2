@@ -888,3 +888,505 @@ input.f:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(36
   .bw-side-r .art-rechter{--rh:175px}
   .uitspraak{font-size:.82rem}
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   Schermhoogte-optimalisatie desktop/laptop (v2026-09)
+   Uitgangspunt: complete leerpagina's binnen één scherm, zonder inhoud
+   te verwijderen. Volgorde: witruimte → header/nav → composities →
+   beeldmaten (vh-bewust) → pas als laatste beperkte typografie.
+   Hoogteprofielen: ruim (>860px) · compact (≤860px) · krap (≤720px).
+   Mobiel (≤760px breed) blijft ongewijzigd en mag gewoon scrollen.
+   ══════════════════════════════════════════════════════════════════════ */
+:root{
+  --hd-h:56px;--wrap-t:18px;--wrap-b:8px;
+  --card-t:24px;--card-x:40px;--card-b:16px;
+  --nav-mt:18px;--nav-pt:14px;--btn-h:46px;
+  --gap-y:14px;--gap-s:10px;
+  --txt-l:1.08rem;--lh-l:1.56;
+  --bh-hero:clamp(260px,min(27vw,48vh),380px);
+  --bh-groot:clamp(210px,min(22vw,42vh),300px);
+  --bh-mid:clamp(200px,min(19vw,38vh),270px);
+  --bh-klein:clamp(140px,min(13vw,24vh),180px);
+  --obj-w:min(100%,360px,42vh);
+  --scene-h:min(46vh,420px);
+}
+@media (min-width:761px){
+  /* header: één compacte balk */
+  .hd-in{min-height:var(--hd-h);padding-top:6px;padding-bottom:6px;gap:16px}
+  .logo{width:30px;height:34px}
+  .hd-div{height:30px}
+  .hd-title b{font-size:.98rem}.hd-title span{font-size:.8rem}
+  .hd-prog{gap:5px}
+  .hd-bar{height:3px}
+  /* ruimte rond de kaart */
+  .wrap{padding:var(--wrap-t) 24px var(--wrap-b)}
+  .card{padding:var(--card-t) var(--card-x) var(--card-b)}
+  .hero-card{padding-top:calc(var(--card-t) + 10px);padding-bottom:calc(var(--card-b) + 8px)}
+  .ft{padding:2px 24px 10px;font-size:.74rem}
+  /* paginakop: onderwerp staat al in de header, positie in de navigatie */
+  .card>.pagehead{display:none}
+  /* navigatie */
+  .nav{margin-top:var(--nav-mt);padding-top:var(--nav-pt)}
+  .nav .btn{min-height:var(--btn-h);padding-top:8px;padding-bottom:8px}
+  .nav .sp{display:flex;justify-content:center;min-width:0}
+  .nav-pos{display:flex;flex-direction:column;align-items:center;text-align:center;font-family:var(--ui);line-height:1.2}
+  .np-k{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+  .np-t{font-size:.9rem;font-weight:500;color:var(--ink2)}.np-t b{color:var(--navy);font-weight:800}
+  /* typografie en tekstblokken: eerst regelafstand en padding */
+  .ptitle{font-size:clamp(1.45rem,1rem + 1.05vw,2.05rem);margin-bottom:12px}
+  .h-xl{font-size:clamp(1.9rem,1.2rem + 2.2vw,3.1rem)}
+  .kicker{margin-bottom:6px}
+  .q-soort{margin-bottom:10px;padding-top:5px;padding-bottom:5px}
+  .rows{gap:var(--gap-s);margin-top:4px}
+  .row{padding:14px 18px;gap:14px}
+  .row-ic{width:42px;height:42px;padding:7px}
+  .row-b p,.row-lead .row-b p{font-size:var(--txt-l);line-height:var(--lh-l)}
+  .rows>.row:only-child{padding:18px 22px}
+  .rows>.row:only-child .row-b p{font-size:clamp(1.08rem,1rem + .3vw,1.2rem);line-height:1.58}
+  .kcard{padding:16px 22px;margin-top:4px}
+  .kcard-head{margin-bottom:6px}.kcard-ic{width:36px;height:36px;padding:5px}
+  .kcard-t{font-size:1.16rem;margin-bottom:6px}
+  .kcard-b p{font-size:var(--txt-l);line-height:var(--lh-l)}
+  .tiles,.tiles-list{gap:var(--gap-s);margin:10px 0}
+  .tile{padding:10px 12px}
+  .tile-ic{width:36px;height:36px;padding:5px}
+  .split{gap:clamp(24px,3.2vw,48px)}
+  /* beelden: hoogte meeschalen met de viewport, niet alleen met de breedte */
+  .sz-hero{--bh:var(--bh-hero)}.sz-groot{--bh:var(--bh-groot)}.sz-mid{--bh:var(--bh-mid)}.sz-klein{--bh:var(--bh-klein)}
+  .rs-hero{--rh:var(--bh-hero)}.rs-groot{--rh:var(--bh-groot)}.rs-ecli,.rs-mid{--rh:var(--bh-mid)}.rs-klein{--rh:var(--bh-klein)}
+  .rs-proces{--rh:clamp(140px,min(16vw,25vh),230px)}
+  .art-char{min-height:0;padding-top:0}
+  .art-char img{height:var(--bh-groot)}
+  .art-duo{min-height:0}
+  .art-duo img{height:var(--bh-groot)}.art-duo img:last-of-type{height:calc(var(--bh-groot) * .9)}
+  .art-obj img{width:var(--obj-w)}
+  .art-icon{width:var(--obj-w)}
+  .art-scene{max-height:var(--scene-h)}
+  .art-scene img{height:100%;max-height:var(--scene-h);object-fit:cover}
+  .art-next{min-height:0}
+  .next-card{padding:16px 22px;gap:6px}
+  .nc-ic .di{width:58px;height:58px;padding:10px}
+  .hero-art{min-height:0}
+  /* bronnen: compacte bronregel, alle bronnen blijven zichtbaar */
+  .bronnen{margin-top:12px;padding:7px 14px;border-radius:12px}
+  .bronnen summary{float:left;padding:2px 12px 2px 0;margin-right:12px;border-right:1px solid var(--line);font-size:.72rem}
+  .bronnen summary .bron-n{display:none}
+  .bronnen .bronnen-blok{padding:0;overflow:hidden}
+  .bronnen .bb-l li{display:inline;margin:0 16px 0 0;padding-left:21px;font-size:.86rem;line-height:1.55}
+  .bronnen .bb-l li::before{top:0}
+  .bronnen:not([open]) summary{border-right:0}
+  /* leerdoelen */
+  .lo-top{margin-bottom:10px}
+  .lo-doel{width:72px;height:72px;padding:12px}
+  .lo-list{gap:8px}
+  .lo-item{padding:9px 14px;font-size:1.06rem;line-height:1.42}
+  .lo-n .di{width:30px;height:30px}
+  /* hero-schermen */
+  .hero-acts{margin-top:16px}
+  .quote-card{padding:11px 16px;margin-top:8px}
+  .stats{margin:12px 0 2px}.stat{padding:10px 12px}
+  .form-kop{margin-top:12px}
+  input.f{padding:10px 13px}
+  /* bestanddelen-voortgang */
+  .bd-track,.recap-track{margin-bottom:14px}
+  .bd-track li,.recap-track li{padding:6px 10px}
+  .bd-track li .di,.recap-track li .di{width:24px;height:24px}
+  /* samenvatting: titel naast het beeld in plaats van erboven */
+  .sum-page{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.85fr);grid-template-areas:"top media" "grid media";column-gap:clamp(20px,3vw,40px);align-items:center}
+  .sum-top{grid-area:top;align-self:end}
+  .sum-row{display:contents}
+  .sum-row>.sum-grid{grid-area:grid;align-self:start}
+  .sum-row>.media{grid-area:media}
+  .sum-sub{margin:-4px 0 10px}
+  .sum-grid{gap:var(--gap-s)}
+  .sum-card{padding:13px 18px;gap:14px}
+  .sum-ic{width:42px;height:42px;padding:7px}
+  .sum-t{font-size:var(--txt-l);line-height:var(--lh-l);padding-top:2px}
+  .sum-card .tiles{margin:4px 0 0}
+  /* overzicht: zes onderwerpen op één rij */
+  .ov-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:16px}
+  .ov-card{padding:12px;gap:6px}
+  .ov-card .di{width:42px;height:42px;padding:7px}
+  .ov-card b{font-size:.96rem}
+  .ov-n{font-size:1.3rem;right:12px;top:8px}
+  /* wetsartikel: kop + wetboek, daaronder WETTEKST | UITLEG */
+  .wet-page{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);grid-template-areas:"top top" "wk ug";column-gap:22px;align-items:start}
+  .wet-top{grid-area:top;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px;margin-bottom:12px}
+  .wet-top .copy{max-width:none}
+  .wet-top .copy .ptitle{margin-bottom:8px}
+  .wet-top .q-soort{margin:0 12px 6px 0;vertical-align:middle}
+  .wet-sub{display:inline;margin:0;vertical-align:middle;font-size:1.12rem}
+  .wet-top .lead{margin:8px 0 0;font-size:var(--txt-l);line-height:var(--lh-l)}
+  .wet-top .media .art-obj img{width:clamp(130px,min(15vw,25vh),210px)}
+  .wet-top .media{margin:-6px 0 -10px}
+  .wet-page>.wetkaart{grid-area:wk;margin-top:0;padding:18px 22px}
+  .wk-head{margin-bottom:8px}
+  .law-text{font-size:clamp(1.06rem,.98rem + .3vw,1.22rem);line-height:1.62}
+  .uitleg-grid{grid-area:ug;grid-template-columns:minmax(0,1fr);gap:var(--gap-s);margin-top:0}
+  .ucard{padding:12px 16px;gap:12px}
+  .ucard-ic{width:38px;height:38px;padding:6px}
+  .ucard p{font-size:1.02rem;line-height:1.5}
+  .ucard-h{margin-bottom:2px}
+  /* praktijksituatie */
+  .casus-card{padding:20px 24px}
+  .casus-body p,.casus-body .lees{font-size:var(--txt-l);line-height:var(--lh-l)}
+  .casus-page.stack .casus-card{margin-top:12px}
+  /* jurisprudentie-leerplaat: rechter rechts over de volle hoogte, uitspraak + feiten + beoordeling links */
+  .jp-copy{padding:clamp(16px,1.8vw,26px) clamp(18px,2vw,28px)}
+  .jp-copy .ptitle{margin-bottom:8px}
+  .jp-track{margin-top:10px}
+  .jp .juris-cards{margin-top:14px;gap:10px}
+  .jp-art .rj-fill{min-height:0;width:clamp(240px,24vw,340px)}
+  .jp-art .rj-fill img{position:absolute;inset:0;height:100%}
+  .jp-boa .jp-art{padding:16px 22px 0 0;align-items:flex-end}
+  .jcard{padding:12px 16px;gap:12px}
+  .jcard-ic{width:38px;height:38px;padding:6px}
+  .jcard p{font-size:var(--txt-l);line-height:var(--lh-l)}
+  .juris-meta{gap:6px}
+  /* punten, bewijsmiddelen, bronrijen, pv, fouten */
+  .pt-track span{width:40px;height:40px}
+  .bm-tiles{margin:14px 0 10px}
+  .tiles-5 .tile{padding:12px;gap:8px}
+  .tiles-5 .tile-ic{width:42px;height:42px}
+  .bronrijen{gap:var(--gap-s)}
+  .br-row{padding:13px 18px}
+  .br-ic{width:44px;height:44px;padding:7px}
+  .br-row p{font-size:var(--txt-l);line-height:var(--lh-l)}
+  .pvdoc-head{padding:9px 20px}
+  .pvdoc-b{padding:12px 22px 6px;background:repeating-linear-gradient(#fffdf8 0 29px,#eee7d6 29px 30px)}
+  .pvdoc-b p{line-height:30px}
+  .pvdoc-foot{padding:4px 22px 10px}
+  .pv-stamp{width:46px;height:46px}
+  .fout-top{gap:16px}
+  .fout-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:6px}
+  .fout-card{padding:14px;gap:8px}
+  .fout-ic{width:42px;height:42px;padding:7px}
+  .fout-card p{font-size:1rem;line-height:1.45}
+  .media.sm .art-char{min-height:0}
+  /* infographics */
+  .fig-note{margin-top:12px}
+  .rt .di{width:clamp(78px,min(8vw,14vh),116px);height:clamp(78px,min(8vw,14vh),116px);padding:clamp(16px,2vh,24px)}
+  .route::before{top:calc(clamp(78px,min(8vw,14vh),116px) / 2)}
+  .chk{padding:16px 16px 14px;gap:8px}
+  .chk>.di{width:52px;height:52px;padding:8px}
+  .chk-flow{margin:8px 0 6px}
+  .chk-ok,.chk-no{padding:12px 18px}
+  .vt-box{padding:16px 18px}
+  .vt-box>.di{width:52px;height:52px;padding:8px}
+  .vt-down{line-height:1.2}
+  .vt-tot{padding:10px 14px}
+  .tl{gap:10px}.tl li{padding:11px 16px}
+  .tl li .di{width:42px;height:42px;padding:7px}
+  .tk{padding:16px}.tk .di{width:58px;height:58px;padding:10px}
+  .tk-both{margin-top:14px;padding:12px 18px}
+  .bs{gap:14px}.bs-step{padding:10px 14px}
+  .bs-step .di{width:40px;height:40px;padding:6px}
+  .bs-no,.bs-yes{padding:12px}
+  .bs-notes{margin-top:12px}
+  .bs-rule{margin-bottom:12px}
+  .bw-grid{gap:8px}.bw{padding:10px}
+  .bw-sum,.bw-judge{padding:9px 14px}
+  .bw-arrow{line-height:1.1}
+  .fig-bewijs .bw-side .art-rechter,.fig-bewijs .bw-side .art-boa{max-height:34vh}
+  /* procesplaat */
+  .vis-proces{padding:12px 20px 14px}
+  .pr-art{height:clamp(130px,min(17vw,24vh),230px)}
+  .proces-plaat{margin:2px 0 12px}
+  .tl-art .art-rechter{--rh:clamp(200px,min(24vw,40vh),310px)}
+  /* visuals naast tekst */
+  .vis-bd{padding:16px}
+  .vis-ctx{padding:16px}
+  .ctx-a,.ctx-b{padding:12px 16px}
+  .vt{padding:16px 10px}.vt .di{width:62px;height:62px;padding:10px}
+  .vis-stack .st{padding:12px 16px}
+  /* ── oefenvragen en eindtoets ── */
+  .q-layout{grid-template-columns:minmax(0,.62fr) minmax(0,1.8fr);gap:clamp(20px,3vw,44px);align-items:center}
+  .q-side{position:static}
+  .q-side .art-char{min-height:0}
+  .q-side .art-obj img{width:min(100%,300px,36vh)}
+  .q-head{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;margin-bottom:6px}
+  .q-head .q-soort{margin:0}
+  .q-head .q-lab{margin:0}
+  .q-text{font-size:clamp(1.25rem,1rem + .75vw,1.62rem);margin-bottom:2px}
+  .q-hint{margin-bottom:12px;font-size:.95rem}
+  .opts{gap:var(--gap-s)}
+  .opt{padding:10px 16px;gap:12px;font-size:1.05rem;line-height:1.42}
+  .opt .lt{width:34px;height:34px}
+  .opt .tagje{position:absolute;right:12px;top:-11px;margin:0;flex-basis:auto;background:#fff;border:1px solid currentColor;border-radius:99px;padding:1px 10px 1px 7px;font-size:.74rem;line-height:1.5}
+  .opt .tagje svg{width:13px;height:13px}
+  .exdots{margin:0 0 12px}
+  .q-fb:empty{display:none}
+  /* na beantwoorden: vraag links, feedback rechts (illustratie wijkt) */
+  .qcard.answered .q-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);align-items:start}
+  .qcard.answered .q-side{display:none}
+  .qcard.answered .opt{padding-top:9px;padding-bottom:9px}
+  .qcard.answered .opts{gap:12px}
+  .fbx{margin-top:0;padding:14px 18px 14px;border-radius:18px;scroll-margin-top:70px}
+  .fbx-top{gap:12px}
+  .fbx-big{width:42px;height:42px}
+  .fbx.ok .fbx-big{box-shadow:0 0 0 5px #d5f0e0}.fbx.no .fbx-big{box-shadow:0 0 0 5px #fbdad7}
+  .fbx-big svg{width:24px;height:24px}
+  .fbx-h{font-size:clamp(1.15rem,1rem + .45vw,1.45rem)}
+  .fbx-s{font-size:.88rem;margin-top:0}
+  .fbx-pills{margin:10px 0;gap:8px}
+  .fbp{padding:6px 10px;gap:2px}
+  .fbp-v{font-size:.98rem;line-height:1.38}
+  .fbp-v b{width:24px;height:24px;font-size:.85rem}
+  .qcard.answered .fbp{flex:0 1 auto;flex-direction:row;align-items:center;gap:8px}
+  /* de volledige optietekst staat direct links, gemarkeerd; hier alleen de letter tonen (tekst blijft voor schermlezers) */
+  .qcard.answered .fbp-t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .fbx-grid{gap:8px}
+  .qcard.answered .fbx-grid{grid-template-columns:minmax(0,1fr)}
+  .fbx-sec{padding:10px 14px;gap:12px}
+  .fbx-sec>.di{width:34px;height:34px;padding:5px}
+  .fb-h{margin-bottom:2px}
+  .fb-p{font-size:1.02rem;line-height:1.52}
+  .fbx-bron{margin-top:8px}
+  .fbx-bron .bronnen-blok{padding-top:8px}
+  .fbx-bron .bb-t{display:inline;margin:0 10px 0 0}
+  .fbx-bron .bb-l{display:inline}
+  .fbx-bron .bb-l li{display:inline;margin:0 14px 0 0;padding-left:21px;font-size:.84rem}
+  .fbx-bron .bb-l li::before{top:0}
+  /* resultaat / certificaat */
+  .cert{padding:28px 32px 22px}
+  .cert .meta{margin-top:16px;padding-top:12px}
+  .certcard .acts{margin-top:14px}
+}
+/* brede schermen: split-composities iets breder beeld */
+@media (min-width:1001px){
+  .jp-hero{grid-template-columns:minmax(0,1fr) auto}
+  .jp .juris-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* middenformaat (761–1000): kaarten in de leerplaat onder elkaar */
+@media (min-width:761px) and (max-width:1000px){
+  .wet-page{grid-template-columns:minmax(0,1fr);grid-template-areas:"top" "wk" "ug"}
+  .uitleg-grid{margin-top:12px}
+  .ov-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .fout-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .jp-art .rj-fill{width:200px}
+  .qcard.answered .q-layout{grid-template-columns:minmax(0,1fr)}
+}
+/* hoogteprofiel COMPACT: laptops (bijv. 1440×900, 1536×864) */
+@media (min-width:761px) and (max-height:860px){
+  :root{--hd-h:50px;--wrap-t:12px;--wrap-b:6px;--card-t:18px;--card-x:36px;--card-b:12px;--nav-mt:14px;--nav-pt:10px;--btn-h:44px;--gap-y:12px;--gap-s:9px;--lh-l:1.53}
+  .hd-prog-t{font-size:.74rem}
+  .ptitle{font-size:clamp(1.4rem,.95rem + 1vw,1.9rem);margin-bottom:10px}
+  .h-xl{font-size:clamp(1.8rem,1.1rem + 2vw,2.7rem)}
+  .row{padding:12px 16px}
+  .rows>.row:only-child{padding:16px 20px}
+  .kcard{padding:14px 20px}
+  .bd-track li,.recap-track li{padding:5px 8px}
+  .lo-item{padding:8px 12px}
+  .fbx{padding:12px 16px}
+}
+/* hoogteprofiel KRAP: kleine laptops (bijv. 1366×768 met browserbalk) */
+@media (min-width:761px) and (max-height:720px){
+  :root{--hd-h:46px;--wrap-t:10px;--wrap-b:4px;--card-t:16px;--card-x:32px;--card-b:10px;--nav-mt:12px;--nav-pt:10px;--btn-h:42px;--gap-s:8px;--txt-l:1.04rem;--lh-l:1.5}
+  .brand-t{font-size:.72rem}
+  .logo{width:26px;height:30px}
+  .ptitle{font-size:clamp(1.32rem,.9rem + .9vw,1.75rem);margin-bottom:8px}
+  .kicker{font-size:.74rem;margin-bottom:4px}
+  .q-soort{font-size:.72rem;padding:4px 12px 4px 6px}.q-soort .di{width:20px;height:20px}
+  .row{padding:10px 14px;gap:12px}
+  .row-ic{width:38px;height:38px;padding:6px}
+  .rows>.row:only-child{padding:14px 18px}
+  .kcard{padding:12px 18px}
+  .kcard-t{font-size:1.1rem}
+  .tile{padding:8px 11px;gap:10px;font-size:1rem}
+  .tile-ic{width:32px;height:32px}
+  .lo-doel{width:60px;height:60px;padding:10px;border-radius:18px}
+  .lo-item{font-size:1.02rem;padding:7px 12px}
+  .bd-track,.recap-track{margin-bottom:10px}
+  .sum-card{padding:11px 16px}
+  .sum-ic{width:38px;height:38px;padding:6px}
+  .jcard{padding:10px 14px}
+  .jp-copy{padding:14px 18px}
+  .jp-track li{padding:3px 10px 3px 4px;font-size:.8rem}
+  .jp-track li .di{width:22px;height:22px}
+  .q-text{font-size:clamp(1.2rem,.95rem + .7vw,1.45rem)}
+  .q-hint{margin-bottom:10px}
+  .opt{padding:8px 14px;font-size:1.02rem;line-height:1.4}
+  .opt .lt{width:30px;height:30px}
+  .fbx-sec{padding:9px 12px}
+  .fb-p{font-size:1rem;line-height:1.48}
+  .pvdoc-b p{font-size:.98rem;line-height:28px}
+  .pvdoc-b{background:repeating-linear-gradient(#fffdf8 0 27px,#eee7d6 27px 28px)}
+  .cert{padding:22px 26px 18px}
+  .cert .sh{width:56px;height:62px;margin-bottom:6px}
+}
+/* ── fijnafstelling na eerste nameting ── */
+@media (min-width:1001px){
+  .wet-page{grid-template-areas:"top top" "wk ug" "ugl ug";grid-template-rows:auto auto 1fr;row-gap:var(--gap-s)}
+  .wet-page>.ug-l{grid-area:ugl;align-self:start}
+  .wet-page>.uitleg-grid:not(.ug-l){grid-area:ug;align-self:start}
+  .wet-top{margin-bottom:2px}
+}
+@media (min-width:761px){
+  /* chip en kicker op één regel */
+  .jp-copy>.q-soort,.casus-card>.q-soort{display:inline-flex;margin:0 12px 6px 0;vertical-align:middle}
+  .jp-copy>.q-soort+.kicker,.casus-card>.q-soort+.kicker{display:inline-flex;vertical-align:middle;margin-bottom:6px}
+  /* vergelijkingsbeelden: hoogte begrensd, onderwerp blijft in beeld */
+  .vis-cmp .cmp img{height:min(38vh,360px);object-fit:cover;object-position:50% 30%}
+  .casus-page.stack .vis-cmp .cmp img{height:min(30vh,300px)}
+  .cmp figcaption{padding:8px 14px}
+  /* procesplaat en bewijsmiddelen: tegels met icoon naast de tekst */
+  .proces-page .tiles-4 .tile,.bm-tiles.tiles-5 .tile{flex-direction:row;align-items:center;gap:10px}
+  .proces-page .tiles-4 .tile-ic,.bm-tiles.tiles-5 .tile-ic{width:38px;height:38px;flex-shrink:0}
+  .pr-art{height:clamp(120px,min(16vw,22vh),220px)}
+  .pr-kop{margin-bottom:2px}
+  .bm-top .art-obj img{width:clamp(150px,min(18vw,30vh),260px)}
+  .bm-top{align-items:center}
+}
+@media (min-width:1001px) and (max-height:720px){
+  .qcard.answered .q-layout{grid-template-columns:minmax(0,.92fr) minmax(0,1.22fr);gap:22px}
+  .jp-art .rj-fill{width:clamp(220px,min(22vw,42vh),320px)}
+  .jp-boa .jp-art{padding-right:14px}
+}
+@media (min-width:761px){
+  .jp-copy>.bronnen{margin-top:10px;background:rgba(255,255,255,.7)}
+}
+@media (min-width:1001px) and (max-height:860px){
+  .wet-top .copy .ptitle{display:inline-block;margin:0 16px 6px 0;vertical-align:middle}
+  .wetkaart{padding:14px 20px}
+  .wk-head{margin-bottom:6px}
+  .law-text{line-height:1.56}
+}
+@media (min-width:1001px){
+  /* jurisprudentiekaarten: icoon naast de kop, tekst over de volle kaartbreedte */
+  .jcard{display:block;padding:12px 16px 13px}
+  .jcard>.jcard-ic{float:left;width:30px;height:30px;padding:4px;margin:0 10px 0 0;border-radius:9px}
+  .jcard-h{line-height:30px;margin-bottom:2px}
+  .jp-art .rj-fill{width:clamp(220px,min(21vw,40vh),310px)}
+  .fbx-sec{display:block}
+  .fbx-sec>.di{float:left;width:28px;height:28px;padding:4px;margin:0 9px 0 0;border-radius:8px}
+  .fbx-sec .fb-h{line-height:28px;margin-bottom:0}
+}
+@media (min-width:761px){
+  /* lange casusvragen: kop iets rustiger zodat vraag en opties samen in beeld blijven */
+  .q-text.q-long{font-size:clamp(1.14rem,.98rem + .5vw,1.4rem);line-height:1.34}
+}
+@media (min-width:1001px){
+  .qcard.answered .q-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.04fr)}
+}
+@media (min-width:1001px) and (max-height:720px){
+  .qcard.answered .q-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:22px}
+}
+@media (min-width:1001px) and (max-height:720px){
+  .qcard.answered .q-layout{grid-template-columns:minmax(0,.9fr) minmax(0,1.24fr)}
+  .qcard.answered.has-long .q-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.02fr)}
+}
+@media (min-width:1001px) and (min-height:721px){
+  .qcard.answered .q-layout{grid-template-columns:minmax(0,.94fr) minmax(0,1.14fr)}
+  .qcard.answered.has-long .q-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.04fr)}
+}
+/* feedbackkop: status en antwoordletters op één regel naast het vinkje/kruis */
+.fbx-top{align-items:flex-start}
+.fbx-top>div{flex:1;min-width:0}
+.fbx-sub .fbx-pills{margin-bottom:0}
+@media (min-width:761px){
+  .fbx-top{align-items:center}
+  .qcard.answered .fbx-sub{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:4px}
+  .qcard.answered .fbx-sub .fbx-pills{margin:0;gap:6px}
+  .qcard.answered .fbp{padding:3px 6px 3px 10px}
+  .qcard.answered .fbp-l{font-size:.68rem}
+  .qcard.answered .fbp-v b{width:22px;height:22px;font-size:.8rem}
+  .qcard.answered .fbx-grid{margin-top:10px}
+}
+@media (min-width:761px){
+  .uitleg-grid>.bronnen{margin-top:2px}
+}
+@media (min-width:761px) and (max-height:860px){
+  /* kaartlabel en kaarttitel op één regel */
+  .kcard-head{display:inline-flex;vertical-align:middle;margin:0 10px 4px 0}
+  .kcard-head+.kcard-t{display:inline;vertical-align:middle}
+  .kcard-head+.kcard-t+.kcard-b{margin-top:4px}
+}
+@media (min-width:1001px){
+  /* leerplaat: kicker en opbouw-balk delen één regel */
+  .jp-copy{display:grid;grid-template-columns:auto auto minmax(0,1fr);grid-template-areas:"chip kick track" "title title title" "meta meta meta" "cards cards cards" "bron bron bron";align-content:center;column-gap:0}
+  .jp-copy>.q-soort{grid-area:chip;margin:0 12px 6px 0;align-self:center}
+  .jp-copy>.kicker{grid-area:kick;margin:0 12px 6px 0;align-self:center}
+  .jp-copy>.jp-track{grid-area:track;justify-self:end;align-self:center;margin:0 0 6px}
+  .jp-copy>.ptitle{grid-area:title}
+  .jp-copy>.juris-meta{grid-area:meta}
+  .jp-copy>.juris-cards{grid-area:cards}
+  .jp-copy>.bronnen{grid-area:bron}
+  .jp-track li{padding:3px 11px 3px 4px;font-size:.82rem}
+  .jp-track li .di{width:24px;height:24px}
+}
+@media (max-width:1000px){
+  /* kaarten binnen de leerplaat: icoon naast de kop zodat de tekst de volle breedte houdt */
+  .jcard{display:block;padding:12px 14px}
+  .jcard>.jcard-ic{float:left;width:30px;height:30px;padding:4px;margin:0 10px 0 0;border-radius:9px}
+  .jcard-h{line-height:30px;margin-bottom:2px}
+  .jp-copy .juris-cards{margin-top:14px}
+  .jp-copy>.bronnen{margin-top:12px}
+}
+@media (max-width:760px){
+  .jp-copy{padding:4px 12px 14px}
+  .fbx-sub .fbx-pills{margin-top:10px}
+}
+@media (max-width:760px){
+  .fbx-top{flex-wrap:wrap;align-items:center}
+  .fbx-top>div{display:contents}
+  .fbx-top .fbx-h{flex:1;min-width:0}
+  .fbx-sub{flex-basis:100%}
+  .fbx-sub .fbx-s{margin:0}
+  .fbx-grid{margin-top:12px}
+  .fbx-sec{display:block}
+  .fbx-sec>.di{float:left;width:28px;height:28px;padding:4px;margin:0 9px 0 0;border-radius:8px}
+  .fbx-sec .fb-h{line-height:28px;margin-bottom:0}
+}
+@media (min-width:1001px) and (max-height:720px){
+  .qcard.answered .fbx{padding:10px 14px 10px}
+  .qcard.answered .fbx-grid{margin-top:8px}
+  .pr-art{height:clamp(110px,19vh,200px)}
+  .vis-proces{padding:10px 18px 10px}
+  .pr-step small{line-height:1.15}
+  .proces-page .kcard{padding:10px 16px}
+  .proces-page .tiles{margin:8px 0}
+  .law-text{font-size:1.06rem;line-height:1.52}
+  .wet-top{margin-bottom:0}
+  .wet-top .lead{margin-top:4px}
+  .jp-copy{padding:12px 16px}
+  .jp .juris-cards{margin-top:10px;gap:8px}
+  .jp-copy>.bronnen{margin-top:8px}
+}
+@media (min-width:1001px) and (max-height:720px){
+  .qcard.answered.has-long .opts{gap:10px}
+  .qcard.answered.has-long .q-hint{margin-bottom:8px}
+}
+@media (min-width:1001px) and (max-height:720px){
+  .wet-top .media .art-obj img{width:118px}
+  .wet-top .media{margin:-8px 0 -12px}
+  .wet-top{align-items:start}
+}
+@media (min-width:1001px) and (max-height:720px){
+  .jp-rechter .jp-art .rj-fill{width:clamp(210px,min(19vw,36vh),300px)}
+}
+@media (min-width:1001px){
+  .wet-page.wet-solo{grid-template-areas:"top top" "wk ugl";grid-template-rows:auto 1fr}
+  .wet-page.wet-solo>.uitleg-grid:not(.ug-l){display:none}
+}
+@media (min-width:761px){
+  /* duo-illustratie: achtergrondvlak even hoog als de figuren, zodat niets over de voortgangsbalk valt */
+  .art-duo{overflow:visible}
+  .art-duo .blob{width:min(100%,calc(var(--bh-groot) * 1.3));aspect-ratio:1.3}
+  .art-char .blob{width:min(100%,calc(var(--bh-groot) * 1.3));aspect-ratio:1.3}
+  /* scènes en vergelijkingsbeelden: bij bijsnijden blijven de hoofden in beeld */
+  .art-scene img{object-position:50% 0}
+  .vis-cmp .cmp img{object-position:50% 0}
+}
+/* smalle laptops (≤1300 breed) met weinig hoogte: iets minder zijmarge, meer tekstbreedte */
+@media (min-width:1001px) and (max-width:1300px) and (max-height:720px){
+  :root{--card-x:24px}
+  .wrap{padding-left:14px;padding-right:14px}
+  .qcard.answered .q-layout{gap:18px}
+}
+@media (min-width:1001px) and (max-width:1300px) and (max-height:720px){
+  .qcard.answered .q-layout,.qcard.answered.has-long .q-layout{grid-template-columns:minmax(0,1.04fr) minmax(0,1fr)}
+}
+/* vraag | feedback: verhouding per vraag berekend (zie lockAndReveal) */
+@media (min-width:1001px){
+  .card.qcard.answered .q-layout{grid-template-columns:var(--qa-cols,minmax(0,1fr) minmax(0,1.1fr))}
+}

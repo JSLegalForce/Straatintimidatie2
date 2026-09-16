@@ -1,4 +1,4 @@
-const ASSET_V='r71671c7';
+const ASSET_V='r260916h';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -432,8 +432,9 @@ function setScreen(html,opt){app.innerHTML=shell(html,opt);window.scrollTo(0,0);
 function afterRender(){
   document.querySelectorAll('.art img, .vis img, .fig img').forEach(img=>{img.addEventListener('error',()=>{img.closest('figure,div')&&img.closest('figure,div').classList.add('img-fout');},{once:true});});
 }
-function navHTML(prevVisible,nextLabel,nextId,extra){
-  return '<nav class="nav">'+(prevVisible?'<button class="btn btn-ghost" id="prev">'+pijlL+'<span>Vorige</span></button>':'<span></span>')+'<span class="sp"></span>'+(extra||'')
+function navPos(k,t){return '<span class="nav-pos"><span class="np-k">'+esc(k)+'</span><span class="np-t">'+t+'</span></span>';}
+function navHTML(prevVisible,nextLabel,nextId,extra,pos){
+  return '<nav class="nav">'+(prevVisible?'<button class="btn btn-ghost" id="prev">'+pijlL+'<span>Vorige</span></button>':'<span></span>')+'<span class="sp">'+(pos||'')+'</span>'+(extra||'')
     +'<button class="btn btn-primary" id="'+(nextId||'next')+'"><span>'+nextLabel+'</span>'+pijlR+'</button></nav>';
 }
 
@@ -492,7 +493,7 @@ function pageScreen(st){
   const spec=L_SPEC[st.ti+'.'+st.pi]||{t:'split',a:'boa-armen'};
   const head='<div class="pagehead"><span class="ph-ic">'+di(TOPIC_ICON[st.ti])+'</span><div><span class="ph-k">Onderwerp '+t.nr+' · Pagina '+n+'/'+tot+'</span><span class="ph-t">'+esc(t.titel)+'</span></div><span class="ph-count">Pagina '+n+' van '+tot+'</span></div>';
   setScreen('<article class="card page tpl-'+spec.t+'" data-page="'+st.ti+'.'+st.pi+'">'+head+'<div class="stage" id="stage"></div><div id="bron"></div>'
-    +navHTML(si>0,last?'Naar de eindtoets':'Volgende')+'</article>',{ti:st.ti,frac:(si+1)/steps.length});
+    +navHTML(si>0,last?'Naar de eindtoets':'Volgende',null,'',navPos('Onderwerp '+t.nr,'Pagina <b>'+n+'</b> van '+tot))+'</article>',{ti:st.ti,frac:(si+1)/steps.length});
   composePage(document.getElementById('stage'),document.getElementById('bron'),p,spec,st);
   const pv=document.getElementById('prev');if(pv)pv.onclick=()=>{if(si>0){si--;render();}};
   document.getElementById('next').onclick=()=>{if(last){eindtoetsIntro();}else{si++;render();}};
@@ -502,13 +503,13 @@ function qScreen(st){
   const t=D.topics[st.ti],q=t.vragen[st.qi];
   const done=qAnsweredCount(),qn=globalQNum(st);
   const art=Q_ART[st.ti+'.'+st.qi]||'vraag';
-  let html='<article class="card qcard"><div class="pagehead"><span class="ph-ic">'+di('vraag')+'</span><div><span class="ph-k">Onderwerp '+t.nr+' · Oefenvragen</span><span class="ph-t">'+esc(t.titel)+'</span></div><span class="ph-count">Vraag '+qn+' van '+D.totaalVragen+'</span></div>'
+  let html='<article class="card qcard'+(q.vraag.length>150?' has-long':'')+'"><div class="pagehead"><span class="ph-ic">'+di('vraag')+'</span><div><span class="ph-k">Onderwerp '+t.nr+' · Oefenvragen</span><span class="ph-t">'+esc(t.titel)+'</span></div><span class="ph-count">Vraag '+qn+' van '+D.totaalVragen+'</span></div>'
    +'<div class="q-layout"><div class="q-side">'+artHTML(art,{rev:1,sz:'mid'})+'</div><div class="q-main">'
-   +'<span class="q-soort">'+di(q.soort==='Praktijkcasus'?'boa':'boek')+esc(q.soort)+'</span>'
-   +'<div class="q-lab">De vraag</div><h2 class="q-text">'+esc(q.vraag)+'</h2><p class="q-hint">Kies één antwoord.</p>'
+   +'<div class="q-head"><span class="q-soort">'+di(q.soort==='Praktijkcasus'?'boa':'boek')+esc(q.soort)+'</span>'
+   +'<div class="q-lab">De vraag</div></div><h2 class="q-text'+(q.vraag.length>150?' q-long':'')+'">'+esc(q.vraag)+'</h2><p class="q-hint">Kies één antwoord.</p>'
    +'<div class="opts" id="opts" role="radiogroup" aria-label="Antwoordmogelijkheden">'+q.opties.map((o,i)=>'<button class="opt" role="radio" aria-checked="false" data-i="'+i+'"><span class="lt">'+L(i)+'</span><span class="ot">'+esc(o)+'</span></button>').join('')+'</div>'
-   +'</div></div><div id="fb" aria-live="polite"></div>'
-   +'<nav class="nav">'+(si>0?'<button class="btn btn-ghost" id="prev">'+pijlL+'<span>Vorige</span></button>':'<span></span>')+'<span class="sp"></span><button class="btn btn-primary" id="act" disabled><span>Controleer antwoord</span>'+pijlR+'</button></nav></article>';
+   +'</div><div id="fb" class="q-fb" aria-live="polite"></div></div>'
+   +'<nav class="nav">'+(si>0?'<button class="btn btn-ghost" id="prev">'+pijlL+'<span>Vorige</span></button>':'<span></span>')+'<span class="sp">'+navPos('Onderwerp '+t.nr+' · Oefenvragen','Vraag <b>'+qn+'</b> van '+D.totaalVragen)+'</span><button class="btn btn-primary" id="act" disabled><span>Controleer antwoord</span>'+pijlR+'</button></nav></article>';
   setScreen(html,{ti:st.ti,frac:(si+1)/steps.length});
   const pv=document.getElementById('prev');if(pv)pv.onclick=()=>{if(si>0){si--;render();}};
   if(answers[key(st)]!==undefined){lockAndReveal(st,answers[key(st)],false);return;}
@@ -520,22 +521,36 @@ function key(st){return st.ti+'-'+st.qi;}
 function globalQNum(st){let n=0;for(let i=0;i<D.topics.length;i++)for(let j=0;j<D.topics[i].vragen.length;j++){n++;if(i===st.ti&&j===st.qi)return n;}return n;}
 function lockAndReveal(st,ans,scroll){
   const t=D.topics[st.ti],q=t.vragen[st.qi],last=isLaatsteLerenStap();
-  document.querySelector('.qcard').classList.add(ans.goed?'is-goed':'is-fout');
+  const qc=document.querySelector('.qcard');qc.classList.add(ans.goed?'is-goed':'is-fout','answered');
+
   [...document.querySelectorAll('.opt')].forEach(b=>{const i=+b.dataset.i;b.classList.add('locked');b.classList.remove('sel');b.onclick=null;b.setAttribute('aria-disabled','true');
     if(i===q.juist){b.classList.add('goed');b.insertAdjacentHTML('beforeend','<span class="tagje">'+vink+(i===ans.sel?'Jouw antwoord · juist':'Juiste antwoord')+'</span>');}
     else if(i===ans.sel){b.classList.add('fout');b.insertAdjacentHTML('beforeend','<span class="tagje">'+kruis+'Jouw antwoord · onjuist</span>');}});
   document.getElementById('fb').innerHTML=feedbackHTML(q,ans);
+  balanceerFeedback(qc);
   const act=document.getElementById('act');
   act.disabled=false;act.innerHTML='<span>'+(last?'Naar de eindtoets':'Volgende vraag')+'</span>'+pijlR;act.onclick=()=>{if(last){eindtoetsIntro();}else{si++;render();}};
-  if(scroll){const fb=document.getElementById('fb');setTimeout(()=>fb.scrollIntoView({behavior:'smooth',block:'start'}),60);}
+  if(scroll){const fb=document.getElementById('fb');setTimeout(()=>{const r=fb.getBoundingClientRect();if(r.top<0||r.bottom>innerHeight)fb.scrollIntoView({behavior:'smooth',block:r.height>innerHeight?'start':'nearest'});},60);}
+}
+/* desktop: kolomverhouding vraag | feedback zo kiezen dat de hoogste kolom zo laag mogelijk is */
+function balanceerFeedback(qc){
+  if(!window.matchMedia('(min-width:1001px)').matches)return;
+  const qm=qc.querySelector('.q-main'),fb=document.getElementById('fb');
+  let best=null;
+  for(let r=.7;r<=1.61;r+=.1){
+    qc.style.setProperty('--qa-cols','minmax(0,1fr) minmax(0,'+r.toFixed(1)+'fr)');
+    const h=Math.max(qm.offsetHeight,fb.offsetHeight);
+    if(!best||h<best.h-2)best={h,r};
+  }
+  qc.style.setProperty('--qa-cols','minmax(0,1fr) minmax(0,'+best.r.toFixed(1)+'fr)');
 }
 function feedbackHTML(q,ans){
   const goed=ans.goed;
   const uit=fnRender(q.uitleg,q.voetnoten);
   let h='<section class="fbx '+(goed?'ok':'no')+'"><div class="fbx-top"><span class="fbx-big" aria-hidden="true">'+(goed?vink:kruis)+'</span><div><h3 class="fbx-h">'+(goed?'Juist!':'Helaas, dat is niet het juiste antwoord.')+'</h3>'
-    +'<p class="fbx-s">'+(goed?'Juist beantwoord':'Onjuist beantwoord')+'</p></div></div>'
-    +'<div class="fbx-pills"><div class="fbp '+(goed?'g':'r')+'"><span class="fbp-l">Jouw antwoord</span><span class="fbp-v"><b>'+L(ans.sel)+'</b>'+esc(q.opties[ans.sel])+'</span></div>'
-    +(goed?'':'<div class="fbp g"><span class="fbp-l">Juiste antwoord</span><span class="fbp-v"><b>'+L(q.juist)+'</b>'+esc(q.opties[q.juist])+'</span></div>')+'</div>'
+    +'<div class="fbx-sub"><p class="fbx-s">'+(goed?'Juist beantwoord':'Onjuist beantwoord')+'</p>'
+    +'<div class="fbx-pills"><div class="fbp '+(goed?'g':'r')+'"><span class="fbp-l">Jouw antwoord</span><span class="fbp-v"><b>'+L(ans.sel)+'</b><span class="fbp-t">'+esc(q.opties[ans.sel])+'</span></span></div>'
+    +(goed?'':'<div class="fbp g"><span class="fbp-l">Juiste antwoord</span><span class="fbp-v"><b>'+L(q.juist)+'</b><span class="fbp-t">'+esc(q.opties[q.juist])+'</span></span></div>')+'</div></div></div></div>'
     +'<div class="fbx-grid"><div class="fbx-sec fbx-uit">'+di('lamp')+'<div><div class="fb-h">Toelichting</div><p class="fb-p">'+uit.body+'</p></div></div>';
   if(q.kernregel)h+='<div class="fbx-sec fbx-kern">'+di('wet')+'<div><div class="fb-h">Kernregel</div><p class="fb-p">'+esc(q.kernregel)+'</p></div></div>';
   h+='</div>';
@@ -570,10 +585,10 @@ function exVraag(){
   let html='<article class="card qcard exam"><div class="pagehead"><span class="ph-ic">'+di('toets')+'</span><div><span class="ph-k">Eindtoets · '+esc(q.thema||'')+'</span><span class="ph-t">Vraag '+(p+1)+' van '+N+'</span></div><span class="ph-count">'+beantwoord+' van '+N+' beantwoord</span></div>'
    +'<div class="exdots" aria-hidden="true">'+ex.sel.map((s,i)=>'<i class="'+(i===p?'cur ':'')+(s!==null?'done':'')+'"></i>').join('')+'</div>'
    +'<div class="q-layout"><div class="q-side">'+artHTML(art,{rev:1,sz:'mid'})+'</div><div class="q-main">'
-   +'<span class="q-soort">'+di(q.casus?'boa':'boek')+(q.casus?'Praktijkcasus':'Kennisvraag')+'</span>'
-   +'<div class="q-lab">De vraag</div><h2 class="q-text">'+esc(q.vraag)+'</h2><p class="q-hint">Kies één antwoord. Je kunt je keuze wijzigen tot je de toets afrondt.</p>'
+   +'<div class="q-head"><span class="q-soort">'+di(q.casus?'boa':'boek')+(q.casus?'Praktijkcasus':'Kennisvraag')+'</span>'
+   +'<div class="q-lab">De vraag</div></div><h2 class="q-text'+(q.vraag.length>150?' q-long':'')+'">'+esc(q.vraag)+'</h2><p class="q-hint">Kies één antwoord. Je kunt je keuze wijzigen tot je de toets afrondt.</p>'
    +'<div class="opts" id="opts" role="radiogroup" aria-label="Antwoordmogelijkheden">'+perm.map((o,slot)=>{const on=(ex.sel[p]===o);return '<button class="opt'+(on?' sel':'')+'" role="radio" aria-checked="'+on+'" data-orig="'+o+'"><span class="lt">'+L(slot)+'</span><span class="ot">'+esc(q.opties[o])+'</span></button>';}).join('')+'</div>'
-   +'</div></div><nav class="nav">'+(p>0?'<button class="btn btn-ghost" id="prev">'+pijlL+'<span>Vorige</span></button>':'<span></span>')+'<span class="sp"></span><button class="btn btn-primary" id="act"'+(ex.sel[p]===null?' disabled':'')+'><span>'+(last?'Toets afronden':'Volgende')+'</span>'+pijlR+'</button></nav></article>';
+   +'</div></div><nav class="nav">'+(p>0?'<button class="btn btn-ghost" id="prev">'+pijlL+'<span>Vorige</span></button>':'<span></span>')+'<span class="sp">'+navPos('Eindtoets · '+beantwoord+' van '+N+' beantwoord','Vraag <b>'+(p+1)+'</b> van '+N)+'</span><button class="btn btn-primary" id="act"'+(ex.sel[p]===null?' disabled':'')+'><span>'+(last?'Toets afronden':'Volgende')+'</span>'+pijlR+'</button></nav></article>';
   setScreen(html,{lab:'Eindtoets · vraag '+(p+1)+' van '+N,sub:'Eindtoets · '+(q.casus?'Praktijkcasus':(q.thema||'Kennisvraag')),frac:beantwoord/N});
   const opts=[...document.querySelectorAll('.opt')];
   opts.forEach(b=>b.onclick=()=>{ex.sel[p]=+b.dataset.orig;opts.forEach(x=>{x.classList.remove('sel');x.setAttribute('aria-checked','false');});b.classList.add('sel');b.setAttribute('aria-checked','true');document.getElementById('act').disabled=false;save();});
@@ -801,14 +816,18 @@ T.wet=(P,spec,st)=>{
   const qh=quote.querySelector('.law-quote-head span:last-child');
   const head=el('div','wk-head',di('boek','wk-ic')+'<span class="wk-lab"></span><span class="wk-art">Art. 429ter Sr</span>');head.querySelector('.wk-lab').appendChild(qh);
   wk.appendChild(head);wk.appendChild(quote.querySelector('.law-text'));
-  copy.appendChild(wk);
   top.appendChild(copy);
   top.appendChild(el('div','media',artHTML('wetboek')));
   box.appendChild(top);
+  box.appendChild(wk);
   const ug=el('div','uitleg-grid');
   if(grid){[...grid.querySelectorAll('.law-mini')].forEach((m,i)=>{const c=el('section','ucard',di(i?'boa':'lamp','ucard-ic'));const hd=el('h3','ucard-h');hd.appendChild(m.querySelector('.law-mini-head span:last-child'));const w=el('div');w.appendChild(hd);w.appendChild(m.querySelector('p'));c.appendChild(w);ug.appendChild(c);});}
   if(def){const c=el('section','ucard tip',di('lamp','ucard-ic'));const w=el('div');w.appendChild(el('h3','ucard-h sr','Uitleg'));w.appendChild(def.querySelector('p'));c.appendChild(w);ug.appendChild(c);}
+  /* eerste uitlegkaart direct onder de wettekst, overige kaarten in de rechterkolom */
+  const ugl=el('div','uitleg-grid ug-l');if(ug.firstElementChild)ugl.appendChild(ug.firstElementChild);
+  box.appendChild(ugl);
   box.appendChild(ug);
+  if(!ug.children.length)box.classList.add('wet-solo');
   return box;
 };
 T.casus=(P,spec,st)=>{
@@ -946,10 +965,10 @@ T.juris=(P,spec,st)=>{
   JP_STAP.forEach((x,i)=>{const on=cur.indexOf(i)>-1;const li=el('li',on?'cur':(i<laagste?'done':''),di(x[0])+'<span>'+x[1]+'</span>');if(on)li.setAttribute('aria-current','step');tr.appendChild(li);});
   copy.appendChild(tr);
   hero.appendChild(copy);
+  const cards=el('div','juris-cards');
   const art=isBoa?boaHTML(spec.a,{side:'r',sz:'groot'}):rechterHTML({v:RECHTER_V[spec.a]||'zaal',sz:spec.rsz||'ecli',cls:'rj-fill'});
   hero.appendChild(el('div','jp-art',art));
   box.appendChild(hero);
-  const cards=el('div','juris-cards');
   let i=0;
   P.rest.forEach(n=>{
     if(n.nodeType!==1)return;
@@ -965,7 +984,7 @@ T.juris=(P,spec,st)=>{
     });
   });
   cards.classList.add('n'+i);
-  box.appendChild(cards);
+  copy.appendChild(cards);
   return box;
 };
 T.punten=(P,spec,st)=>{
@@ -1055,8 +1074,12 @@ function composePage(stage,bronEl,p,spec,st){
   let node;
   try{node=fn(P,spec,st);}catch(e){console.error('compositie',st,e);stage.innerHTML=p.html;return;}
   stage.appendChild(node);
-  bronBox(P,bronEl);
+  /* jurisprudentie: bronregel binnen de leerplaat, direct onder de uitspraak */
+  const jpc=spec.t==='juris'?node.querySelector('.jp-copy'):spec.t==='wet'?node.querySelector(node.classList.contains('wet-solo')?'.ug-l':'.uitleg-grid:not(.ug-l)'):null;
+  bronBox(P,jpc||bronEl);
 }
 
+let _rsT=null;
+window.addEventListener('resize',()=>{clearTimeout(_rsT);_rsT=setTimeout(()=>{const qc=document.querySelector('.qcard.answered');if(qc){qc.style.removeProperty('--qa-cols');balanceerFeedback(qc);}},150);});
 
 intake();
