@@ -1423,3 +1423,6 @@ img.foto{display:block;background:#dfe6f1}
   /* mobiel: eerst uitleg, dan de vergelijking */
   .split.wide:has(.vis-cmp img.foto)>.media{order:1}
 }
+/* smallere tekstkolom naast de fotovergelijking: kaarttitel op eigen regel (geen losse weeswoorden) */
+.split.wide:has(.vis-cmp img.foto) .kcard-head{display:flex;margin:0 0 6px}
+.split.wide:has(.vis-cmp img.foto) .kcard-head+.kcard-t{display:block;margin-bottom:6px}
