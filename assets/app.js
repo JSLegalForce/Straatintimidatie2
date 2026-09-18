@@ -1,4 +1,4 @@
-const ASSET_V='r260916i';
+const ASSET_V='r260918a';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -233,7 +233,7 @@ const L_SPEC={
 /* oefenvragen: neutrale illustraties die het antwoord niet verklappen */
 const Q_ART={
 '1.0':'wetboek','1.1':'doelwit','1.2':'vraag','1.3':'boa-uitleg',
-'2.0':'wetboek','2.1':'weegschaal','2.2':'scene-online','2.3':'boa-uitleg','2.4':'vraag','2.5':'scene-plein-dag',
+'2.0':'wetboek','2.1':'weegschaal','2.2':'scene-online','2.3':'boa-uitleg','2.4':'vraag','2.5':'doelwit',
 '3.0':'weegschaal','3.1':'vraag','3.2':'doelwit','3.3':'boa-notitie',
 '4.0':'pv-document','4.1':'rechter-med','4.2':'vraag','4.3':'wetboek','4.4':'doelwit',
 '5.0':'boa-notitie','5.1':'vraag','5.2':'pv-document',
@@ -243,13 +243,15 @@ const ART_ALT={
 'boa-armen':'Boa in donkerblauw handhavingsuniform','boa-observeer':'Boa die de situatie alert observeert','boa-notitie':'Boa met notitieblok voor het vastleggen van waarnemingen','boa-uitleg':'Boa die iets uitlegt','boa-dossier':'Boa met proces-verbaal',
 'rechter':'Nederlandse rechter in zwarte toga met witte bef en een dossier in de hand, in een Nederlandse rechtszaal','rechter-dicht':'Nederlandse rechter in zwarte toga met witte bef en een dossier in de hand, in een Nederlandse rechtszaal','rechter-med':'Nederlandse rechter in zwarte toga met witte bef, met de rechtszaal op de achtergrond','ovj':'Officier van justitie met dossier',
 'burger-vrouw':'Volwassen vrouw in straatkleding','burger-man':'Volwassen man in straatkleding','burger-vrouw2':'Volwassen vrouw in straatkleding','burger-man2':'Volwassen man in straatkleding',
-'scene-winkelstraat':'Winkelstraat: een man loopt dicht achter een voorbijganger en maakt opmerkingen','scene-plein-dag':'Druk plein bij daglicht','scene-steeg-nacht':'Smal steegje in het donker',
+'scene-winkelstraat':'Druk plein met winkels en terrassen: een man loopt dicht achter een vrouw; zij kijkt ongemakkelijk achterom','scene-plein-dag':'Druk plein bij daglicht: een man loopt dicht achter een vrouw; zij kijkt ongemakkelijk achterom','scene-steeg-nacht':'Smal steegje in het donker: dezelfde man loopt even dicht achter dezelfde vrouw; zij kijkt ongemakkelijk achterom',
 'scene-online':'Openbaar bericht op sociale media','wetboek':'Wetboek van Strafrecht, artikel 429ter',
 'pv-document':'Proces-verbaal met handtekening','doelwit':'Doelwit met pijl','vraag':'Vraagteken','weegschaal':'Weegschaal'
 };
 
 /* ── Infographics en procesplaten (HTML + duotone iconen) ── */
-const IMG=(n,alt,cls)=>'<img class="'+(cls||'')+'" src="assets/illustraties/'+n+'.svg?v='+ASSET_V+'" alt="'+(alt==null?(ART_ALT[n]||''):alt)+'" loading="eager" decoding="async">';
+/* semi-realistische praktijkscènes (vervangen de oude vectorscènes) */
+const ART_FILE={'scene-plein-dag':'scene-plein-dag.webp','scene-steeg-nacht':'scene-steeg-nacht.webp','scene-winkelstraat':'scene-plein-dag.webp'};
+const IMG=(n,alt,cls)=>'<img class="'+(cls||'')+(ART_FILE[n]?' foto':'')+'" src="assets/illustraties/'+(ART_FILE[n]||n+'.svg')+'?v='+ASSET_V+'" alt="'+(alt==null?(ART_ALT[n]||''):alt)+'" loading="eager" decoding="async">';
 /* ── BOA-illustratieset (stijlreferentie JS Legal Force) ── */
 const BOA_POSE={'boa-armen':{},'boa-uitleg':{chip:'lamp'},'boa-notitie':{prop:'notitieblok',chip:'oog'},'boa-dossier':{prop:'pv-los'},'boa-observeer':{chip:'oog'}};
 function boaHTML(name,o){

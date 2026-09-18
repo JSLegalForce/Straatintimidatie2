@@ -1397,3 +1397,29 @@ input.f:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(36
   .wet-page>.uitleg-grid:not(.ug-l){grid-area:ug;margin-top:10px}
   .wet-page.wet-solo>.uitleg-grid:not(.ug-l){display:none}
 }
+/* ── semi-realistische praktijkscènes (r260918a) ── */
+img.foto{display:block;background:#dfe6f1}
+.cmp img.foto{width:100%;aspect-ratio:616/528;object-fit:cover;object-position:50% 12%}
+.cmp-n img.foto{background:#141c2e}
+.art-scene img.foto{object-fit:cover;object-position:50% 12%}
+@media (min-width:761px){
+  .vis-cmp .cmp img.foto{object-position:50% 12%}
+}
+/* vergelijking met foto-illustraties: rechterhelft efficiënter benutten, kaarten exact gelijk */
+.vis-cmp:has(img.foto){grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:stretch}
+.vis-cmp:has(img.foto)>.cmp-ne{align-self:center}
+.vis-cmp:has(img.foto) .cmp{display:flex;flex-direction:column}
+.vis-cmp:has(img.foto) .cmp figcaption{flex:1 0 auto}
+@media (min-width:1001px){
+  .split.wide:has(.vis-cmp img.foto){grid-template-columns:minmax(0,.95fr) minmax(0,1.25fr)}
+  .split.wide.rev:has(.vis-cmp img.foto){grid-template-columns:minmax(0,1.25fr) minmax(0,.95fr)}
+  .vis-cmp:has(img.foto) .cmp-ne{width:46px;height:46px;font-size:1.9rem}
+}
+@media (max-width:760px){
+  .vis-cmp:has(img.foto){grid-template-columns:minmax(0,1fr);gap:10px}
+  .vis-cmp:has(img.foto) .cmp img.foto{height:auto!important;aspect-ratio:616/528}
+}
+@media (max-width:760px){
+  /* mobiel: eerst uitleg, dan de vergelijking */
+  .split.wide:has(.vis-cmp img.foto)>.media{order:1}
+}
