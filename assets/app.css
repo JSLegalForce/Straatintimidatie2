@@ -1594,3 +1594,13 @@ img.foto{display:block;background:#dfe6f1}
 .h-art-w{font-weight:500;font-size:.6em;color:var(--ink2);white-space:nowrap;line-height:1.2}
 @media (min-width:761px) and (max-width:960px){.art-boa.face-l>.fc2.chip-wet{font-size:.72rem;padding:7px 11px;right:calc(100% - var(--bh) * .22 - 8px)}.art-boa.face-l>.fc2.chip-wet .di{display:none}}
 @media (min-width:761px) and (max-width:809px){.art-boa.face-l>.fc2.chip-wet{display:none}}
+/* statistiekvakjes middelbreed scherm: icoon boven de tekst, zodat woorden binnen het vakje blijven */
+@media (min-width:761px) and (max-width:1060px){.stat{flex-direction:column;align-items:flex-start;gap:8px}.stat .di{width:36px;height:36px;padding:6px}}
+/* tabbladen bestanddelen/samenvatting: lange woorden netjes afbreken binnen het vakje */
+.recap-track li>*,.bd-track li>*{min-width:0}.recap-track li,.bd-track li{min-width:0;-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
+/* kaarten: inhoud nooit horizontaal laten verschuiven bij automatisch scrollen naar de feedback */
+.card{overflow:clip}
+/* bewijskaarten: lange woorden netjes afbreken binnen het vakje */
+.bw>*{min-width:0}.bw b,.bw small{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
+/* tegels: lange woorden netjes afbreken binnen het vakje */
+.tile>*{min-width:0}.tile{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
