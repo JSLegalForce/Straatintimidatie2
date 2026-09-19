@@ -1583,9 +1583,13 @@ img.foto{display:block;background:#dfe6f1}
 /* label onder de schouderlijn, nooit over het gezicht */
 .fc2.chip-wet{top:auto;bottom:8%;right:0}
 .art-boa>.fc2.chip-wet{bottom:12%;right:auto;left:58%}
-@media (min-width:761px) and (max-width:1000px){.art-boa>.fc2.chip-wet{left:auto;right:-8%}}
+/* links onder de boa, onder het lampje */
+.hero-art .art-boa.has-wet{margin:0 0 0 auto}
+.art-boa.face-l>.fc2.chip-wet{top:80%;bottom:auto;left:auto;right:calc(100% - var(--bh) * .22 + 14px);transform:translateY(-50%)}
+@media (min-width:761px) and (max-width:1000px){.art-boa>.fc2.chip-wet{left:auto;right:-8%}.art-boa.face-l>.fc2.chip-wet{font-size:.76rem;padding:8px 12px;gap:8px}.art-boa.face-l>.fc2.chip-wet .di{width:30px;height:30px}}
 
 /* openingspagina: wetsartikel voluit, twee regels even breed (zelfde opbouw als wetslabel welkomstscherm) */
 .h-sub.h-art{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;margin-bottom:10px}
 .h-art-a{line-height:1.1}
 .h-art-w{font-weight:500;font-size:.6em;color:var(--ink2);white-space:nowrap;line-height:1.2}
+@media (min-width:761px) and (max-width:960px){.art-boa.face-l>.fc2.chip-wet{display:none}}

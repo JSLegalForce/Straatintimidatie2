@@ -1,4 +1,4 @@
-const ASSET_V='r260919i';
+const ASSET_V='r260919j';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -543,7 +543,7 @@ function welkom(){
    +'<p class="lead">Elk onderwerp begint met korte theorie. Daarna volgen enkele oefenvragen met directe feedback. Na alle onderwerpen maak je een eindtoets over de hele opleiding. Haal je die, dan krijg je een certificaat.</p>'
    +stats+'<div class="hero-acts"><button class="btn btn-primary btn-lg" id="go"><span>Start de e-learning</span>'+pijlR+'</button></div>',art:'boa-uitleg',
    badge:'<div class="float-chip fc2 chip-wet">'+di('wet')+'<span><b>Artikel 429ter</b><small>Wetboek van Strafrecht</small></span></div>'}),{lab:'Stap 2 van 2'});
-  {const fig=document.querySelector('.hero-art .art-boa'),cw=document.querySelector('.hero-art .chip-wet');if(fig&&cw)fig.appendChild(cw);}
+  {const fig=document.querySelector('.hero-art .art-boa'),cw=document.querySelector('.hero-art .chip-wet');if(fig&&cw){fig.appendChild(cw);fig.classList.add('has-wet');}}
   document.getElementById('go').onclick=()=>{answers={};ex=null;buildSteps();si=0;phase='leren';render();};
 }
 function render(){const st=steps[si];if(!st)return eindtoetsIntro();phase='leren';save();return st.type==='page'?pageScreen(st):qScreen(st);}
