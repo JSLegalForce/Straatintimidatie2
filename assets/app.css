@@ -1562,3 +1562,5 @@ img.foto{display:block;background:#dfe6f1}
   .sum-page.has-bd .sum-row>.media{display:none}
 }
 @container bdg (max-width:300px){.bdg--mini .bdg-row{grid-template-columns:20px minmax(0,1fr);column-gap:8px;padding:8px 10px}.bdg--mini .bdg-ic{display:none}.bdg--mini .bd-badge--row{font-size:.72rem;letter-spacing:.04em;padding:7px 8px}}
+/* samenvatting met letterlijke opsomming: badge vult de kolom */
+.bdg--sum.bdg--kort .bd-badge--row{min-height:52px;font-size:.9rem;padding:10px 20px;letter-spacing:.05em}

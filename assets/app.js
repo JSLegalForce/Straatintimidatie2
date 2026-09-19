@@ -1,4 +1,4 @@
-const ASSET_V='r260919a';
+const ASSET_V='r260919b';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -86,16 +86,17 @@ const BD_STAPPEN=[['locatie','In het openbaar'],['mensen','Indringend seksueel b
    donkerblauwe badge = wettelijk bestanddeel. Alleen voor de vier bestanddelen gebruiken.
    bdBadge(n,size)  size: 'lg' (eigen uitlegpagina) · 'row' (overzicht) · 'inline' (lopende tekst)
    bdGrid(rows)     rij = {n:bestanddeelnummer, t:toelichting (Node of html)} → NUMMER | ICOON | BADGE | UITLEG */
+const BD_KERN=['fysiek of online','een zekere intensiteit; niet elk contact','door een gedraging','geobjectiveerd criterium'];
 function bdBadge(n,size,txt){
   return '<span class="bd-badge bd-badge--'+(size||'row')+'" data-bd="'+n+'">'+esc(txt||BD_STAPPEN[n-1][1])+'</span>';
 }
 function bdGrid(rows,opt){
   opt=opt||{};
-  const g=el('div','bdg'+(opt.cls?' '+opt.cls:'')+(rows.some(r=>BD_STAPPEN[r.n-1][1].length>30)?' bdg--wide':'')+(rows.some(r=>r.t!=null)?'':' bdg--kort'));
+  const g=el('div','bdg'+(opt.cls?' '+opt.cls:'')+(rows.some(r=>(r.label||BD_STAPPEN[r.n-1][1]).length>30)?' bdg--wide':'')+(rows.some(r=>r.t!=null)?'':' bdg--kort'));
   g.setAttribute('role','list');
   rows.forEach(r=>{
     const row=el('div','bdg-row');row.setAttribute('role','listitem');
-    row.innerHTML='<span class="bdg-n">'+r.n+'</span><span class="bdg-ic">'+di(BD_STAPPEN[r.n-1][0])+'</span><span class="bdg-b">'+bdBadge(r.n,'row')+'</span>';
+    row.innerHTML='<span class="bdg-n">'+(r.d||r.n)+'</span><span class="bdg-ic">'+di(BD_STAPPEN[r.n-1][0])+'</span><span class="bdg-b">'+bdBadge(r.n,'row',r.label)+'</span>';
     if(r.t!=null){
       const t=el('div','bdg-t');
       if(typeof r.t==='string')t.innerHTML=r.t;else t.appendChild(r.t);
@@ -396,7 +397,7 @@ const FIG={
       +'<p class="fig-note">'+di('route')+'Je voortgang wordt bewaard; je kunt later verdergaan.</p></div>';
   },
   checklist(){
-    const t=['fysiek of online','een zekere intensiteit; niet elk contact','door een gedraging','geobjectiveerd criterium'];
+    const t=BD_KERN;
     return '<div class="fig fig-check">'+bdGrid(t.map((x,i)=>({n:i+1,t:'<span>'+x+'</span><span class="bdg-v">'+di('vink')+'</span>'})),{cls:'bdg--check'}).outerHTML
       +'<div class="chk-flow"><span class="chk-lab">alle vier de bestanddelen vervuld</span><span class="chk-arrow" aria-hidden="true">↓</span></div>'
       +'<div class="chk-out"><div class="chk-ok">'+di('vink')+'<div><b>Delict voltooid</b><small>art. 429ter Sr · strafbaar</small></div></div><div class="chk-no">'+di('kruis')+'<span>Ontbreekt er één bestanddeel, dan is het delict niet voltooid.</span></div></div></div>';
@@ -936,14 +937,15 @@ T.onthoud=(P,spec,st)=>{
       if(n.nodeType!==1)return;
       if(n.classList.contains('opsom')&&spec.bdOpsom){
         seenOpsom=true;
-        [...n.children].forEach((li,i)=>{const t=el('span');while(li.firstChild)t.appendChild(li.firstChild);rows.push({n:i+1,t});});
+        /* zelfde goedgekeurde kernuitleg als de Bestanddelen-checklist (onderwerp 3) — geen herhaling van de badge */
+        [...n.children].forEach((li,i)=>rows.push({n:i+1,t:'<span>'+BD_KERN[i]+'</span>'}));
       }else if(n.classList.contains('punten')){
         [...n.children].forEach(li=>{
           if(spec.bdOpsom){(seenOpsom?rules:intro).push(li);return;}
           const m=spec.bd[j++];
           if(typeof m==='number'){
             if((spec.strip||[]).includes(m)){const f=li.firstChild;if(f&&f.nodeType===3)f.nodeValue=f.nodeValue.replace(/^\s*«[^»]+»\s*/,'');}
-            const t=el('span');while(li.firstChild)t.appendChild(li.firstChild);rows.push({n:m,t});
+            const t=el('span');while(li.firstChild)t.appendChild(li.firstChild);rows.push({n:m,d:rows.length+1,t});
           }else rules.push(li);
         });
       }else wrap.appendChild(n);
