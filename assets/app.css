@@ -1582,3 +1582,5 @@ img.foto{display:block;background:#dfe6f1}
 .chip-wet small{font-weight:500;font-size:.8em;color:var(--ink2);white-space:nowrap}
 /* label onder de schouderlijn, nooit over het gezicht */
 .fc2.chip-wet{top:auto;bottom:8%;right:0}
+.art-boa>.fc2.chip-wet{bottom:12%;right:auto;left:58%}
+@media (min-width:761px) and (max-width:1000px){.art-boa>.fc2.chip-wet{left:auto;right:-8%}}
