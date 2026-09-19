@@ -1592,4 +1592,5 @@ img.foto{display:block;background:#dfe6f1}
 .h-sub.h-art{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;margin-bottom:10px}
 .h-art-a{line-height:1.1}
 .h-art-w{font-weight:500;font-size:.6em;color:var(--ink2);white-space:nowrap;line-height:1.2}
-@media (min-width:761px) and (max-width:960px){.art-boa.face-l>.fc2.chip-wet{display:none}}
+@media (min-width:761px) and (max-width:960px){.art-boa.face-l>.fc2.chip-wet{font-size:.72rem;padding:7px 11px;right:calc(100% - var(--bh) * .22 - 8px)}.art-boa.face-l>.fc2.chip-wet .di{display:none}}
+@media (min-width:761px) and (max-width:809px){.art-boa.face-l>.fc2.chip-wet{display:none}}
