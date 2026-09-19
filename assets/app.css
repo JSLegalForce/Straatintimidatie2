@@ -1426,3 +1426,139 @@ img.foto{display:block;background:#dfe6f1}
 /* smallere tekstkolom naast de fotovergelijking: kaarttitel op eigen regel (geen losse weeswoorden) */
 .split.wide:has(.vis-cmp img.foto) .kcard-head{display:flex;margin:0 0 6px}
 .split.wide:has(.vis-cmp img.foto) .kcard-head+.kcard-t{display:block;margin-bottom:6px}
+
+/* ══════════════════════════════════════════════════════════════════
+   WETTELIJKE BESTANDDELEN — vaste visuele grammatica (art. 429ter Sr)
+   donkerblauwe badge = wettelijk bestanddeel (uitsluitend daarvoor)
+   overzicht: NUMMER | ICOON | BADGE (vaste breedte) | UITLEG (vaste kolom)
+   ══════════════════════════════════════════════════════════════════ */
+:root{--bd-navy:#132a63;--bd-navy2:#0e2150;--bdw:212px;--bdw-wide:262px}
+.bd-badge{display:inline-flex;align-items:center;justify-content:center;text-align:center;font-family:var(--ui);font-weight:700;text-transform:uppercase;letter-spacing:.055em;color:#fff;
+  background:linear-gradient(180deg,var(--bd-navy),var(--bd-navy2));border-radius:10px;box-shadow:0 1px 0 rgba(255,255,255,.12) inset,0 4px 10px -4px rgba(14,33,80,.45);line-height:1.22;overflow-wrap:normal;word-break:normal;hyphens:none}
+/* overzicht: vaste breedte, tekst mag op twee regels, nooit afgebroken */
+.bd-badge--row{width:100%;min-height:48px;padding:9px 14px;font-size:.86rem}
+/* eigen uitlegpagina: groter en prominent */
+.bd-badge--lg{min-height:54px;padding:12px 26px;font-size:1.08rem;letter-spacing:.06em;border-radius:12px;max-width:100%}
+/* lopende tekst: compact */
+.bd-badge--inline{display:inline;padding:.1em .5em .14em;margin:0 .06em;font-size:.74em;letter-spacing:.05em;border-radius:6px;line-height:1.9;vertical-align:.08em;box-shadow:none;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;white-space:normal}
+
+/* ── raster ── */
+.bdg{--bw:var(--bdw);display:flex;flex-direction:column;gap:12px;width:100%}
+.bdg.bdg--wide{--bw:var(--bdw-wide)}
+.bdg-row{display:grid;grid-template-columns:30px 52px var(--bw) minmax(0,1fr);align-items:center;column-gap:18px;
+  background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 22px 14px 18px;box-shadow:0 6px 18px -12px rgba(17,37,88,.28)}
+.bdg--kort .bdg-row{grid-template-columns:30px 52px minmax(0,1fr)}
+.bdg-n{font-family:var(--ui);font-weight:800;font-size:1.5rem;color:#9aa8c3;text-align:center;line-height:1}
+.bdg-ic{width:52px;height:52px;border-radius:14px;background:var(--green-l);display:grid;place-items:center}
+.bdg-ic .di{width:30px;height:30px;color:var(--green-d);--duo:#fff}
+.bdg-b{display:flex;min-width:0}
+.bdg-t{position:relative;padding-left:20px;font-size:1.08rem;line-height:1.5;color:var(--ink);min-height:44px;display:flex;align-items:center;gap:14px}
+.bdg-t::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:1px;background:var(--line)}
+.bdg-t>span:first-child{flex:1;min-width:0}
+.bdg-v .di{width:28px;height:28px;color:var(--green);--duo:var(--green-l)}
+/* samenvatting / checklist: groene accentlijn links */
+.bdg--sum .bdg-row,.bdg--check .bdg-row{border-left:5px solid var(--green);padding-left:14px}
+/* regelrij (geen bestanddeel → geen donkerblauwe badge) */
+.bdg-regel{display:flex;align-items:center;gap:16px;background:var(--green-l);border:1px solid #bfe6cf;border-radius:16px;padding:12px 20px 12px 18px;margin-top:12px}
+.bdg-regel-ic{width:40px;height:40px;color:var(--green);--duo:#fff}
+.bdg-regel-t{font-size:1.06rem;line-height:1.5;color:var(--ink);font-weight:600}
+.bd-sum{display:flex;flex-direction:column;gap:0}
+.bd-sum-intro{font-size:1.1rem;line-height:1.5;margin:0 0 12px;color:var(--ink)}
+.sum-page.has-bd .sum-row{grid-template-columns:minmax(0,2fr) minmax(0,.78fr)}
+@media (min-width:761px){.sum-page.has-bd{grid-template-columns:minmax(0,2fr) minmax(0,.78fr)}}
+
+/* mini-raster in beeldkolom (zonder uitlegkolom) */
+.vis-bd{padding:18px}
+.vis-bd-k{display:block;font-family:var(--ui);font-weight:700;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin:0 0 10px 2px}
+.bdg--mini{gap:9px}
+.bdg--mini .bdg-row{grid-template-columns:22px 40px minmax(0,1fr);column-gap:12px;padding:9px 12px;border-radius:14px}
+.bdg--mini .bdg-n{font-size:1.1rem}
+.bdg--mini .bdg-ic{width:40px;height:40px;border-radius:11px;background:var(--blue-l)}
+.bdg--mini .bdg-ic .di{width:24px;height:24px;color:var(--navy2)}
+.bdg--mini .bd-badge--row{min-height:42px;font-size:.78rem;padding:7px 10px}
+.vis-bd .bd-result{margin-top:10px}
+
+/* checklistpagina: raster met vinkjes */
+.fig-check .bdg{margin-bottom:4px}
+
+/* beslishulp: badgekolom vaste breedte */
+.bs-step{display:grid;grid-template-columns:30px 46px var(--bdw-wide) minmax(0,1fr);column-gap:14px}
+.bs-bd{display:flex}
+.bs-bd .bd-badge--row{min-height:44px;font-size:.8rem;padding:7px 12px}
+.bs-q{position:relative;padding-left:16px}
+.bs-q::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:1px;background:var(--line)}
+
+/* eigen uitlegpagina bestanddeel */
+.bd-kicker{margin-bottom:10px}
+.bd-hero{display:flex;margin:0 0 14px}
+.split .copy .bd-titel{font-size:clamp(1.25rem,1.6vw,1.55rem);color:var(--ink2)}
+
+/* BOA + klembord */
+.art-boa.has-kb .bd-klembord{position:absolute;z-index:3;left:-4%;bottom:6%;width:47%;min-width:150px;background:#fff;border:3px solid var(--bd-navy);border-radius:12px;padding:20px 12px 12px;
+  transform:rotate(-6deg);box-shadow:0 16px 28px -14px rgba(17,37,88,.55);font-family:var(--ui)}
+.art-boa.has-kb.face-r .bd-klembord{left:auto;right:-4%;transform:rotate(6deg)}
+.bd-klembord .kb-clip{position:absolute;top:-11px;left:50%;width:44%;height:18px;transform:translateX(-50%);background:#9aa8c3;border-radius:6px 6px 4px 4px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.12)}
+.bd-klembord .kb-t{display:block;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--bd-navy);border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:6px}
+.bd-klembord ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.bd-klembord li{display:flex;gap:7px;align-items:flex-start;font-size:.68rem;font-weight:600;line-height:1.25;color:var(--ink)}
+.kb-v{flex:none;width:15px;height:15px;border-radius:4px;background:var(--bd-navy);color:#fff;display:grid;place-items:center}
+.kb-v svg{width:11px;height:11px}
+.art-boa .bd-chip{top:10%}
+.face-l .bd-chip{left:0}.face-r .bd-chip{right:0}
+
+/* tablet: raster blijft, iets compacter */
+@media (max-width:1180px){
+  :root{--bdw:196px;--bdw-wide:236px}
+  .bdg-row{column-gap:14px;padding:12px 16px 12px 14px}
+  .bs-step{grid-template-columns:30px 40px var(--bdw) minmax(0,1fr)}
+}
+@media (max-width:1000px){
+  .sum-page.has-bd .sum-row{grid-template-columns:minmax(0,1fr)}
+  .sum-page.has-bd .sum-row>.media{display:none}
+}
+/* mobiel: [nummer] [icoon] [BADGE] — uitleg eronder */
+@media (max-width:760px){
+  .bdg-row,.bdg--kort .bdg-row{grid-template-columns:24px 42px minmax(0,1fr);column-gap:12px;row-gap:10px;padding:12px 14px}
+  .bdg--sum .bdg-row,.bdg--check .bdg-row{padding-left:12px}
+  .bdg-ic{width:42px;height:42px;border-radius:12px}.bdg-ic .di{width:26px;height:26px}
+  .bdg-n{font-size:1.2rem}
+  .bdg-t{grid-column:1/-1;padding-left:0;min-height:0;font-size:1rem}
+  .bdg-t::before{display:none}
+  .bd-badge--row{min-height:44px;font-size:.8rem;justify-content:flex-start;text-align:left}
+  .bd-badge--lg{font-size:.95rem;padding:10px 18px;min-height:48px}
+  .bs-step{grid-template-columns:28px 40px minmax(0,1fr);row-gap:8px}
+  .bs-q{grid-column:1/-1;padding-left:0}.bs-q::before{display:none}
+  .bdg-regel{padding:12px 14px}
+}
+@media print{.bd-badge{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+/* verfijning bestanddelen-raster */
+:root{--bdw-wide:292px}
+.bdg-row{align-items:start}
+.bdg-n{height:52px;display:grid;place-items:center}
+.bdg-b{min-height:52px;align-items:center}
+.bdg-t{min-height:52px;padding-top:0;padding-bottom:0}
+.bdg-t::before{top:6px;bottom:6px}
+.bdg--mini .bdg-row{align-items:center}.bdg--mini .bdg-n{height:auto}.bdg--mini .bdg-b{min-height:0}
+.sum-page.has-bd .media .art-boa{--bh:min(390px,50vh)}
+.art-boa.has-kb .bd-klembord{width:42%;left:-10%;bottom:4%;padding:18px 10px 10px}
+.art-boa.has-kb.face-r .bd-klembord{left:-10%;right:auto;transform:rotate(-6deg)}
+@media (max-width:1180px){:root{--bdw-wide:262px}}
+@media (max-width:760px){.bdg-n,.bdg-b{height:auto;min-height:42px}.bdg-t{min-height:0}}
+/* raster reageert op de beschikbare breedte van zijn eigen kolom */
+.bdg{container-type:inline-size;container-name:bdg}
+@container bdg (max-width:640px){
+  .bdg-row,.bdg--kort .bdg-row{grid-template-columns:24px 44px minmax(0,1fr);column-gap:12px;row-gap:10px;padding:12px 14px}
+  .bdg--sum .bdg-row,.bdg--check .bdg-row{padding-left:12px}
+  .bdg-ic{width:44px;height:44px;border-radius:12px}.bdg-ic .di{width:26px;height:26px}
+  .bdg-n{font-size:1.2rem;height:44px}.bdg-b{min-height:44px}
+  .bdg-t{grid-column:1/-1;padding-left:0;min-height:0;font-size:1rem}
+  .bdg-t::before{display:none}
+  .bd-badge--row{min-height:44px;font-size:.8rem}
+}
+@container bdg (max-width:640px){.bdg--mini .bdg-row{grid-template-columns:22px 40px minmax(0,1fr);row-gap:0}.bdg--mini .bdg-n{height:auto}}
+@media (min-width:761px) and (max-width:1240px){
+  .sum-page.has-bd{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"top" "grid"!important}
+  .sum-page.has-bd .sum-row>.media{display:none}
+}
+@container bdg (max-width:300px){.bdg--mini .bdg-row{grid-template-columns:20px minmax(0,1fr);column-gap:8px;padding:8px 10px}.bdg--mini .bdg-ic{display:none}.bdg--mini .bd-badge--row{font-size:.72rem;letter-spacing:.04em;padding:7px 8px}}

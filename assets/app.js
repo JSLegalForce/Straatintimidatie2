@@ -1,4 +1,4 @@
-const ASSET_V='r260918b';
+const ASSET_V='r260919a';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -82,6 +82,61 @@ function di(name,cls){return '<span class="di '+(cls||'')+'" aria-hidden="true">
    icons = iconen per opsommingspunt, lab = kaartlabels (jurisprudentie) */
 const TOPIC_ICON=['megafoon','wet','lijst','context','rechtbank','dossier','pv','certificaat'];
 const BD_STAPPEN=[['locatie','In het openbaar'],['mensen','Indringend seksueel benaderen'],['ballon','Opmerkingen, gebaren, geluiden of aanrakingen'],['wet','Vreesaanjagend, vernederend, kwetsend of onterend']];
+/* ── Vaste visuele grammatica wettelijke bestanddelen (art. 429ter Sr) ──
+   donkerblauwe badge = wettelijk bestanddeel. Alleen voor de vier bestanddelen gebruiken.
+   bdBadge(n,size)  size: 'lg' (eigen uitlegpagina) · 'row' (overzicht) · 'inline' (lopende tekst)
+   bdGrid(rows)     rij = {n:bestanddeelnummer, t:toelichting (Node of html)} → NUMMER | ICOON | BADGE | UITLEG */
+function bdBadge(n,size,txt){
+  return '<span class="bd-badge bd-badge--'+(size||'row')+'" data-bd="'+n+'">'+esc(txt||BD_STAPPEN[n-1][1])+'</span>';
+}
+function bdGrid(rows,opt){
+  opt=opt||{};
+  const g=el('div','bdg'+(opt.cls?' '+opt.cls:'')+(rows.some(r=>BD_STAPPEN[r.n-1][1].length>30)?' bdg--wide':'')+(rows.some(r=>r.t!=null)?'':' bdg--kort'));
+  g.setAttribute('role','list');
+  rows.forEach(r=>{
+    const row=el('div','bdg-row');row.setAttribute('role','listitem');
+    row.innerHTML='<span class="bdg-n">'+r.n+'</span><span class="bdg-ic">'+di(BD_STAPPEN[r.n-1][0])+'</span><span class="bdg-b">'+bdBadge(r.n,'row')+'</span>';
+    if(r.t!=null){
+      const t=el('div','bdg-t');
+      if(typeof r.t==='string')t.innerHTML=r.t;else t.appendChild(r.t);
+      row.appendChild(t);
+    }
+    g.appendChild(row);
+  });
+  return g;
+}
+function bdRule(node,icon){
+  const r=el('div','bdg-regel',di(icon||'vink','bdg-regel-ic'));
+  const t=el('p','bdg-regel-t');if(typeof node==='string')t.innerHTML=node;else while(node.firstChild)t.appendChild(node.firstChild);
+  r.appendChild(t);return r;
+}
+/* klembord met de bestanddelen naast de BOA (ondersteunend beeld) */
+function bdKlembord(){
+  return '<div class="bd-klembord" aria-hidden="true"><span class="kb-clip"></span><b class="kb-t">Artikel 429ter Sr</b><ul>'
+    +BD_STAPPEN.map(s=>'<li><span class="kb-v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>'+s[1]+'</li>').join('')+'</ul></div>';
+}
+/* «term» in lopende tekst → compacte inline-badge (alleen de wettelijke bestanddelen; tekst blijft letterlijk) */
+const BD_INLINE=['in het openbaar','een ander indringend seksueel benaderen','indringend seksueel benaderen','indringend','seksueel benaderen','seksueel','een ander','door opmerkingen, gebaren, geluiden of aanrakingen','opmerkingen, gebaren, geluiden of aanrakingen','vreesaanjagend, vernederend, kwetsend of onterend is te achten','vreesaanjagend, vernederend, kwetsend of onterend'];
+function bdInline(root){
+  if(!root)return;
+  const skip='h1,h2,h3,.ptitle,.kicker,.law-text,.wet,.wetkaart,svg,.bd-badge,.bdg,.pvv,.pv-voorbeeld,.q-soort,.bd-track,.recap-track,.nav,.bronnen,.vis,.fig';
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>(/«[^«»]+»/.test(n.nodeValue)&&!(n.parentElement&&n.parentElement.closest(skip)))?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT});
+  const list=[];while(w.nextNode())list.push(w.currentNode);
+  list.forEach(tn=>{
+    const s=tn.nodeValue;const re=/«([^«»]+)»/g;let m,last=0,hit=false;const frag=document.createDocumentFragment();
+    while((m=re.exec(s))){
+      if(!BD_INLINE.includes(m[1].toLowerCase()))continue;
+      hit=true;
+      frag.appendChild(document.createTextNode(s.slice(last,m.index)));
+      const b=el('span','bd-badge bd-badge--inline');
+      b.innerHTML='<span class="sr">«</span>'+esc(m[1])+'<span class="sr">»</span>';
+      frag.appendChild(b);last=m.index+m[0].length;
+    }
+    if(!hit)return;
+    frag.appendChild(document.createTextNode(s.slice(last)));
+    tn.parentNode.replaceChild(frag,tn);
+  });
+}
 const L_SPEC={
 /* 1 Introductie */
 '0.0':{t:'lo',a:'boa-armen'},
@@ -136,7 +191,7 @@ const L_SPEC={
 '2.17':{t:'praktijk',a:'wetboek',ic:'wet'},
 '2.18':{t:'praktijk',a:{icon:'straf',orbit:['geld','kalender','wet']},ic:'straf'},
 '2.19':{t:'info',v:'checklist'},
-'2.20':{t:'onthoud',a:'boa-notitie',icons:['online','ballon','vink']},
+'2.20':{t:'onthoud',a:{boa:'boa-armen',clip:1},bd:[1,3,'regel'],strip:[1]},
 '2.21':{t:'vooruit'},
 /* 4 Contextbeoordeling */
 '3.0':{t:'lo',a:'boa-armen'},
@@ -221,7 +276,7 @@ const L_SPEC={
 '7.0':{t:'lo',a:'boa-armen'},
 '7.1':{t:'overzicht'},
 '7.2':{t:'recap',n:1,a:'wetboek'},
-'7.3':{t:'recap',n:2,a:{vis:'bestanddelen'}},
+'7.3':{t:'recap',n:2,a:{boa:'boa-armen',clip:1}},
 '7.4':{t:'recap',n:3,a:'weegschaal'},
 '7.5':{t:'recap',n:4,a:'rechter-med'},
 '7.6':{t:'recap',n:5,a:'boa-dossier'},
@@ -258,11 +313,12 @@ function boaHTML(name,o){
   o=o||{};const p=BOA_POSE[name]||{};const left=o.side==='l';
   const src=(o.bust?'boa-buste':'boa-hero')+(left?'':'-spiegel');
   const alt=o.alt!=null?o.alt:(ART_ALT[name]||'Boa in donkerblauw handhavingsuniform');
-  let h='<figure class="art art-boa sz-'+(o.sz||'groot')+(o.bust?' is-buste':'')+(left?' face-r':' face-l')+'">'
+  let h='<figure class="art art-boa sz-'+(o.sz||'groot')+(o.bust?' is-buste':'')+(o.klembord?' has-kb':'')+(left?' face-r':' face-l')+'">'
     +'<img class="boa-bg" src="assets/illustraties/boa-achtergrond.svg?v='+ASSET_V+'" alt="">'
     +'<img class="boa-fig" src="assets/illustraties/'+src+'.webp?v='+ASSET_V+'" alt="'+alt+'" decoding="async">';
   if(p.prop&&!o.bust)h+='<span class="boa-prop prop-'+p.prop+'">'+IMG(p.prop,'')+'</span>';
   if(p.chip&&!o.nochip&&!o.bust)h+='<span class="boa-chip">'+di(p.chip)+'</span>';
+  if(o.klembord)h+=bdKlembord()+'<span class="boa-chip bd-chip">'+di('wet')+'</span>';
   return h+'</figure>';
 }
 /* ── Rechter-illustratie (vaste visuele referentie: rechter in toga met bef, Nederlandse rechtszaal) ──
@@ -280,8 +336,9 @@ function rechterHTML(o){
 const ARW='<span class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>';
 const VIS={
   bestanddelen(){
-    return '<div class="vis vis-bd" role="img" aria-label="De vier bestanddelen van artikel 429ter Sr">'
-      +BD_STAPPEN.map((s,i)=>'<div class="bd-node"><span class="bd-num">'+(i+1)+'</span>'+di(s[0])+'<span class="bd-lab">'+s[1]+'</span></div>'+(i<3?'<span class="bd-plus" aria-hidden="true">+</span>':'')).join('')
+    return '<div class="vis vis-bd" role="img" aria-label="De vier wettelijke bestanddelen van artikel 429ter Sr: in het openbaar; indringend seksueel benaderen; opmerkingen, gebaren, geluiden of aanrakingen; vreesaanjagend, vernederend, kwetsend of onterend. Alle bestanddelen moeten vervuld zijn.">'
+      +'<span class="vis-bd-k">Wettelijke bestanddelen</span>'
+      +bdGrid([1,2,3,4].map(n=>({n})),{cls:'bdg--mini'}).outerHTML
       +'<div class="bd-result">'+di('vink')+'<span>Alle bestanddelen vervuld</span></div></div>';
   },
   vormen(){
@@ -339,8 +396,8 @@ const FIG={
       +'<p class="fig-note">'+di('route')+'Je voortgang wordt bewaard; je kunt later verdergaan.</p></div>';
   },
   checklist(){
-    const s=[['locatie','In het openbaar','fysiek of online'],['mensen','Indringend seksueel benaderen','een zekere intensiteit; niet elk contact'],['ballon','Door een gedraging','opmerkingen · gebaren · geluiden · aanrakingen'],['wet','Geobjectiveerd criterium','vreesaanjagend · vernederend · kwetsend · onterend']];
-    return '<div class="fig fig-check"><div class="chk-grid">'+s.map((x,i)=>'<div class="chk"><span class="chk-n">'+(i+1)+'</span>'+di(x[0])+'<div><b>'+x[1]+'</b><small>'+x[2]+'</small></div><span class="chk-v">'+di('vink')+'</span></div>').join('')+'</div>'
+    const t=['fysiek of online','een zekere intensiteit; niet elk contact','door een gedraging','geobjectiveerd criterium'];
+    return '<div class="fig fig-check">'+bdGrid(t.map((x,i)=>({n:i+1,t:'<span>'+x+'</span><span class="bdg-v">'+di('vink')+'</span>'})),{cls:'bdg--check'}).outerHTML
       +'<div class="chk-flow"><span class="chk-lab">alle vier de bestanddelen vervuld</span><span class="chk-arrow" aria-hidden="true">↓</span></div>'
       +'<div class="chk-out"><div class="chk-ok">'+di('vink')+'<div><b>Delict voltooid</b><small>art. 429ter Sr · strafbaar</small></div></div><div class="chk-no">'+di('kruis')+'<span>Ontbreekt er één bestanddeel, dan is het delict niet voltooid.</span></div></div></div>';
   },
@@ -378,7 +435,7 @@ const FIG={
   beslishulp(){
     const s=[['locatie','In het openbaar? (fysiek of online)'],['mensen','Indringende seksuele benadering?'],['ballon','Opmerking, gebaar, geluid of aanraking?'],['wet','Naar algemene maatstaven intimiderend?','geobjectiveerd criterium']];
     return '<div class="fig fig-beslis"><p class="bs-rule">'+di('route')+'Elke voorwaarde ‘ja’ → volgende stap · één ‘nee’ → valt buiten</p><div class="bs-wrap"><ol class="bs">'
-      +s.map((x,i)=>'<li class="bs-step"><span class="bs-n">'+(i+1)+'</span>'+di(x[0])+'<div class="bs-q"><b>'+x[1]+'</b>'+(x[2]?'<small>'+x[2]+'</small>':'')+'</div>'+(i<3?'<span class="bs-ja">ja</span>':'')+'</li>').join('')+'</ol>'
+      +s.map((x,i)=>'<li class="bs-step"><span class="bs-n">'+(i+1)+'</span>'+di(x[0])+'<span class="bs-bd">'+bdBadge(i+1,'row')+'</span><div class="bs-q"><b>'+x[1]+'</b>'+(x[2]?'<small>'+x[2]+'</small>':'')+'</div>'+(i<3?'<span class="bs-ja">ja</span>':'')+'</li>').join('')+'</ol>'
       +'<div class="bs-out"><div class="bs-no"><span class="bs-tag">nee</span>'+di('kruis')+'<b>Valt buiten</b><small>art. 429ter Sr</small></div><div class="bs-yes"><span class="bs-tag">ja</span>'+di('vink')+'<b>Kan onder</b><small>art. 429ter Sr vallen</small></div></div></div>'
       +'<div class="bs-notes"><p>'+di('schild')+'Opzet of schuld hoeft niet te worden bewezen.</p><p>'+di('pv')+'Bij twijfel: leg de feiten zorgvuldig vast; de rechter beoordeelt.</p></div></div>';
   }
@@ -661,6 +718,7 @@ function artHTML(a,opt){
     if(a==='scene-winkelstraat')return '<figure class="art art-scene has-boa">'+IMG(a)+'<img class="scene-boa" src="assets/illustraties/boa-hero.webp?v='+ASSET_V+'" alt="Boa die de situatie observeert" decoding="async"></figure>';
     return '<figure class="art '+(scene?'art-scene':obj?'art-obj':'art-char')+'">'+(scene||obj?'':'<div class="blob"></div>')+IMG(a)+'</figure>';
   }
+  if(a.boa) return boaHTML(a.boa,{side:opt.rev?'l':'r',sz:opt.sz||TPL_SZ[opt.t]||'mid',nochip:!!a.clip,klembord:!!a.clip});
   if(a.duo) return '<figure class="art art-duo"><div class="blob"></div>'+IMG(a.duo[0],'')+IMG(a.duo[1],'')+'<figcaption class="sr">Twee volwassen voorbijgangers</figcaption></figure>';
   if(a.icon) return '<figure class="art art-icon" aria-hidden="true"><div class="ia-ring"></div><div class="ia-main">'+di(a.icon)+'</div>'+(a.orbit||[]).map((o,i)=>'<div class="ia-orb o'+i+'">'+di(o)+'</div>').join('')+'</figure>';
   if(a.vis) return '<figure class="art art-vis">'+VIS[a.vis]()+'</figure>';
@@ -771,8 +829,9 @@ T.bd=(P,spec,st)=>{
   const tr=el('ol','bd-track');
   BD_STAPPEN.forEach((s,i)=>{const li=el('li',(i+1===spec.s?'cur':i+1<spec.s?'done':''),'<span class="bdt-n">'+(i+1)+'</span>'+di(s[0])+'<span class="bdt-l">'+s[1]+'</span>');if(i+1===spec.s)li.setAttribute('aria-current','step');tr.appendChild(li);});
   wrap.appendChild(tr);
-  const k=el('p','kicker','Bestanddeel '+spec.s+' van 4');
-  wrap.appendChild(splitBox([k,titleEl(P),rowsWrap(mainParas(P),spec.rows)],artHTML(spec.a,spec),spec));
+  const k=el('p','kicker bd-kicker','Wettelijk bestanddeel '+spec.s+' van 4');
+  const bdb=el('div','bd-hero',bdBadge(spec.s,'lg'));
+  wrap.appendChild(splitBox([k,bdb,titleEl(P,'bd-titel'),rowsWrap(mainParas(P),spec.rows)],artHTML(spec.a,spec),spec));
   return wrap;
 };
 T.hero=(P,spec,st)=>{
@@ -869,6 +928,33 @@ T.onthoud=(P,spec,st)=>{
   if(K.t){const t=el('p','sum-sub');while(K.t.firstChild)t.appendChild(K.t.firstChild);tw.appendChild(t);}
   top.appendChild(tw);
   box.appendChild(top);
+  if(spec.bd||spec.bdOpsom){
+    /* samenvatting van wettelijke bestanddelen: vast raster NUMMER | ICOON | BADGE | UITLEG */
+    const wrap=el('div','sum-grid bd-sum');
+    const rows=[],rules=[],intro=[];let seenOpsom=false,j=0;
+    [...K.b.childNodes].forEach(n=>{
+      if(n.nodeType!==1)return;
+      if(n.classList.contains('opsom')&&spec.bdOpsom){
+        seenOpsom=true;
+        [...n.children].forEach((li,i)=>{const t=el('span');while(li.firstChild)t.appendChild(li.firstChild);rows.push({n:i+1,t});});
+      }else if(n.classList.contains('punten')){
+        [...n.children].forEach(li=>{
+          if(spec.bdOpsom){(seenOpsom?rules:intro).push(li);return;}
+          const m=spec.bd[j++];
+          if(typeof m==='number'){
+            if((spec.strip||[]).includes(m)){const f=li.firstChild;if(f&&f.nodeType===3)f.nodeValue=f.nodeValue.replace(/^\s*«[^»]+»\s*/,'');}
+            const t=el('span');while(li.firstChild)t.appendChild(li.firstChild);rows.push({n:m,t});
+          }else rules.push(li);
+        });
+      }else wrap.appendChild(n);
+    });
+    intro.forEach(li=>{const p=el('p','bd-sum-intro');while(li.firstChild)p.appendChild(li.firstChild);wrap.appendChild(p);});
+    wrap.appendChild(bdGrid(rows,{cls:'bdg--sum'}));
+    rules.forEach(li=>wrap.appendChild(bdRule(li)));
+    const row=el('div','sum-row');row.appendChild(wrap);row.appendChild(el('div','media',artHTML(spec.a,spec)));
+    box.classList.add('has-bd');box.appendChild(row);
+    return box;
+  }
   const grid=el('div','sum-grid');
   let i=0;
   [...K.b.childNodes].forEach(n=>{
@@ -891,7 +977,7 @@ T.recap=(P,spec,st)=>{
   const tr=el('ol','recap-track');
   D.topics.slice(1,7).forEach((t,i)=>{const li=el('li',(i+1===spec.n?'cur':i+1<spec.n?'done':''),di(TOPIC_ICON[i+1])+'<span>'+esc(t.titel)+'</span>');tr.appendChild(li);});
   box.appendChild(tr);
-  const inner=T.onthoud(P,{a:spec.a,icons:[TOPIC_ICON[spec.n],'vink','vink','vink']},st);
+  const inner=T.onthoud(P,{a:spec.a,icons:[TOPIC_ICON[spec.n],'vink','vink','vink'],bdOpsom:spec.n===2},st);
   box.appendChild(inner);
   return box;
 };
@@ -1076,6 +1162,7 @@ function composePage(stage,bronEl,p,spec,st){
   let node;
   try{node=fn(P,spec,st);}catch(e){console.error('compositie',st,e);stage.innerHTML=p.html;return;}
   stage.appendChild(node);
+  bdInline(node);
   /* jurisprudentie: bronregel binnen de leerplaat, direct onder de uitspraak */
   const jpc=spec.t==='juris'?node.querySelector('.jp-copy'):spec.t==='wet'?node.querySelector(node.classList.contains('wet-solo')?'.ug-l':'.uitleg-grid:not(.ug-l)'):null;
   bronBox(P,jpc||bronEl);
