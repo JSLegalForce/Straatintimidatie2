@@ -1,4 +1,4 @@
-const ASSET_V='r260919b';
+const ASSET_V='r260919c';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -486,7 +486,7 @@ function shell(inner,opt){
   return '<header class="hd"><div class="hd-in"><div class="brand">'+LOGO+'<span class="brand-t"><b>JS LEGAL</b><b>FORCE</b></span></div><span class="hd-div" aria-hidden="true"></span>'
     +'<div class="hd-title"><b>'+esc(D.opleiding)+'</b><span>'+sub+'</span></div>'+seg+'</div>'
     +'<div class="hd-bar"><i style="width:'+Math.round((opt.frac||0)*100)+'%"></i></div></header>'
-    +'<main class="wrap">'+inner+'</main><footer class="ft">© JS Legal Force · '+esc(D.opleiding)+' · versie '+esc(D.version)+' · juridische peildatum '+esc(D.peildatum)+'</footer>';
+    +'<main class="wrap">'+inner+'</main><footer class="ft">© JS Legal Force · Versie '+esc(D.version)+' · Juridische peildatum: '+esc(D.peildatum)+'</footer>';
 }
 function setScreen(html,opt){app.innerHTML=shell(html,opt);window.scrollTo(0,0);afterRender();}
 function afterRender(){
@@ -514,7 +514,7 @@ function intake(){
     document.getElementById('opnieuw').onclick=()=>{wis();intake();};
     return;
   }
-  setScreen(heroScreen({copy:'<p class="kicker">Welkom bij de e-learning</p><h1 class="h-xl">'+esc(D.opleiding)+'</h1><p class="h-sub">'+esc(D.kaderLabel)+'</p>'
+  setScreen(heroScreen({copy:'<p class="kicker">Welkom bij de e-learning</p><h1 class="h-xl">'+esc(D.opleiding)+'</h1><p class="h-sub h-art">Artikel 429ter Sr</p><p class="h-praktijk">Herkennen, beoordelen en vastleggen in de praktijk</p>'
     +'<div class="form-kop"><span class="pill">Stap 1 — Gegevens</span><h2 class="h-m">Jouw gegevens</h2></div>'
     +'<p class="lead sm">Vul je naam in voordat je begint. We gebruiken deze gegevens alleen voor het certificaat. Ze blijven op dit apparaat staan.</p>'
     +'<div class="form"><div class="fld"><label class="f" for="vn">Voornaam <span class="req">*</span></label><input class="f" id="vn" autocomplete="given-name" placeholder="bijv. Jan"></div>'
@@ -522,7 +522,7 @@ function intake(){
     +'<div class="fld fld-w"><label class="f" for="og">Organisatie <span class="opt-l">(optioneel)</span></label><input class="f" id="og" autocomplete="organization" placeholder="bijv. Gemeente Amsterdam"></div></div>'
     +'<p class="err" id="er" role="alert">Vul je voor- en achternaam in.</p>'
     +'<div class="hero-acts"><button class="btn btn-primary btn-lg" id="go"><span>Verder naar de e-learning</span>'+pijlR+'</button></div>',art:'boa-armen',
-    badge:'<div class="float-chip fc1">'+di('boa')+'<span>Voor boa\'s en<br>opsporingsambtenaren</span></div>'}),{lab:'Stap 1 van 2'});
+    badge:'<div class="hero-doel"><div class="doel-badge">'+di('boa')+'<span>Voor boa\'s</span></div><p class="doel-tekst">Samen voor een betere en veiligere samenleving</p></div>'}),{lab:'Stap 1 van 2',sub:'Praktijkgerichte e-learning voor boa\'s'});
   document.getElementById('go').onclick=()=>{const vn=vnv('vn'),an=vnv('an'),og=vnv('og');if(!vn||!an){document.getElementById('er').classList.add('on');return;}profiel={voornaam:vn,achternaam:an,org:og};welkom();};
 }
 function hervat(sv){

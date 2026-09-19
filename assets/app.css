@@ -1564,3 +1564,14 @@ img.foto{display:block;background:#dfe6f1}
 @container bdg (max-width:300px){.bdg--mini .bdg-row{grid-template-columns:20px minmax(0,1fr);column-gap:8px;padding:8px 10px}.bdg--mini .bdg-ic{display:none}.bdg--mini .bd-badge--row{font-size:.72rem;letter-spacing:.04em;padding:7px 8px}}
 /* samenvatting met letterlijke opsomming: badge vult de kolom */
 .bdg--sum.bdg--kort .bd-badge--row{min-height:52px;font-size:.9rem;padding:10px 20px;letter-spacing:.05em}
+
+/* ── openingspagina: ondertitel + doelgroepbadge (r260919c) ── */
+.h-sub.h-art{font-weight:700;margin-bottom:4px}
+.h-praktijk{font-family:var(--ui);font-weight:500;color:var(--ink2);font-size:clamp(1rem,.9rem + .3vw,1.15rem);line-height:1.35;margin-bottom:14px}
+.hero-doel{position:absolute;z-index:2;left:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-start;gap:12px;max-width:230px}
+.doel-badge{display:flex;align-items:center;gap:12px;background:var(--navy);color:#fff;border-radius:14px;padding:9px 18px 9px 9px;box-shadow:var(--sh);font-family:var(--ui);font-weight:700;font-size:1.08rem;line-height:1.2;white-space:nowrap}
+.doel-badge .di{width:38px;height:38px;padding:6px;border-radius:10px;background:#fff;color:var(--navy)}
+.doel-tekst{font-family:var(--ui);font-weight:600;font-size:.92rem;line-height:1.35;color:var(--navy2);padding-left:4px;max-width:170px}
+@media (max-width:760px){.hero-doel{display:none}}
+@media (min-width:761px) and (max-width:1180px){.hero-doel{left:-4%;gap:10px}.doel-badge{font-size:1rem;padding:8px 16px 8px 8px}.doel-badge .di{width:34px;height:34px;padding:5px}.doel-tekst{max-width:125px;font-size:.84rem}}
+@media (min-width:761px) and (max-width:1000px){.hero-doel{left:-8%}.doel-tekst{max-width:108px}}
