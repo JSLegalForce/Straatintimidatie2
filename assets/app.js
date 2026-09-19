@@ -1,4 +1,4 @@
-const ASSET_V='r260919c';
+const ASSET_V='r260919d';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -482,7 +482,7 @@ function shell(inner,opt){
   if(ti!=null){
     seg='<div class="hd-prog" aria-label="Onderwerp '+(ti+1)+' van '+D.topics.length+'"><span class="hd-prog-t">Onderwerp '+(ti+1)+' van '+D.topics.length+'</span><span class="segs">'+D.topics.map((t,i)=>'<i class="'+(i<ti?'done':i===ti?'cur':'')+'"></i>').join('')+'</span></div>';
   }else if(opt.lab){seg='<div class="hd-prog"><span class="hd-prog-t">'+esc(opt.lab)+'</span></div>';}
-  const sub=ti!=null?esc(D.topics[ti].titel):esc(opt.sub||'E-learning voor opsporingsambtenaren');
+  const sub=ti!=null?esc(D.topics[ti].titel):esc(opt.sub||'Praktijkgerichte e-learning voor boa\'s');
   return '<header class="hd"><div class="hd-in"><div class="brand">'+LOGO+'<span class="brand-t"><b>JS LEGAL</b><b>FORCE</b></span></div><span class="hd-div" aria-hidden="true"></span>'
     +'<div class="hd-title"><b>'+esc(D.opleiding)+'</b><span>'+sub+'</span></div>'+seg+'</div>'
     +'<div class="hd-bar"><i style="width:'+Math.round((opt.frac||0)*100)+'%"></i></div></header>'
