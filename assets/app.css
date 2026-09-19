@@ -1575,3 +1575,8 @@ img.foto{display:block;background:#dfe6f1}
 @media (max-width:760px){.hero-doel{display:none}}
 @media (min-width:761px) and (max-width:1180px){.hero-doel{left:-4%;gap:10px}.doel-badge{font-size:1rem;padding:8px 16px 8px 8px}.doel-badge .di{width:34px;height:34px;padding:5px}.doel-tekst{max-width:125px;font-size:.84rem}}
 @media (min-width:761px) and (max-width:1000px){.hero-doel{left:-8%}.doel-tekst{max-width:108px}}
+
+/* welkomstscherm: wetsartikel voluit (r260919e) */
+.chip-wet span{display:flex;flex-direction:column;align-items:flex-start;gap:1px}
+.chip-wet b{font-weight:700;font-size:1.293em;line-height:1.1;letter-spacing:-.005em}
+.chip-wet small{font-weight:500;font-size:.8em;color:var(--ink2);white-space:nowrap}
