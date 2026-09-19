@@ -1580,3 +1580,5 @@ img.foto{display:block;background:#dfe6f1}
 .chip-wet span{display:flex;flex-direction:column;align-items:flex-start;gap:1px}
 .chip-wet b{font-weight:700;font-size:1.293em;line-height:1.1;letter-spacing:-.005em}
 .chip-wet small{font-weight:500;font-size:.8em;color:var(--ink2);white-space:nowrap}
+/* label onder de schouderlijn, nooit over het gezicht */
+.fc2.chip-wet{top:auto;bottom:8%;right:0}
