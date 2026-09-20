@@ -1,4 +1,4 @@
-const ASSET_V='r260920k';
+const ASSET_V='r260920l';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -247,7 +247,7 @@ const L_SPEC={
 '5.13':{t:'split',a:'boa-observeer',rows:['context']},
 '5.14':{t:'split',a:{compare:1},rev:1,rows:['licht'],wide:1},
 '5.15':{t:'letop',a:'boa-uitleg'},
-'5.16':{t:'fouten'},
+'5.16':{t:'fouten2'},
 '5.17':{t:'letop',a:'boa-armen',icons:['domein','akte','afspraak']},
 '5.18':{t:'letop',a:'boa-uitleg'},
 '5.19':{t:'onthoud',a:'boa-dossier',icons:['wet','document','oog']},
@@ -1162,6 +1162,48 @@ T.fouten=(P,spec,st)=>{
   const ic=['conclusie','citaat','context','oog','camera'];
   bits.forEach((b,i)=>{const m=b.match(/^\((\d)\) ([\s\S]*)$/);const li=el('li','fout-card','<span class="fout-x">'+kruis+'</span><span class="fout-n">('+m[1]+')</span>'+di(ic[i],'fout-ic'));const t=el('p');t.textContent=m[2].trim();li.appendChild(t);g.appendChild(li);});
   box.appendChild(g);
+  return box;
+};
+T.fouten2=(P,spec,st)=>{
+  const rest=el('div',null);P.rest.forEach(n=>rest.appendChild(n.cloneNode(true)));
+  const lead=rest.querySelector('p.lead');
+  const letop=rest.querySelector('.k-letop');
+  const lt=letop?letop.querySelector('.kaart-t'):null, lb=letop?letop.querySelector('.kaart-b p'):null;
+  const items=[...rest.querySelectorAll('ul.fout-lijst > li')];
+  const doel=rest.querySelector('.k-doel');
+  const dt=doel?doel.querySelectorAll('.kaart-b p'):[];
+  const box=el('div','fout2-page');
+  const top=el('div','fout2-top');
+  const copy=el('div','fout2-copy');copy.appendChild(titleEl(P));
+  if(lead){const l=el('p','fout2-lead');l.textContent=lead.textContent;copy.appendChild(l);}
+  top.appendChild(copy);
+  const warn=el('div','fout2-warn','<span class="f2w-ic">'+di('waarschuwing')+'</span>');
+  const wb=el('div','f2w-b');
+  const wt=el('b',null);wt.textContent=lt?lt.textContent:'Let op!';wb.appendChild(wt);
+  const wp=el('p',null);wp.textContent=lb?lb.textContent:'';wb.appendChild(wp);
+  warn.appendChild(wb);top.appendChild(warn);
+  top.appendChild(el('div','fout2-boa',boaHTML('boa-armen',{side:'r',sz:'klein',bust:1,alt:''})));
+  box.appendChild(top);
+  const ic=['document','citaat','locatie','oog','camera'];
+  const g=el('ol','fout2-grid');
+  items.forEach((li,i)=>{
+    const b=li.querySelector('b');
+    const kop=b?b.textContent:'';
+    const rst=li.cloneNode(true);const bb=rst.querySelector('b');if(bb)bb.remove();
+    const card=el('li','fout2-card','<span class="f2-n">'+(i+1)+'</span><span class="f2-x">'+kruis+'</span><span class="f2-ic">'+di(ic[i])+'</span>');
+    const h=el('b','f2-t');h.textContent=kop;card.appendChild(h);
+    const t=el('p','f2-p');t.textContent=rst.textContent.trim();card.appendChild(t);
+    g.appendChild(card);
+  });
+  box.appendChild(g);
+  if(doel){
+    const d=el('div','fout2-doel','<span class="f2d-ic">'+di('doel')+'</span>');
+    const dw=el('div','f2d-b');
+    const dk=el('b','f2d-k');dk.textContent=(doel.querySelector('.kaart-t')||{}).textContent||'Jouw doel';dw.appendChild(dk);
+    const dl=el('div','f2d-lines');
+    dt.forEach(pn=>{const q=el('p',null);q.textContent=pn.textContent;dl.appendChild(q);});
+    dw.appendChild(dl);d.appendChild(dw);box.appendChild(d);
+  }
   return box;
 };
 T.bronrijen=(P,spec,st)=>{

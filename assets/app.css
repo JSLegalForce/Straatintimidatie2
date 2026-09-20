@@ -1698,3 +1698,36 @@ img.foto{display:block;background:#dfe6f1}
 @media (max-width:760px){.pr2-steps{grid-template-columns:minmax(0,1fr);gap:22px;--pa:clamp(150px,44vw,200px)}
   .pr2-step::after{display:none}
   .pr2-routes{grid-template-columns:minmax(0,1fr)}.pr2-r{flex-direction:row;align-items:center;text-align:left;flex-wrap:wrap;gap:4px 10px}.pr2-r b{width:auto}.pr2-r span,.pr2-r em{width:100%}}
+
+/* ── Veelgemaakte fouten (O6 p17): vijf kaarten, waarschuwing en doelbalk ── */
+.fout2-top{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr) auto;gap:20px;align-items:start;margin-bottom:16px}
+.fout2-copy .ptitle{margin-bottom:6px}
+.fout2-lead{font-size:1.06rem;color:var(--navy2);font-weight:600;font-family:var(--ui);margin:0}
+.fout2-warn{display:flex;gap:12px;align-items:flex-start;background:#fdf1f0;border:1px solid #f4cbc7;border-radius:16px;padding:14px 16px}
+.f2w-ic .di{width:34px;height:34px;color:var(--red-d);--duo:#fadbd8}
+.f2w-b b{display:block;font-family:var(--ui);font-size:1.05rem;color:var(--red-d);margin-bottom:2px}
+.f2w-b p{font-size:.92rem;color:var(--ink2);line-height:1.35;margin:0}
+.fout2-boa{width:clamp(104px,10vw,138px);align-self:start;margin-top:-6px}
+.fout2-boa .art-boa{--bh:clamp(112px,11vw,150px);margin:0 auto}
+.fout2-grid{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;align-items:stretch;margin:0}
+.fout2-card{position:relative;display:flex;flex-direction:column;gap:8px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--red);border-radius:16px;padding:16px 16px 18px;box-shadow:var(--sh-s);min-width:0}
+.f2-n{width:32px;height:32px;border-radius:50%;background:var(--red);color:#fff;font-family:var(--ui);font-weight:800;display:grid;place-items:center;font-size:.98rem}
+.f2-x{position:absolute;right:12px;top:14px;width:26px;height:26px;border-radius:50%;background:var(--red-l);display:grid;place-items:center;color:var(--red-d)}
+.f2-x svg{width:14px;height:14px}
+.f2-ic{width:46px;height:46px;border-radius:14px;background:var(--red-l);display:grid;place-items:center;margin-top:2px}
+.f2-ic .di{width:26px;height:26px;color:var(--red-d);--duo:#fadbd8}
+.f2-t{font-family:var(--ui);font-size:1rem;color:var(--navy);line-height:1.25}
+.f2-p{font-size:.92rem;color:var(--ink2);line-height:1.4;margin:0}
+.fout2-doel{display:flex;align-items:center;gap:16px;background:var(--blue-ll);border:1px solid #dbe6f8;border-radius:18px;padding:16px 20px;margin-top:18px}
+.f2d-ic{width:52px;height:52px;flex:none;border-radius:50%;background:var(--navy2);display:grid;place-items:center}
+.f2d-ic .di{width:28px;height:28px;color:#fff;--duo:rgba(255,255,255,.25)}
+.f2d-b{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.f2d-k{font-family:var(--ui);font-size:1.3rem;color:var(--navy);line-height:1.1;padding-right:18px;border-right:2px solid #c9d9f2}
+.f2d-lines p{margin:0;font-family:var(--ui);color:var(--ink);line-height:1.4}
+.f2d-lines p:first-child{font-weight:700;color:var(--navy)}
+.f2d-lines p:last-child{color:var(--ink2);font-weight:500}
+@media (max-width:1180px){.fout2-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:1000px){.fout2-top{grid-template-columns:minmax(0,1fr) auto}.fout2-warn{grid-column:1/-1;order:3}.fout2-boa{order:2}}
+@media (max-width:760px){.fout2-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+  .fout2-top{grid-template-columns:minmax(0,1fr);gap:14px}.fout2-boa{display:none}
+  .fout2-doel{flex-direction:column;align-items:flex-start;gap:10px}.f2d-b{gap:8px}.f2d-k{border:0;padding:0}}
