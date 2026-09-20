@@ -1,4 +1,4 @@
-const ASSET_V='r260920a';
+const ASSET_V='r260920b';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -179,7 +179,7 @@ const L_SPEC={
 '2.4':{t:'bd',s:1,a:'scene-online',rev:1,rows:['online']},
 '2.5':{t:'bd',s:1,a:{icon:'slot',orbit:['wereld','mensen','online']},rows:['slot']},
 '2.6':{t:'bd',s:2,a:'scene-winkelstraat',rows:['snelheid']},
-'2.7':{t:'bd',s:2,a:{duo:['burger-man2','burger-vrouw2']},rev:1,rows:['ballon']},
+'2.7':{t:'bd',s:2,a:'scene-nafluiten',rev:1,rows:['ballon']},
 '2.8':{t:'bd',s:2,a:{icon:'ballon',orbit:['gebaar','geluid','context']},rows:['ballon']},
 '2.9':{t:'bd',s:2,a:{duo:['burger-vrouw','burger-man']},rev:1,rows:['mensen']},
 '2.10':{t:'bd',s:3,a:{vis:'vormen'},rows:['ballon']},
@@ -300,13 +300,13 @@ const ART_ALT={
 'rechter':'Nederlandse rechter in zwarte toga met witte bef en een dossier in de hand, in een Nederlandse rechtszaal','rechter-dicht':'Nederlandse rechter in zwarte toga met witte bef en een dossier in de hand, in een Nederlandse rechtszaal','rechter-med':'Nederlandse rechter in zwarte toga met witte bef, met de rechtszaal op de achtergrond','ovj':'Officier van justitie met dossier',
 'burger-vrouw':'Volwassen vrouw in straatkleding','burger-man':'Volwassen man in straatkleding','burger-vrouw2':'Volwassen vrouw in straatkleding','burger-man2':'Volwassen man in straatkleding',
 'scene-winkelstraat':'Druk plein met winkels en terrassen: een man loopt dicht achter een vrouw; zij kijkt ongemakkelijk achterom','scene-plein-dag':'Druk plein bij daglicht: een man loopt dicht achter een vrouw; zij kijkt ongemakkelijk achterom','scene-steeg-nacht':'Smal steegje in het donker: dezelfde man loopt even dicht achter dezelfde vrouw; zij kijkt ongemakkelijk achterom',
-'scene-online':'Openbaar bericht op sociale media','scene-samenleving':'Straat in de stad: een volwassen vrouw kijkt ongemakkelijk opzij; op de achtergrond staan twee mannen die naar haar kijken','wetboek':'Wetboek van Strafrecht, artikel 429ter',
+'scene-online':'Openbaar bericht op sociale media','scene-nafluiten':'Drukke winkelstraat bij daglicht: een man fluit op afstand één keer naar een vrouw die voor hem loopt; zij kijkt opzij','scene-samenleving':'Straat in de stad: een volwassen vrouw kijkt ongemakkelijk opzij; op de achtergrond staan twee mannen die naar haar kijken','wetboek':'Wetboek van Strafrecht, artikel 429ter',
 'pv-document':'Proces-verbaal met handtekening','doelwit':'Doelwit met pijl','vraag':'Vraagteken','weegschaal':'Weegschaal'
 };
 
 /* ── Infographics en procesplaten (HTML + duotone iconen) ── */
 /* semi-realistische praktijkscènes (vervangen de oude vectorscènes) */
-const ART_FILE={'scene-samenleving':'scene-samenleving.webp','scene-plein-dag':'scene-plein-dag.webp','scene-steeg-nacht':'scene-steeg-nacht.webp','scene-winkelstraat':'scene-plein-dag.webp'};
+const ART_FILE={'scene-nafluiten':'../images/indringend-nafluiten-daglicht.webp','scene-samenleving':'scene-samenleving.webp','scene-plein-dag':'scene-plein-dag.webp','scene-steeg-nacht':'scene-steeg-nacht.webp','scene-winkelstraat':'scene-plein-dag.webp'};
 const IMG=(n,alt,cls)=>'<img class="'+(cls||'')+(ART_FILE[n]?' foto':'')+'" src="assets/illustraties/'+(ART_FILE[n]||n+'.svg')+'?v='+ASSET_V+'" alt="'+(alt==null?(ART_ALT[n]||''):alt)+'" loading="eager" decoding="async">';
 /* ── BOA-illustratieset (stijlreferentie JS Legal Force) ── */
 const BOA_POSE={'boa-armen':{},'boa-uitleg':{chip:'lamp'},'boa-notitie':{prop:'notitieblok',chip:'oog'},'boa-dossier':{prop:'pv-los'},'boa-observeer':{chip:'oog'}};
