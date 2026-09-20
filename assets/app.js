@@ -1,4 +1,4 @@
-const ASSET_V='r260920i';
+const ASSET_V='r260920j';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -243,7 +243,7 @@ const L_SPEC={
 '5.9':{t:'bronrijen',a:'rechter',rows:['oog','getuige']},
 '5.10':{t:'bronrijen',a:'rechter-med',rows:['persoon','camera']},
 '5.11':{t:'praktijk',a:'boa-notitie',ic:'oog',icons:['citaat','locatie','afstand','duur','reactie']},
-'5.12':{t:'proces',ic:'wet'},
+'5.12':{t:'proces',ic:'wet',v2:1},
 '5.13':{t:'split',a:'boa-observeer',rows:['context']},
 '5.14':{t:'split',a:{compare:1},rev:1,rows:['licht'],wide:1},
 '5.15':{t:'letop',a:'boa-uitleg'},
@@ -381,6 +381,26 @@ const VIS={
   },
   compare(){
     return '<div class="vis vis-cmp"><figure class="cmp">'+IMG('scene-plein-dag')+'<figcaption>'+di('zon')+'Plein · daglicht</figcaption></figure><span class="cmp-ne" aria-hidden="true">≠</span><figure class="cmp cmp-n">'+IMG('scene-steeg-nacht')+'<figcaption>'+di('maan')+'Steegje · donker</figcaption></figure></div>';
+  },
+  proces2(){
+    const L=(ic,t)=>'<li>'+di(ic)+'<span>'+t+'</span></li>';
+    const stap=(n,cls,art,titel,sub,inner)=>'<li class="pr2-step '+cls+'"><div class="pr2-art">'+art+'</div><span class="pr2-n">'+n+'</span>'
+      +'<b>'+titel+'</b><small>'+sub+'</small>'+inner+'</li>';
+    const om='<div class="pr2-om"><div class="pr2-split" aria-hidden="true"></div><div class="pr2-routes">'
+      +'<div class="pr2-r pr2-sepot">'+di('slot')+'<b>Sepot</b><span>Niet (verder) vervolgen</span><em>Bijv. onvoldoende bewijs of een andere reden.</em></div>'
+      +'<div class="pr2-r pr2-straf">'+di('geld')+'<b>Straf\u00ADbeschikking</b><span>Bijv. geldboete of taakstraf</span></div>'
+      +'<div class="pr2-r pr2-naar">'+di('weegschaal')+'<b>Naar de rechter</b><span>Bijv. na verzet tegen de strafbeschikking of als rechterlijke afdoening nodig is.</span></div>'
+      +'</div><p class="pr2-note">'+di('vraag')+'Niet iedere zaak gaat naar de rechter.</p></div>';
+    return '<div class="vis vis-proces2" role="img" aria-label="Van straat naar afdoening: de boa neemt waar en treedt op, legt de feiten vast in een proces-verbaal, de officier van justitie beslist over sepot, strafbeschikking of voorleggen aan de rechter; alleen dan beoordeelt de rechter de zaak">'
+      +'<div class="pr2-kop">Van straat naar afdoening</div><ol class="pr2-steps">'
+      +stap(1,'pr2-boa',boaHTML('boa-armen',{side:'l',sz:'vis',bust:1,alt:''}),'BOA','Waarnemen en optreden',
+        '<ul class="pr2-list">'+L('oog','Signalen waarnemen')+L('zoeken','Situatie beoordelen')+L('schild','Zo nodig optreden met de juiste bevoegdheden')+'</ul>')
+      +stap(2,'pr2-pv',IMG('pv-document',''),'Proces-verbaal','Feiten en omstandigheden vastleggen',
+        '<ul class="pr2-list">'+L('document','Feiten en omstandigheden')+L('locatie','Context (tijd, plaats, situatie)')+L('wet','Gebruikte bevoegdheden')+L('camera',"Eventuele bewijsmiddelen (bijv. foto's, verklaringen)")+'</ul>')
+      +stap(3,'pr2-ovj',IMG('ovj',''),'Officier van justitie','Beoordeelt de zaak en beslist over de afdoening',om)
+      +stap(4,'pr2-rechter',rechterHTML({v:'medaillon',sz:'proces',alt:''}),'Rechter','Beoordeelt de zaak als deze wordt voorgelegd',
+        '<ul class="pr2-list">'+L('zoeken','Beoordeelt feiten en bewijs')+L('document','Bepaalt de juridische kwalificatie')+L('straf','Beslist over straf of maatregel')+'</ul>')
+      +'</ol></div>';
   },
   proces(){
     const s=[['boa','Boa','Waarnemen en vastleggen'],['pv-document','Proces-verbaal','Feiten en omstandigheden'],['ovj','Officier van justitie','Beoordeelt het dossier'],['rechter','Rechter','Bepaalt de kwalificatie']];
@@ -1161,7 +1181,7 @@ T.proces=(P,spec,st)=>{
   [...body.querySelectorAll(':scope > ul.opsom, :scope > ul.punten')].forEach(u=>u.replaceWith(tilesFromList(u,spec.icons,'tiles tiles-in tiles-4')));
   const box=el('div','proces-page');
   box.appendChild(titleEl(P));
-  box.appendChild(el('div','proces-plaat',VIS.proces()));
+  box.appendChild(el('div','proces-plaat'+(spec.v2?' proces-plaat2':''),spec.v2?VIS.proces2():VIS.proces()));
   box.appendChild(card);
   return box;
 };
