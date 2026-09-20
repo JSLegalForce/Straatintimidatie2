@@ -1,4 +1,4 @@
-const ASSET_V='r260919m';
+const ASSET_V='r260920a';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -421,7 +421,7 @@ const FIG={
       +'<p class="fig-note">'+di('kalender')+'Eerste gepubliceerde strafzaken sinds 1 juli 2024.</p></div></div>';
   },
   bewijsopbouw(){
-    const s=[['oog','Eigen waarneming','woorden, gebaren, afstand'],['persoon','Slachtofferverklaring','waargenomen; woorden'],['getuige','Getuigenverklaring','wat zij zelf zagen'],['bodycam','Camera-/bodycam','gedraging, duur, context'],['ballon','Verklaring verdachte','erkenning, ontkenning'],['locatie','Overige informatie','locatie, tijdstip, data']];
+    const s=[['oog','Eigen waarneming','woorden, gebaren, afstand'],['persoon','Slachtoffer\u00ADverklaring','waargenomen; woorden'],['getuige','Getuigen\u00ADverklaring','wat zij zelf zagen'],['bodycam','Camera-/\u200Bbodycam','gedraging, duur, context'],['ballon','Verklaring verdachte','erkenning, ontkenning'],['locatie','Overige informatie','locatie, tijdstip, data']];
     return '<div class="fig fig-bewijs"><div class="bw-side bw-side-l">'+boaHTML('boa-armen',{side:'l',sz:'vis',bust:1})+'</div><div class="bw-main"><div class="bw-grid">'+s.map((x,i)=>'<div class="bw"><span class="bw-n">'+(i+1)+'</span>'+di(x[0])+'<div><b>'+x[1]+'</b><small>'+x[2]+'</small></div></div>').join('')+'</div>'
       +'<div class="bw-arrow" aria-hidden="true">↓</div><div class="bw-sum">'+di('dossier')+'<div><b>Opbouw bewijs</b><small>rechter beoordeelt alles samen</small></div></div>'
       +'<div class="bw-arrow" aria-hidden="true">↓</div><div class="bw-judge">'+di('rechtbank')+'<b>Beoordeling door de rechter</b></div>'

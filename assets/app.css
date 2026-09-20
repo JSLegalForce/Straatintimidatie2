@@ -1604,3 +1604,13 @@ img.foto{display:block;background:#dfe6f1}
 .bw>*{min-width:0}.bw b,.bw small{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
 /* tegels: lange woorden netjes afbreken binnen het vakje */
 .tile>*{min-width:0}.tile{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
+
+/* bewijsmiddelkaarten: vaste nummerbadge rechtsboven, inhoud bovenaan uitgelijnd, alleen bewuste woordafbreking */
+.fig-bewijs .bw{align-items:flex-start;padding:12px}
+.fig-bewijs .bw b{padding-right:26px}
+.fig-bewijs .bw>div{padding-top:2px}
+.fig-bewijs .bw b,.fig-bewijs .bw small{-webkit-hyphens:manual;hyphens:manual;overflow-wrap:normal}
+.fig-bewijs .bw-n{top:10px;right:10px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--blue-ll);border:1px solid var(--line);color:#9aabc8;font-size:.74rem;font-weight:800;line-height:1}
+/* smalle bewijskaarten (3 naast elkaar in een smalle kolom): icoon boven de titel, zodat titel en nummer elkaar niet raken */
+.fig-bewijs .bw-grid{container-type:inline-size;container-name:bwgrid}
+@container bwgrid (min-width:480px) and (max-width:640px){.fig-bewijs .bw{flex-direction:column;gap:8px}.fig-bewijs .bw b{padding-right:0}.fig-bewijs .bw>div{padding-top:0}}
