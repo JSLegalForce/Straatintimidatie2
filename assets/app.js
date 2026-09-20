@@ -1,4 +1,4 @@
-const ASSET_V='r260920f';
+const ASSET_V='r260920g';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -193,7 +193,7 @@ const L_SPEC={
 '2.18':{t:'praktijk',a:{icon:'straf',orbit:['geld','kalender','wet']},ic:'straf'},
 '2.19':{t:'info',v:'checklist'},
 '2.20':{t:'onthoud',a:{boa:'boa-armen',clip:1},bd:[1,3,'regel'],strip:[1]},
-'2.21':{t:'vooruit'},
+'2.21':{t:'vooruit',groot:1},
 /* 4 Contextbeoordeling */
 '3.0':{t:'lo',a:'boa-armen'},
 '3.1':{t:'split',a:{icon:'context',orbit:['locatie','klok','reactie']},rows:['lijst','context']},
@@ -1014,8 +1014,8 @@ T.info=(P,spec,st)=>{
 T.vooruit=(P,spec,st)=>{
   const nt=D.topics[st.ti+1];
   const nodes=mainParas(P);
-  const art='<div class="next-card"><span class="nc-k">Volgend onderwerp</span><span class="nc-ic">'+di(TOPIC_ICON[st.ti+1])+'</span><b>'+(nt?esc(nt.titel):'')+'</b><span class="nc-n">Onderwerp '+(nt?nt.nr:'')+' van '+D.topics.length+'</span></div>'+boaHTML('boa-armen',{side:'r',sz:'klein',bust:1,alt:''});
-  const s=splitBox([el('p','kicker',di('route')+'Vooruitblik'),titleEl(P),rowsWrap(nodes,['route','lijst'])],'<div class="art art-next">'+art+'</div>',{});
+  const art='<div class="next-card"><span class="nc-k">Volgend onderwerp</span><span class="nc-ic">'+di(TOPIC_ICON[st.ti+1])+'</span><b>'+(nt?esc(nt.titel):'')+'</b><span class="nc-n">Onderwerp '+(nt?nt.nr:'')+' van '+D.topics.length+'</span></div>'+boaHTML('boa-armen',{side:'r',sz:spec.groot?'next':'klein',bust:1,alt:''});
+  const s=splitBox([el('p','kicker',di('route')+'Vooruitblik'),titleEl(P),rowsWrap(nodes,['route','lijst'])],'<div class="art art-next'+(spec.groot?' next-groot':'')+'">'+art+'</div>',{});
   s.classList.add('next-split');
   return s;
 };

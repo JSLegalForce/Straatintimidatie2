@@ -1630,3 +1630,13 @@ img.foto{display:block;background:#dfe6f1}
 .art-ctx3 .c3-plaats{left:3%;top:55%}.art-ctx3 .c3-plaats .di{color:var(--teal);--duo:#dff1f0}
 .art-ctx3 .c3-vaak{right:3%;top:55%}.art-ctx3 .c3-vaak .di{color:var(--gold-d);--duo:var(--gold-l)}
 @media (max-width:760px){.split>.media:has(.art-ctx3){order:1}}
+
+/* vooruitblik O3 p22: grotere boa met onderwerpkaart rechtsboven */
+.art-next.next-groot{position:relative;display:block;min-height:0;width:100%;max-width:520px;margin:0 auto;padding-top:8px}
+.art-next.next-groot .art-boa{--bh:clamp(330px,30vw,420px);margin:0 auto 0 0}
+.art-next.next-groot .next-card{position:absolute;top:0;right:0;margin:0;max-width:220px;padding:16px 18px;gap:6px}
+.art-next.next-groot .next-card b{font-size:1.12rem}
+.art-next.next-groot .nc-ic .di{width:54px;height:54px;padding:9px}
+@media (max-width:760px){.art-next.next-groot{display:flex;flex-direction:column;align-items:center;gap:10px}.art-next.next-groot .next-card{position:static;max-width:320px}.art-next.next-groot .art-boa{--bh:clamp(240px,70vw,300px);margin:0 auto}}
+@media (min-width:761px) and (max-width:1180px){.art-next.next-groot .art-boa{--bh:280px}.art-next.next-groot .next-card{max-width:176px;padding:12px 12px;gap:4px}.art-next.next-groot .next-card b{font-size:.98rem}.art-next.next-groot .nc-k{font-size:.64rem}.art-next.next-groot .nc-ic .di{width:42px;height:42px;padding:7px}}
+@media (min-width:761px) and (max-width:1000px){.art-next.next-groot{display:flex;flex-direction:column;align-items:center;gap:10px}.art-next.next-groot .next-card{position:static;max-width:240px}.art-next.next-groot .art-boa{--bh:240px;margin:0 auto}}
