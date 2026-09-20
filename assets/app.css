@@ -1640,3 +1640,5 @@ img.foto{display:block;background:#dfe6f1}
 @media (max-width:760px){.art-next.next-groot{display:flex;flex-direction:column;align-items:center;gap:10px}.art-next.next-groot .next-card{position:static;max-width:320px}.art-next.next-groot .art-boa{--bh:clamp(240px,70vw,300px);margin:0 auto}}
 @media (min-width:761px) and (max-width:1180px){.art-next.next-groot .art-boa{--bh:280px}.art-next.next-groot .next-card{max-width:176px;padding:12px 12px;gap:4px}.art-next.next-groot .next-card b{font-size:.98rem}.art-next.next-groot .nc-k{font-size:.64rem}.art-next.next-groot .nc-ic .di{width:42px;height:42px;padding:7px}}
 @media (min-width:761px) and (max-width:1000px){.art-next.next-groot{display:flex;flex-direction:column;align-items:center;gap:10px}.art-next.next-groot .next-card{position:static;max-width:240px}.art-next.next-groot .art-boa{--bh:240px;margin:0 auto}}
+/* steegje O4 p9: gezichten altijd in beeld bij bredere uitsnede */
+.art-scene img[src*="steegje-donker-achter-vrouw"]{object-position:50% 12%}
