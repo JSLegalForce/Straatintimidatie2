@@ -1614,3 +1614,19 @@ img.foto{display:block;background:#dfe6f1}
 /* smalle bewijskaarten (3 naast elkaar in een smalle kolom): icoon boven de titel, zodat titel en nummer elkaar niet raken */
 .fig-bewijs .bw-grid{container-type:inline-size;container-name:bwgrid}
 @container bwgrid (min-width:480px) and (max-width:640px){.fig-bewijs .bw{flex-direction:column;gap:8px}.fig-bewijs .bw b{padding-right:0}.fig-bewijs .bw>div{padding-top:0}}
+
+/* contextdiagram (O3 p16): duur, plaats, hoe vaak rond de persoon — HTML/CSS/SVG, schaalt scherp */
+.art-ctx3{position:relative;width:min(100%,440px);aspect-ratio:1;margin:0 auto;container-type:inline-size}
+.art-ctx3 .c3-bg{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 40% 32%,#f4f8fe 0,#e4edfb 60%,#d6e3f7 100%)}
+.art-ctx3 .c3-bg::after{content:"";position:absolute;inset:-4.5%;border-radius:50%;border:2px dashed #b9cbeb}
+.art-ctx3 .c3-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.art-ctx3 .c3-lines path{fill:none;stroke:var(--navy2);stroke-width:.7;stroke-dasharray:1.6 1.4;stroke-linecap:round}
+.art-ctx3 .c3-mid{position:absolute;left:50%;top:50%;width:30%;aspect-ratio:1;transform:translate(-50%,-44%);border-radius:22%;background:linear-gradient(150deg,#1d3d82,#10265a);display:grid;place-items:center;box-shadow:0 18px 36px -14px rgba(17,37,88,.55)}
+.art-ctx3 .c3-mid .di{width:52%;height:52%;color:#fff;--duo:#fff}
+.art-ctx3 .c3-orb{position:absolute;width:29%;aspect-ratio:1;border-radius:50%;background:#fff;box-shadow:0 12px 28px -12px rgba(17,37,88,.35),0 2px 6px rgba(17,37,88,.06);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4%}
+.art-ctx3 .c3-orb .di{width:36%;height:36%}
+.art-ctx3 .c3-orb span{font-family:var(--ui);font-weight:700;color:var(--navy);font-size:max(.8rem,4.3cqw);line-height:1.1;white-space:nowrap}
+.art-ctx3 .c3-duur{left:35.5%;top:4%}.art-ctx3 .c3-duur .di{color:var(--navy);--duo:#e6effc}
+.art-ctx3 .c3-plaats{left:3%;top:55%}.art-ctx3 .c3-plaats .di{color:var(--teal);--duo:#dff1f0}
+.art-ctx3 .c3-vaak{right:3%;top:55%}.art-ctx3 .c3-vaak .di{color:var(--gold-d);--duo:var(--gold-l)}
+@media (max-width:760px){.split>.media:has(.art-ctx3){order:1}}

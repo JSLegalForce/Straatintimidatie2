@@ -1,4 +1,4 @@
-const ASSET_V='r260920e';
+const ASSET_V='r260920f';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -187,7 +187,7 @@ const L_SPEC={
 '2.12':{t:'bd',s:3,a:'scene-aanraking-schouder',rows:['waarschuwing']},
 '2.13':{t:'bd',s:4,a:'scene-vernederend',rev:1,rows:['wet']},
 '2.14':{t:'bd',s:4,a:{icon:'oog',orbit:['wet','persoon','reactie']},rows:['oog']},
-'2.15':{t:'praktijk',a:{icon:'context',orbit:['duur','herhaling','locatie']},ic:'context'},
+'2.15':{t:'praktijk',a:{ctx3:1},ic:'context'},
 '2.16':{t:'praktijk',a:{compare:1},ic:'context',wide:1},
 '2.17':{t:'praktijk',a:'wetboek',ic:'wet'},
 '2.18':{t:'praktijk',a:{icon:'straf',orbit:['geld','kalender','wet']},ic:'straf'},
@@ -723,6 +723,12 @@ function artHTML(a,opt){
   if(a.boa) return boaHTML(a.boa,{side:opt.rev?'l':'r',sz:opt.sz||TPL_SZ[opt.t]||'mid',nochip:!!a.clip,klembord:!!a.clip});
   if(a.duo) return '<figure class="art art-duo"><div class="blob"></div>'+IMG(a.duo[0],'')+IMG(a.duo[1],'')+'<figcaption class="sr">Twee volwassen voorbijgangers</figcaption></figure>';
   if(a.icon) return '<figure class="art art-icon" aria-hidden="true"><div class="ia-ring"></div><div class="ia-main">'+di(a.icon)+'</div>'+(a.orbit||[]).map((o,i)=>'<div class="ia-orb o'+i+'">'+di(o)+'</div>').join('')+'</figure>';
+  if(a.ctx3) return '<figure class="art art-ctx3" role="img" aria-label="Context rond de benadering: duur, plaats en hoe vaak">'
+    +'<div class="c3-bg"></div><svg class="c3-lines" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 37V33M39 60 32 64M61 60 68 64"/></svg>'
+    +'<div class="c3-mid">'+di('persoon')+'</div>'
+    +'<div class="c3-orb c3-duur">'+di('klok')+'<span>Duur</span></div>'
+    +'<div class="c3-orb c3-plaats">'+di('locatie')+'<span>Plaats</span></div>'
+    +'<div class="c3-orb c3-vaak">'+di('herhaling')+'<span>Hoe vaak</span></div></figure>';
   if(a.vis) return '<figure class="art art-vis">'+VIS[a.vis]()+'</figure>';
   if(a.compare) return '<figure class="art art-vis">'+VIS.compare()+'</figure>';
   return '';
