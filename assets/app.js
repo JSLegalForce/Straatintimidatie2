@@ -1,4 +1,4 @@
-const ASSET_V='r260920j';
+const ASSET_V='r260920k';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -300,13 +300,13 @@ const ART_ALT={
 'rechter':'Nederlandse rechter in zwarte toga met witte bef en een dossier in de hand, in een Nederlandse rechtszaal','rechter-dicht':'Nederlandse rechter in zwarte toga met witte bef en een dossier in de hand, in een Nederlandse rechtszaal','rechter-med':'Nederlandse rechter in zwarte toga met witte bef, met de rechtszaal op de achtergrond','ovj':'Officier van justitie met dossier',
 'burger-vrouw':'Volwassen vrouw in straatkleding','burger-man':'Volwassen man in straatkleding','burger-vrouw2':'Volwassen vrouw in straatkleding','burger-man2':'Volwassen man in straatkleding',
 'scene-winkelstraat':'Druk plein met winkels en terrassen: een man loopt dicht achter een vrouw; zij kijkt ongemakkelijk achterom','scene-plein-dag':'Druk plein bij daglicht: een man loopt dicht achter een vrouw; zij kijkt ongemakkelijk achterom','scene-steeg-nacht':'Smal steegje in het donker: dezelfde man loopt even dicht achter dezelfde vrouw; zij kijkt ongemakkelijk achterom',
-'scene-online':'Openbaar bericht op sociale media','scene-steeg-nacht-2':'Smal steegje in het donker: een man loopt achter een vrouw; zij kijkt alert om','scene-vernederend':'Plein bij daglicht: drie mannen kijken lachend naar een vrouw en één van hen wijst naar haar; zij kijkt ongemakkelijk om','scene-aanraking-schouder':'Marktplein bij daglicht: een man legt zijn hand op de schouder van een vrouw; zij kijkt ongemakkelijk om','scene-een-ander':'Winkelstraat bij daglicht: twee vrouwen lopen naast elkaar; een man loopt mee en spreekt hen allebei aan','scene-nafluiten':'Drukke winkelstraat bij daglicht: een man fluit op afstand één keer naar een vrouw die voor hem loopt; zij kijkt opzij','scene-samenleving':'Straat in de stad: een volwassen vrouw kijkt ongemakkelijk opzij; op de achtergrond staan twee mannen die naar haar kijken','wetboek':'Wetboek van Strafrecht, artikel 429ter',
+'scene-online':'Openbaar bericht op sociale media','proces-boa':'Boa in uniform op straat','proces-pv':'Close-up van een proces-verbaal met aangevinkte punten','proces-ovj':'Officier van justitie met dossier bij het Openbaar Ministerie','proces-rechter':'Rechter in toga in de rechtszaal','scene-steeg-nacht-2':'Smal steegje in het donker: een man loopt achter een vrouw; zij kijkt alert om','scene-vernederend':'Plein bij daglicht: drie mannen kijken lachend naar een vrouw en één van hen wijst naar haar; zij kijkt ongemakkelijk om','scene-aanraking-schouder':'Marktplein bij daglicht: een man legt zijn hand op de schouder van een vrouw; zij kijkt ongemakkelijk om','scene-een-ander':'Winkelstraat bij daglicht: twee vrouwen lopen naast elkaar; een man loopt mee en spreekt hen allebei aan','scene-nafluiten':'Drukke winkelstraat bij daglicht: een man fluit op afstand één keer naar een vrouw die voor hem loopt; zij kijkt opzij','scene-samenleving':'Straat in de stad: een volwassen vrouw kijkt ongemakkelijk opzij; op de achtergrond staan twee mannen die naar haar kijken','wetboek':'Wetboek van Strafrecht, artikel 429ter',
 'pv-document':'Proces-verbaal met handtekening','doelwit':'Doelwit met pijl','vraag':'Vraagteken','weegschaal':'Weegschaal'
 };
 
 /* ── Infographics en procesplaten (HTML + duotone iconen) ── */
 /* semi-realistische praktijkscènes (vervangen de oude vectorscènes) */
-const ART_FILE={'scene-steeg-nacht-2':'../images/steegje-donker-achter-vrouw.webp','scene-vernederend':'../images/vreesaanjagend-vernederend-plein.webp','scene-aanraking-schouder':'../images/aanraking-schouder-marktplein.webp','scene-een-ander':'../images/bestanddeel-een-ander-meerdere-personen.webp','scene-nafluiten':'../images/indringend-nafluiten-daglicht.webp','scene-samenleving':'scene-samenleving.webp','scene-plein-dag':'scene-plein-dag.webp','scene-steeg-nacht':'scene-steeg-nacht.webp','scene-winkelstraat':'scene-plein-dag.webp'};
+const ART_FILE={'proces-boa':'../images/proces-boa.webp','proces-pv':'../images/proces-pv.webp','proces-ovj':'../images/proces-ovj.webp','proces-rechter':'../images/proces-rechter.webp','scene-steeg-nacht-2':'../images/steegje-donker-achter-vrouw.webp','scene-vernederend':'../images/vreesaanjagend-vernederend-plein.webp','scene-aanraking-schouder':'../images/aanraking-schouder-marktplein.webp','scene-een-ander':'../images/bestanddeel-een-ander-meerdere-personen.webp','scene-nafluiten':'../images/indringend-nafluiten-daglicht.webp','scene-samenleving':'scene-samenleving.webp','scene-plein-dag':'scene-plein-dag.webp','scene-steeg-nacht':'scene-steeg-nacht.webp','scene-winkelstraat':'scene-plein-dag.webp'};
 const IMG=(n,alt,cls)=>'<img class="'+(cls||'')+(ART_FILE[n]?' foto':'')+'" src="assets/illustraties/'+(ART_FILE[n]||n+'.svg')+'?v='+ASSET_V+'" alt="'+(alt==null?(ART_ALT[n]||''):alt)+'" loading="eager" decoding="async">';
 /* ── BOA-illustratieset (stijlreferentie JS Legal Force) ── */
 const BOA_POSE={'boa-armen':{},'boa-uitleg':{chip:'lamp'},'boa-notitie':{prop:'notitieblok',chip:'oog'},'boa-dossier':{prop:'pv-los'},'boa-observeer':{chip:'oog'}};
@@ -388,17 +388,17 @@ const VIS={
       +'<b>'+titel+'</b><small>'+sub+'</small>'+inner+'</li>';
     const om='<div class="pr2-om"><div class="pr2-split" aria-hidden="true"></div><div class="pr2-routes">'
       +'<div class="pr2-r pr2-sepot">'+di('slot')+'<b>Sepot</b><span>Niet (verder) vervolgen</span><em>Bijv. onvoldoende bewijs of een andere reden.</em></div>'
-      +'<div class="pr2-r pr2-straf">'+di('geld')+'<b>Straf\u00ADbeschikking</b><span>Bijv. geldboete of taakstraf</span></div>'
+      +'<div class="pr2-r pr2-straf">'+di('geld')+'<b>Strafbeschikking</b><span>Bijv. geldboete of taakstraf</span></div>'
       +'<div class="pr2-r pr2-naar">'+di('weegschaal')+'<b>Naar de rechter</b><span>Bijv. na verzet tegen de strafbeschikking of als rechterlijke afdoening nodig is.</span></div>'
       +'</div><p class="pr2-note">'+di('vraag')+'Niet iedere zaak gaat naar de rechter.</p></div>';
     return '<div class="vis vis-proces2" role="img" aria-label="Van straat naar afdoening: de boa neemt waar en treedt op, legt de feiten vast in een proces-verbaal, de officier van justitie beslist over sepot, strafbeschikking of voorleggen aan de rechter; alleen dan beoordeelt de rechter de zaak">'
       +'<div class="pr2-kop">Van straat naar afdoening</div><ol class="pr2-steps">'
-      +stap(1,'pr2-boa',boaHTML('boa-armen',{side:'l',sz:'vis',bust:1,alt:''}),'BOA','Waarnemen en optreden',
+      +stap(1,'pr2-boa',IMG('proces-boa'),'BOA','Waarnemen en optreden',
         '<ul class="pr2-list">'+L('oog','Signalen waarnemen')+L('zoeken','Situatie beoordelen')+L('schild','Zo nodig optreden met de juiste bevoegdheden')+'</ul>')
-      +stap(2,'pr2-pv',IMG('pv-document',''),'Proces-verbaal','Feiten en omstandigheden vastleggen',
+      +stap(2,'pr2-pv',IMG('proces-pv'),'Proces-verbaal','Feiten en omstandigheden vastleggen',
         '<ul class="pr2-list">'+L('document','Feiten en omstandigheden')+L('locatie','Context (tijd, plaats, situatie)')+L('wet','Gebruikte bevoegdheden')+L('camera',"Eventuele bewijsmiddelen (bijv. foto's, verklaringen)")+'</ul>')
-      +stap(3,'pr2-ovj',IMG('ovj',''),'Officier van justitie','Beoordeelt de zaak en beslist over de afdoening',om)
-      +stap(4,'pr2-rechter',rechterHTML({v:'medaillon',sz:'proces',alt:''}),'Rechter','Beoordeelt de zaak als deze wordt voorgelegd',
+      +stap(3,'pr2-ovj',IMG('proces-ovj'),'Officier van justitie','Beoordeelt de zaak en beslist over de afdoening',om)
+      +stap(4,'pr2-rechter',IMG('proces-rechter'),'Rechter','Beoordeelt de zaak als deze wordt voorgelegd',
         '<ul class="pr2-list">'+L('zoeken','Beoordeelt feiten en bewijs')+L('document','Bepaalt de juridische kwalificatie')+L('straf','Beslist over straf of maatregel')+'</ul>')
       +'</ol></div>';
   },
