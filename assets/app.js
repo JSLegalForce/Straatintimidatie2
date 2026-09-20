@@ -1,4 +1,4 @@
-const ASSET_V='r260920h';
+const ASSET_V='r260920i';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -170,7 +170,7 @@ const L_SPEC={
 '1.21':{t:'praktijk',a:'boa-observeer',ic:'oog'},
 '1.22':{t:'onthoud',a:'wetboek',icons:['wet','document']},
 '1.23':{t:'onthoud',a:{icon:'schild',orbit:['wet','locatie','mensen']},icons:['schild','lijst']},
-'1.24':{t:'vooruit'},
+'1.24':{t:'vooruit',groot:1,fig:'boa-uitleg'},
 /* 3 Wettelijke bestanddelen */
 '2.0':{t:'lo',a:'boa-armen'},
 '2.1':{t:'split',a:{vis:'bestanddelen'},rows:['lijst','vink']},
@@ -209,7 +209,7 @@ const L_SPEC={
 '3.11':{t:'praktijk',a:'boa-notitie',ic:'pv'},
 '3.12':{t:'onthoud',a:'weegschaal',icons:['wet','context','locatie']},
 '3.13':{t:'onthoud',a:'boa-notitie',icons:['context','pv']},
-'3.14':{t:'vooruit'},
+'3.14':{t:'vooruit',groot:1,fig:'rechter-med'},
 /* 5 Rechtspraak */
 '4.0':{t:'lo',a:'rechter'},
 '4.1':{t:'split',a:'rechter-dicht',rows:['kalender']},
@@ -229,7 +229,7 @@ const L_SPEC={
 '4.15':{t:'punten',a:'rechter-med',p:[4]},
 '4.16':{t:'onthoud',a:'rechter-med',icons:['kalender','oog','wet']},
 '4.17':{t:'onthoud',a:{icon:'context',orbit:['locatie','klok','wet']},icons:['context','locatie']},
-'4.18':{t:'vooruit'},
+'4.18':{t:'vooruit',groot:1,fig:'boa-dossier',vol:1},
 /* 6 Bewijs en proces-verbaal */
 '5.0':{t:'lo',a:'boa-armen'},
 '5.1':{t:'split',a:{icon:'zoeken',orbit:['oog','wet','lijst']},rows:['zoeken']},
@@ -252,7 +252,7 @@ const L_SPEC={
 '5.18':{t:'letop',a:'boa-uitleg'},
 '5.19':{t:'onthoud',a:'boa-dossier',icons:['wet','document','oog']},
 '5.20':{t:'onthoud',a:'pv-document',icons:['pv','waarschuwing']},
-'5.21':{t:'vooruit'},
+'5.21':{t:'vooruit',groot:1,fig:'boa-notitie',vol:1},
 /* 7 Tik-proces-verbaal */
 '6.0':{t:'lo',a:'boa-armen'},
 '6.1':{t:'letop',a:'pv-document'},
@@ -272,7 +272,7 @@ const L_SPEC={
 '6.15':{t:'letop',a:{vis:'tikpvmini'}},
 '6.16':{t:'onthoud',a:'pv-document',icons:['pv','schild']},
 '6.17':{t:'onthoud',a:'boa-notitie',icons:['lijst','dossier']},
-'6.18':{t:'vooruit'},
+'6.18':{t:'vooruit',groot:1,fig:'boa-observeer'},
 /* 8 Samenvatting */
 '7.0':{t:'lo',a:'boa-armen'},
 '7.1':{t:'overzicht'},
@@ -1014,8 +1014,8 @@ T.info=(P,spec,st)=>{
 T.vooruit=(P,spec,st)=>{
   const nt=D.topics[st.ti+1];
   const nodes=mainParas(P);
-  const art='<div class="next-card"><span class="nc-k">Volgend onderwerp</span><span class="nc-ic">'+di(TOPIC_ICON[st.ti+1])+'</span><b>'+(nt?esc(nt.titel):'')+'</b><span class="nc-n">Onderwerp '+(nt?nt.nr:'')+' van '+D.topics.length+'</span></div>'+boaHTML('boa-armen',{side:'r',sz:spec.groot?'next':'klein',bust:1,alt:''});
-  const s=splitBox([el('p','kicker',di('route')+'Vooruitblik'),titleEl(P),rowsWrap(nodes,['route','lijst'])],'<div class="art art-next'+(spec.groot?' next-groot':'')+'">'+art+'</div>',{});
+  const art='<div class="next-card"><span class="nc-k">Volgend onderwerp</span><span class="nc-ic">'+di(TOPIC_ICON[st.ti+1])+'</span><b>'+(nt?esc(nt.titel):'')+'</b><span class="nc-n">Onderwerp '+(nt?nt.nr:'')+' van '+D.topics.length+'</span></div>'+(spec.fig==='rechter-med'?rechterHTML({v:'medaillon',sz:'next-r',alt:''}):boaHTML(spec.fig||'boa-armen',{side:'r',sz:spec.groot?'next':'klein',bust:!spec.vol,alt:''}));
+  const s=splitBox([el('p','kicker',di('route')+'Vooruitblik'),titleEl(P),rowsWrap(nodes,['route','lijst'])],'<div class="art art-next'+(spec.groot?' next-groot':'')+(spec.vol?' next-vol':'')+'">'+art+'</div>',{});
   s.classList.add('next-split');
   return s;
 };

@@ -1642,3 +1642,17 @@ img.foto{display:block;background:#dfe6f1}
 @media (min-width:761px) and (max-width:1000px){.art-next.next-groot{display:flex;flex-direction:column;align-items:center;gap:10px}.art-next.next-groot .next-card{position:static;max-width:240px}.art-next.next-groot .art-boa{--bh:240px;margin:0 auto}}
 /* steegje O4 p9: gezichten altijd in beeld bij bredere uitsnede */
 .art-scene img[src*="steegje-donker-achter-vrouw"]{object-position:50% 12%}
+
+/* vooruitblik: rechter-medaillon in dezelfde grote compositie */
+.art-next.next-groot .art-rechter{--rh:clamp(300px,27vw,380px);margin:0 auto 0 0}
+.art-next.next-groot.fig-rechter .next-card{top:6px}
+@media (min-width:761px) and (max-width:1180px){.art-next.next-groot .art-rechter{--rh:250px}}
+@media (min-width:761px) and (max-width:1000px){.art-next.next-groot .art-rechter{--rh:230px;margin:0 auto}}
+@media (max-width:760px){.art-next.next-groot .art-rechter{--rh:clamp(210px,60vw,260px);margin:0 auto}}
+
+/* vooruitblik met hele figuur (proces-verbaal/tik-pv): iets hoger beeld, kaart hoger geplaatst */
+.art-next.next-vol .art-boa{--bh:clamp(340px,31vw,430px)}
+.art-next.next-vol .next-card{top:-2px}
+@media (min-width:761px) and (max-width:1180px){.art-next.next-vol .art-boa{--bh:300px}}
+@media (min-width:761px) and (max-width:1000px){.art-next.next-vol .art-boa{--bh:260px}}
+@media (max-width:760px){.art-next.next-vol .art-boa{--bh:clamp(250px,72vw,310px)}}
