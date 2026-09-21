@@ -1,4 +1,4 @@
-const ASSET_V='r260921a';
+const ASSET_V='r260921c';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -254,27 +254,24 @@ const L_SPEC={
 '5.19':{t:'onthoud',a:'boa-dossier',icons:['wet','document','oog']},
 '5.20':{t:'onthoud',a:'pv-document',icons:['pv','waarschuwing']},
 '5.21':{t:'vooruit',groot:1,fig:'boa-notitie',vol:1},
-/* 7 Tik-proces-verbaal */
+/* 7 Proces-verbaal in de praktijk */
 '6.0':{t:'lo',a:'boa-armen'},
 '6.1':{t:'ingrijpen',a:'scene-uitgaan'},
-'6.2':{t:'letop',a:'pv-document'},
-'6.3':{t:'split',a:'boa-notitie',rows:['pv','schild']},
-'6.4':{t:'split',a:{vis:'bestanddelen'},rev:1,rows:['lijst']},
-'6.5':{t:'checklist',a:'pv-document',icons:['locatie','citaat','context','oog']},
-'6.6':{t:'info',v:'tikpv'},
-'6.7':{t:'split',a:'pv-document',rows:['lamp']},
-'6.8':{t:'pvvoorbeeld',a:'boa-notitie'},
-'6.9':{t:'split',a:{vis:'pvtoets'},rev:1,rows:['vink','wet'],wide:1},
-'6.10':{t:'split',a:{icon:'zoeken',orbit:['context','oog','pv']},rows:['context','lijst']},
-'6.11':{t:'checklist',a:'boa-notitie',icons:['afstand','duur','volgen','herhaling','citaat','toon','gebaar']},
-'6.12':{t:'checklist',a:'boa-dossier',icons:['aanraking','reactie','hand','herhaling','locatie','omstanders','klok']},
-'6.13':{t:'checklist',a:'boa-notitie',icons:['licht','omstanders','getuige','bodycam','oog','uitlating','zoeken']},
-'6.14':{t:'proces',ic:'lamp',icons:['oog','persoon','getuige','conclusie']},
-'6.15':{t:'letop',a:{icon:'lijst',orbit:['waarschuwing','context','vink']}},
-'6.16':{t:'letop',a:{vis:'tikpvmini'}},
-'6.17':{t:'onthoud',a:'pv-document',icons:['pv','schild']},
-'6.18':{t:'onthoud',a:'boa-notitie',icons:['lijst','dossier']},
-'6.19':{t:'vooruit',groot:1,fig:'boa-observeer'},
+'6.2':{t:'split',a:'boa-notitie',rows:['oog','pv']},
+'6.3':{t:'checklist',a:'pv-document',icons:['locatie','oog','citaat','gebaar','afstand','context']},
+'6.4':{t:'split',a:{vis:'bestanddelen'},rev:1,rows:['wet','lijst']},
+'6.5':{t:'praktijk',a:'boa-notitie',ic:'zoeken',icons:['oog','getuige','conclusie']},
+'6.6':{t:'split',a:'pv-document',rows:['kruis','vink','lamp']},
+'6.7':{t:'pvvoorbeeld',a:'boa-notitie'},
+'6.8':{t:'split',a:'boa-dossier',rev:1,rows:['vink','rechtbank']},
+'6.9':{t:'checklist',a:'boa-observeer',icons:['locatie','licht','afstand','herhaling','volgen','reactie']},
+'6.10':{t:'split',a:{icon:'camera',orbit:['getuige','bodycam','oog']},rev:1,rows:['getuige','camera']},
+'6.11':{t:'praktijk',a:'boa-uitleg',ic:'boa'},
+'6.12':{t:'letop',a:'boa-uitleg',icons:['conclusie','citaat','context','oog','camera']},
+'6.13':{t:'checklist',a:'boa-dossier',icons:['vink']},
+'6.14':{t:'letop',a:{icon:'lijst',orbit:['waarschuwing','context','vink']}},
+'6.15':{t:'onthoud',a:'pv-document',icons:['pv','oog','context','wet']},
+'6.16':{t:'vooruit',groot:1,fig:'boa-observeer'},
 /* 8 Samenvatting */
 '7.0':{t:'lo',a:'boa-armen'},
 '7.1':{t:'overzicht'},
@@ -1140,12 +1137,16 @@ T.checklist=(P,spec,st)=>{
   return s;
 };
 T.pvvoorbeeld=(P,spec,st)=>{
-  const nodes=mainParas(P).filter(n=>n.nodeType===1);
+  const all=mainParas(P).filter(n=>n.nodeType===1);
+  /* inleidende uitleg buiten het fictieve proces-verbaal; alleen de «voorbeeldtekst» in het document */
+  const intro=all.filter(n=>!/^\s*«/.test(n.textContent)&&all.some(m=>/^\s*«/.test(m.textContent)));
+  const nodes=all.filter(n=>!intro.includes(n));
+  intro.forEach(n=>n.classList.add('pv-intro'));
   const doc=el('div','pvdoc');
   doc.appendChild(el('div','pvdoc-head','<span>PROCES-VERBAAL</span><small>Fictief voorbeeld · alleen de opbouw</small>'));
   const b=el('div','pvdoc-b');nodes.forEach(n=>b.appendChild(n));doc.appendChild(b);
   doc.appendChild(el('div','pvdoc-foot','<span class="pv-sign"></span><span class="pv-stamp" aria-hidden="true"></span>'));
-  return splitBox([el('p','kicker',di('pv')+'Praktijkvoorbeeld'),titleEl(P),doc],artHTML(spec.a,spec),{});
+  return splitBox([el('p','kicker',di('pv')+'Praktijkvoorbeeld'),titleEl(P),...intro,doc],artHTML(spec.a,spec),{});
 };
 T.fouten=(P,spec,st)=>{
   const k=P.rest.find(n=>n.nodeType===1&&n.classList.contains('kaart'));
