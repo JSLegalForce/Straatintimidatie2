@@ -1,4 +1,4 @@
-const ASSET_V='r260920l';
+const ASSET_V='r260921a';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -72,7 +72,8 @@ const DI=(()=>{
     route:S(`<circle ${F} cx="10" cy="38" r="5"/><circle cx="10" cy="38" r="5"/><circle cx="38" cy="10" r="5"/><path d="M15 38h13a6 6 0 0 0 0-12H20a6 6 0 0 1 0-12h13"/>`),
     bus:S(`<rect ${F} x="8" y="6" width="32" height="30" rx="5"/><rect x="8" y="6" width="32" height="30" rx="5"/><path d="M8 22h32M14 42v-6M34 42v-6M16 29h.1M32 29h.1M14 12h20" stroke-width="3"/>`),
     winkel:S(`<path ${F} d="M6 18h36v24H6z"/><path d="M6 18h36v24H6zM4 18l4-11h32l4 11M4 18c0 4 4 5 6 5s5-1 5-5c0 4 4 5 5 5s4-1 4-5c0 4 3 5 4 5s5-1 5-5c0 4 3 5 5 5s5-1 5-5M19 42V30h10v12"/>`),
-    straat:S(`<path ${F} d="M16 44 20 4h8l4 40z"/><path d="M16 44 20 4M32 44 28 4M24 8v4M24 18v5M24 29v6M24 40v4"/>`)
+    straat:S(`<path ${F} d="M16 44 20 4h8l4 40z"/><path d="M16 44 20 4M32 44 28 4M24 8v4M24 18v5M24 29v6M24 40v4"/>`),
+    gesprek:S(`<path ${F} d="M16 5h16a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-6l-5 4v-4h-5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3z"/><path d="M16 5h16a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-6l-5 4v-4h-5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3zM19 11h10"/><circle cx="10" cy="29" r="4"/><circle cx="38" cy="29" r="4"/><path d="M3 43c.5-5 3-8 7-8s6.5 3 7 8M31 43c.5-5 3-8 7-8s6.5 3 7 8"/>`)
   };
 })();
 function di(name,cls){return '<span class="di '+(cls||'')+'" aria-hidden="true">'+(DI[name]||DI.document)+'</span>';}
@@ -255,24 +256,25 @@ const L_SPEC={
 '5.21':{t:'vooruit',groot:1,fig:'boa-notitie',vol:1},
 /* 7 Tik-proces-verbaal */
 '6.0':{t:'lo',a:'boa-armen'},
-'6.1':{t:'letop',a:'pv-document'},
-'6.2':{t:'split',a:'boa-notitie',rows:['pv','schild']},
-'6.3':{t:'split',a:{vis:'bestanddelen'},rev:1,rows:['lijst']},
-'6.4':{t:'checklist',a:'pv-document',icons:['locatie','citaat','context','oog']},
-'6.5':{t:'info',v:'tikpv'},
-'6.6':{t:'split',a:'pv-document',rows:['lamp']},
-'6.7':{t:'pvvoorbeeld',a:'boa-notitie'},
-'6.8':{t:'split',a:{vis:'pvtoets'},rev:1,rows:['vink','wet'],wide:1},
-'6.9':{t:'split',a:{icon:'zoeken',orbit:['context','oog','pv']},rows:['context','lijst']},
-'6.10':{t:'checklist',a:'boa-notitie',icons:['afstand','duur','volgen','herhaling','citaat','toon','gebaar']},
-'6.11':{t:'checklist',a:'boa-dossier',icons:['aanraking','reactie','hand','herhaling','locatie','omstanders','klok']},
-'6.12':{t:'checklist',a:'boa-notitie',icons:['licht','omstanders','getuige','bodycam','oog','uitlating','zoeken']},
-'6.13':{t:'proces',ic:'lamp',icons:['oog','persoon','getuige','conclusie']},
-'6.14':{t:'letop',a:{icon:'lijst',orbit:['waarschuwing','context','vink']}},
-'6.15':{t:'letop',a:{vis:'tikpvmini'}},
-'6.16':{t:'onthoud',a:'pv-document',icons:['pv','schild']},
-'6.17':{t:'onthoud',a:'boa-notitie',icons:['lijst','dossier']},
-'6.18':{t:'vooruit',groot:1,fig:'boa-observeer'},
+'6.1':{t:'ingrijpen',a:'scene-uitgaan'},
+'6.2':{t:'letop',a:'pv-document'},
+'6.3':{t:'split',a:'boa-notitie',rows:['pv','schild']},
+'6.4':{t:'split',a:{vis:'bestanddelen'},rev:1,rows:['lijst']},
+'6.5':{t:'checklist',a:'pv-document',icons:['locatie','citaat','context','oog']},
+'6.6':{t:'info',v:'tikpv'},
+'6.7':{t:'split',a:'pv-document',rows:['lamp']},
+'6.8':{t:'pvvoorbeeld',a:'boa-notitie'},
+'6.9':{t:'split',a:{vis:'pvtoets'},rev:1,rows:['vink','wet'],wide:1},
+'6.10':{t:'split',a:{icon:'zoeken',orbit:['context','oog','pv']},rows:['context','lijst']},
+'6.11':{t:'checklist',a:'boa-notitie',icons:['afstand','duur','volgen','herhaling','citaat','toon','gebaar']},
+'6.12':{t:'checklist',a:'boa-dossier',icons:['aanraking','reactie','hand','herhaling','locatie','omstanders','klok']},
+'6.13':{t:'checklist',a:'boa-notitie',icons:['licht','omstanders','getuige','bodycam','oog','uitlating','zoeken']},
+'6.14':{t:'proces',ic:'lamp',icons:['oog','persoon','getuige','conclusie']},
+'6.15':{t:'letop',a:{icon:'lijst',orbit:['waarschuwing','context','vink']}},
+'6.16':{t:'letop',a:{vis:'tikpvmini'}},
+'6.17':{t:'onthoud',a:'pv-document',icons:['pv','schild']},
+'6.18':{t:'onthoud',a:'boa-notitie',icons:['lijst','dossier']},
+'6.19':{t:'vooruit',groot:1,fig:'boa-observeer'},
 /* 8 Samenvatting */
 '7.0':{t:'lo',a:'boa-armen'},
 '7.1':{t:'overzicht'},
@@ -301,12 +303,13 @@ const ART_ALT={
 'burger-vrouw':'Volwassen vrouw in straatkleding','burger-man':'Volwassen man in straatkleding','burger-vrouw2':'Volwassen vrouw in straatkleding','burger-man2':'Volwassen man in straatkleding',
 'scene-winkelstraat':'Druk plein met winkels en terrassen: een man loopt dicht achter een vrouw; zij kijkt ongemakkelijk achterom','scene-plein-dag':'Druk plein bij daglicht: een man loopt dicht achter een vrouw; zij kijkt ongemakkelijk achterom','scene-steeg-nacht':'Smal steegje in het donker: dezelfde man loopt even dicht achter dezelfde vrouw; zij kijkt ongemakkelijk achterom',
 'scene-online':'Openbaar bericht op sociale media','proces-boa':'Boa in uniform op straat','proces-pv':'Close-up van een proces-verbaal met aangevinkte punten','proces-ovj':'Officier van justitie met dossier bij het Openbaar Ministerie','proces-rechter':'Rechter in toga in de rechtszaal','scene-steeg-nacht-2':'Smal steegje in het donker: een man loopt achter een vrouw; zij kijkt alert om','scene-vernederend':'Plein bij daglicht: drie mannen kijken lachend naar een vrouw en één van hen wijst naar haar; zij kijkt ongemakkelijk om','scene-aanraking-schouder':'Marktplein bij daglicht: een man legt zijn hand op de schouder van een vrouw; zij kijkt ongemakkelijk om','scene-een-ander':'Winkelstraat bij daglicht: twee vrouwen lopen naast elkaar; een man loopt mee en spreekt hen allebei aan','scene-nafluiten':'Drukke winkelstraat bij daglicht: een man fluit op afstand één keer naar een vrouw die voor hem loopt; zij kijkt opzij','scene-samenleving':'Straat in de stad: een volwassen vrouw kijkt ongemakkelijk opzij; op de achtergrond staan twee mannen die naar haar kijken','wetboek':'Wetboek van Strafrecht, artikel 429ter',
+'scene-uitgaan':'Uitgaansgebied in de avond bij het station: een man spreekt een vrouw aan die alleen doorloopt',
 'pv-document':'Proces-verbaal met handtekening','doelwit':'Doelwit met pijl','vraag':'Vraagteken','weegschaal':'Weegschaal'
 };
 
 /* ── Infographics en procesplaten (HTML + duotone iconen) ── */
 /* semi-realistische praktijkscènes (vervangen de oude vectorscènes) */
-const ART_FILE={'proces-boa':'../images/proces-boa.webp','proces-pv':'../images/proces-pv.webp','proces-ovj':'../images/proces-ovj.webp','proces-rechter':'../images/proces-rechter.webp','scene-steeg-nacht-2':'../images/steegje-donker-achter-vrouw.webp','scene-vernederend':'../images/vreesaanjagend-vernederend-plein.webp','scene-aanraking-schouder':'../images/aanraking-schouder-marktplein.webp','scene-een-ander':'../images/bestanddeel-een-ander-meerdere-personen.webp','scene-nafluiten':'../images/indringend-nafluiten-daglicht.webp','scene-samenleving':'scene-samenleving.webp','scene-plein-dag':'scene-plein-dag.webp','scene-steeg-nacht':'scene-steeg-nacht.webp','scene-winkelstraat':'scene-plein-dag.webp'};
+const ART_FILE={'proces-boa':'../images/proces-boa.webp','proces-pv':'../images/proces-pv.webp','proces-ovj':'../images/proces-ovj.webp','proces-rechter':'../images/proces-rechter.webp','scene-steeg-nacht-2':'../images/steegje-donker-achter-vrouw.webp','scene-vernederend':'../images/vreesaanjagend-vernederend-plein.webp','scene-aanraking-schouder':'../images/aanraking-schouder-marktplein.webp','scene-een-ander':'../images/bestanddeel-een-ander-meerdere-personen.webp','scene-nafluiten':'../images/indringend-nafluiten-daglicht.webp','scene-samenleving':'scene-samenleving.webp','scene-plein-dag':'scene-plein-dag.webp','scene-steeg-nacht':'scene-steeg-nacht.webp','scene-winkelstraat':'scene-plein-dag.webp','scene-uitgaan':'../images/uitgaansgebied-opmerking-station.webp'};
 const IMG=(n,alt,cls)=>'<img class="'+(cls||'')+(ART_FILE[n]?' foto':'')+'" src="assets/illustraties/'+(ART_FILE[n]||n+'.svg')+'?v='+ASSET_V+'" alt="'+(alt==null?(ART_ALT[n]||''):alt)+'" loading="eager" decoding="async">';
 /* ── BOA-illustratieset (stijlreferentie JS Legal Force) ── */
 const BOA_POSE={'boa-armen':{},'boa-uitleg':{chip:'lamp'},'boa-notitie':{prop:'notitieblok',chip:'oog'},'boa-dossier':{prop:'pv-los'},'boa-observeer':{chip:'oog'}};
@@ -1203,6 +1206,53 @@ T.fouten2=(P,spec,st)=>{
     const dl=el('div','f2d-lines');
     dt.forEach(pn=>{const q=el('p',null);q.textContent=pn.textContent;dl.appendChild(q);});
     dw.appendChild(dl);d.appendChild(dw);box.appendChild(d);
+  }
+  return box;
+};
+/* ── O7: geen voltooid delict? Toch kun je handelen — casus + foto, vier stappen, kernboodschap ── */
+T.ingrijpen=(P,spec,st)=>{
+  const rest=el('div',null);P.rest.forEach(n=>rest.appendChild(n.cloneNode(true)));
+  const box=el('div','ingr-page');
+  const top=el('div','ingr-top');
+  const copy=el('div','ingr-copy');
+  const ch=soortChip(P,'boa');if(ch){ch.classList.add('chip-praktijk');copy.appendChild(ch);}
+  copy.appendChild(titleEl(P));
+  const cas=el('div','ingr-casus');
+  const casSrc=rest.querySelector('.ingr-casus-bron');
+  if(casSrc)[...casSrc.children].forEach(p=>{
+    if(p.classList.contains('uiting')){const q=el('p','ingr-uiting',di('citaat','ingr-uiting-ic'));const t=el('span');t.textContent=p.textContent;q.appendChild(t);cas.appendChild(q);}
+    else{const q=el('p');q.innerHTML=p.innerHTML;cas.appendChild(q);}
+  });
+  copy.appendChild(cas);
+  top.appendChild(copy);
+  top.appendChild(el('div','ingr-media','<figure class="ingr-foto">'+IMG(spec.a)+'</figure>'));
+  box.appendChild(top);
+  const wat=rest.querySelector('.k-praktijk');
+  if(wat){
+    const sec=el('section','ingr-wat');
+    const h=el('h3','ingr-h');h.textContent=(wat.querySelector('.kaart-t')||{}).textContent||'';sec.appendChild(h);
+    const lead=wat.querySelector('.kaart-b > p');if(lead){const l=el('p','ingr-lead');l.textContent=lead.textContent;sec.appendChild(l);}
+    const ic=spec.icons||['oog','uitlating','gesprek','document'];
+    const g=el('ol','ingr-grid');
+    [...wat.querySelectorAll('ol.stappen > li')].forEach((li,i)=>{
+      const b=li.querySelector('b');const kop=b?b.textContent:'';
+      const r=li.cloneNode(true);const bb=r.querySelector('b');if(bb)bb.remove();
+      const c=el('li','ingr-card','<span class="ingr-n">'+(i+1)+'</span><span class="ingr-ic">'+di(ic[i]||'vink')+'</span>');
+      const t=el('b','ingr-t');t.textContent=kop;c.appendChild(t);
+      const p=el('p','ingr-p');p.textContent=r.textContent.trim();c.appendChild(p);
+      g.appendChild(c);
+    });
+    sec.appendChild(g);
+    const noot=wat.querySelector('.kaart-b > p.noot');if(noot){const n=el('p','ingr-noot',di('herhaling','ingr-noot-ic'));const t=el('span');t.textContent=noot.textContent;n.appendChild(t);sec.appendChild(n);}
+    box.appendChild(sec);
+  }
+  const kern=rest.querySelector('.k-onthoud');
+  if(kern){
+    const d=el('div','ingr-kern','<span class="ingr-kern-ic">'+di('lamp')+'</span>');
+    const w=el('div','ingr-kern-b');
+    const k=el('b',null);k.textContent=(kern.querySelector('.kaart-t')||{}).textContent||'';w.appendChild(k);
+    const p=el('p',null);p.textContent=(kern.querySelector('.kaart-b p')||{}).textContent||'';w.appendChild(p);
+    d.appendChild(w);box.appendChild(d);
   }
   return box;
 };

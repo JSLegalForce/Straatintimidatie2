@@ -1731,3 +1731,42 @@ img.foto{display:block;background:#dfe6f1}
 @media (max-width:760px){.fout2-grid{grid-template-columns:minmax(0,1fr);gap:12px}
   .fout2-top{grid-template-columns:minmax(0,1fr);gap:14px}.fout2-boa{display:none}
   .fout2-doel{flex-direction:column;align-items:flex-start;gap:10px}.f2d-b{gap:8px}.f2d-k{border:0;padding:0}}
+
+/* ── Geen voltooid delict? Toch kun je handelen (O7 p2): casus + foto, vier stappen en kernboodschap ── */
+.ingr-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:clamp(20px,2.6vw,36px);align-items:center;margin-bottom:18px}
+.ingr-copy>.q-soort{display:inline-flex;margin:0 0 10px}
+.ingr-copy .ptitle{margin:0 0 12px}
+.ingr-casus p{font-size:var(--txt-l,1.08rem);line-height:1.5;color:var(--ink);margin:0 0 4px}
+.ingr-casus p:last-child{margin-bottom:0}
+.ingr-casus .ingr-uiting{display:flex;align-items:center;gap:10px;width:fit-content;max-width:100%;background:var(--blue-l);border:1px solid #cfdcf3;border-left:4px solid var(--blue);border-radius:12px;padding:6px 14px 6px 10px;margin:2px 0 8px;font-family:var(--ui);font-weight:700;color:var(--navy)}
+.ingr-uiting-ic{width:24px;height:24px;color:var(--blue);--duo:#fff}
+.ingr-media{min-width:0}
+.ingr-foto{margin:0;border-radius:20px;overflow:hidden;box-shadow:var(--sh)}
+.ingr-foto img{width:100%;height:auto;aspect-ratio:744/440;object-fit:cover;object-position:50% 30%}
+.ingr-h{font-family:var(--ui);font-weight:800;font-size:clamp(1.2rem,.95rem + .6vw,1.5rem);color:var(--navy);line-height:1.2;margin:0 0 4px}
+.ingr-lead{color:var(--ink2);margin:0 0 14px}
+.ingr-grid{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:stretch;margin:0}
+.ingr-card{position:relative;display:flex;flex-direction:column;gap:8px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:16px;padding:16px 16px 18px;box-shadow:var(--sh-s);min-width:0}
+.ingr-n{position:absolute;right:14px;top:14px;width:30px;height:30px;border-radius:50%;background:var(--navy2);color:#fff;font-family:var(--ui);font-weight:800;display:grid;place-items:center;font-size:.95rem}
+.ingr-ic{width:50px;height:50px;border-radius:14px;background:var(--blue-l);display:grid;place-items:center}
+.ingr-ic .di{width:30px;height:30px;color:var(--navy2);--duo:#cfe0fb}
+.ingr-t{font-family:var(--ui);font-size:1.06rem;color:var(--navy);line-height:1.25}
+.ingr-p{font-size:.98rem;color:var(--ink2);line-height:1.45;margin:0}
+.ingr-noot{display:flex;align-items:center;gap:8px;margin:12px 0 0;font-size:.96rem;color:var(--ink2)}
+.ingr-noot-ic{width:22px;height:22px;color:var(--blue)}
+.ingr-kern{display:flex;align-items:center;gap:16px;background:var(--navy2);background:linear-gradient(100deg,#112558,#1b3a7a);color:#fff;border-radius:18px;padding:16px 22px;margin-top:18px}
+.ingr-kern-ic{width:50px;height:50px;flex:none;border-radius:50%;background:rgba(255,255,255,.12);display:grid;place-items:center}
+.ingr-kern-ic .di{width:28px;height:28px;color:#fff;--duo:rgba(255,255,255,.22)}
+.ingr-kern-b{padding-left:16px;border-left:2px solid rgba(255,255,255,.25)}
+.ingr-kern-b b{display:block;font-family:var(--ui);font-size:1.12rem;line-height:1.3}
+.ingr-kern-b p{margin:2px 0 0;color:#dfe8f8;line-height:1.45}
+@media (max-width:1180px){.ingr-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:1000px){.ingr-top{grid-template-columns:minmax(0,1fr)}.ingr-media{order:-1}.ingr-foto img{max-height:340px}}
+@media (max-width:760px){
+  .ingr-top{gap:14px;margin-bottom:16px}
+  .ingr-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+  .ingr-casus p{font-size:1.04rem}
+  .ingr-foto{border-radius:16px}
+  .ingr-kern{flex-direction:column;align-items:flex-start;gap:10px;padding:16px 18px}
+  .ingr-kern-b{padding-left:0;border-left:0}
+}
