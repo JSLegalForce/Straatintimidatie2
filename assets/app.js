@@ -1,4 +1,4 @@
-const ASSET_V='r260921c';
+const ASSET_V='r260922a';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -721,6 +721,7 @@ function certificaat(pct){
    +'<div class="k">JS Legal Force · Certificaat</div><h2>CERTIFICAAT</h2><p class="lead">Hierbij wordt verklaard dat</p>'
    +'<div class="naam">'+esc(profiel.voornaam+' '+profiel.achternaam)+'</div>'
    +'<p class="opl">de eindtoets van de e-learning <b>'+esc(D.opleiding)+'</b> met goed gevolg heeft afgerond.</p>'
+   +'<p class="cert-disc">Dit certificaat is een bewijs van succesvolle afronding en het behaalde toetsresultaat. Het betreft geen wettelijk erkend diploma of beroepskwalificatie.</p>'
    +'<div class="meta"><div><div class="mk">Score eindtoets</div><div class="mv">'+pct+'%</div></div><div><div class="mk">Datum</div><div class="mv">'+datum+'</div></div><div><div class="mk">Juridische peildatum</div><div class="mv">'+esc(D.peildatum)+'</div></div><div><div class="mk">Certificaatnr.</div><div class="mv">'+nr+'</div></div></div></div>'
    +'<div class="acts"><button class="btn btn-primary btn-lg" id="dl"><span>↓ Download certificaat (PDF)</span></button><button class="btn btn-ghost" id="terug">'+pijlL+'<span>Terug naar resultaat</span></button></div></article>',{lab:'Certificaat',sub:'Certificaat',frac:1});
   document.getElementById('dl').onclick=()=>window.print();
@@ -1139,7 +1140,9 @@ T.checklist=(P,spec,st)=>{
 T.pvvoorbeeld=(P,spec,st)=>{
   const all=mainParas(P).filter(n=>n.nodeType===1);
   /* inleidende uitleg buiten het fictieve proces-verbaal; alleen de «voorbeeldtekst» in het document */
-  const intro=all.filter(n=>!/^\s*«/.test(n.textContent)&&all.some(m=>/^\s*«/.test(m.textContent)));
+  /* alles vóór de eerste «alinea» is uitleg; vanaf daar hoort alles (ook vervolgalinea's) bij het proces-verbaal */
+  const pv0=all.findIndex(m=>/^\s*«/.test(m.textContent));
+  const intro=pv0>0?all.slice(0,pv0):[];
   const nodes=all.filter(n=>!intro.includes(n));
   intro.forEach(n=>n.classList.add('pv-intro'));
   const doc=el('div','pvdoc');

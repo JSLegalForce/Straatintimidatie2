@@ -967,14 +967,13 @@ input.f:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(36
   .next-card{padding:16px 22px;gap:6px}
   .nc-ic .di{width:58px;height:58px;padding:10px}
   .hero-art{min-height:0}
-  /* bronnen: compacte bronregel, alle bronnen blijven zichtbaar */
-  .bronnen{margin-top:12px;padding:7px 14px;border-radius:12px}
-  .bronnen summary{float:left;padding:2px 12px 2px 0;margin-right:12px;border-right:1px solid var(--line);font-size:.72rem}
+  /* bronnen: compact blok, iedere genummerde bron op een eigen regel onder het kopje */
+  .bronnen{margin-top:12px;padding:6px 14px 8px;border-radius:12px}
+  .bronnen summary{padding:2px 0 3px;font-size:.72rem}
   .bronnen summary .bron-n{display:none}
-  .bronnen .bronnen-blok{padding:0;overflow:hidden}
-  .bronnen .bb-l li{display:inline;margin:0 16px 0 0;padding-left:21px;font-size:.86rem;line-height:1.55}
-  .bronnen .bb-l li::before{top:0}
-  .bronnen:not([open]) summary{border-right:0}
+  .bronnen .bronnen-blok{padding:0}
+  .bronnen .bb-l li{display:block;margin:2px 0 0;padding-left:23px;font-size:.86rem;line-height:1.45;overflow-wrap:anywhere}
+  .bronnen .bb-l li::before{top:1px}
   /* leerdoelen */
   .lo-top{margin-bottom:10px}
   .lo-doel{width:72px;height:72px;padding:12px}
@@ -1143,10 +1142,10 @@ input.f:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(36
   .fb-p{font-size:1.02rem;line-height:1.52}
   .fbx-bron{margin-top:8px}
   .fbx-bron .bronnen-blok{padding-top:8px}
-  .fbx-bron .bb-t{display:inline;margin:0 10px 0 0}
-  .fbx-bron .bb-l{display:inline}
-  .fbx-bron .bb-l li{display:inline;margin:0 14px 0 0;padding-left:21px;font-size:.84rem}
-  .fbx-bron .bb-l li::before{top:0}
+  .fbx-bron .bb-t{display:block;margin:0 0 3px}
+  .fbx-bron .bb-l{display:block}
+  .fbx-bron .bb-l li{display:block;margin:2px 0 0;padding-left:23px;font-size:.84rem;line-height:1.45;overflow-wrap:anywhere}
+  .fbx-bron .bb-l li::before{top:1px}
   /* resultaat / certificaat */
   .cert{padding:28px 32px 22px}
   .cert .meta{margin-top:16px;padding-top:12px}
@@ -1772,3 +1771,50 @@ img.foto{display:block;background:#dfe6f1}
 }
 
 .pv-intro{color:var(--ink2);margin:0 0 12px}
+
+/* ── Vooruitblik (correctieronde r260922a): compacte kaart naast hoofd/schouder, nooit over de figuur ──
+   Eén component voor alle vooruitblikpagina's. Vanaf 1001px staan figuur en kaart naast elkaar (flex, geen absolute positie).
+   --ext = verste rechterrand van de persoon (als fractie van --bh) binnen de hoogte van de kaart; de kaart begint
+   altijd --nc-gap rechts daarvan en valt dus nooit over hoofd, haar of gezicht. Onder 1001px staat de kaart boven de figuur. */
+.art-next.next-groot .next-card{gap:4px;border-radius:16px}
+.art-next.next-groot .next-card b{font-size:1rem;line-height:1.2}
+.art-next.next-groot .nc-k{font-size:.62rem;letter-spacing:.09em}
+.art-next.next-groot .nc-n{font-size:.74rem}
+.art-next.next-groot .nc-ic .di{width:40px;height:40px;padding:7px;border-radius:12px}
+@media (max-width:1000px){.art-next.next-groot{gap:18px}}
+@media (min-width:1001px){
+  .art-next.next-groot{container-type:inline-size;display:flex;flex-direction:row;align-items:flex-start;justify-content:center;max-width:520px;padding-top:0;
+    --nc-w:158px;--nc-gap:30px;--ext:.853;--mt:.06;--bmax:390px;
+    --nbh:min(var(--bmax),calc((100cqw - var(--nc-w) - var(--nc-gap)) / var(--ext)))}
+  .art-next.next-groot .next-card{position:static;order:2;flex:none;width:var(--nc-w);max-width:none;padding:12px 12px 13px;
+    margin:calc(var(--nbh) * var(--mt)) 0 0 calc(var(--nc-gap) - var(--nbh) * (.98 - var(--ext)))}
+  .art-next.next-groot .art-boa{order:1;margin:0;--bh:var(--nbh)}
+  /* hele figuur (next-vol): smallere persoon in de box */
+  .art-next.next-groot.next-vol{--ext:.74;--mt:.05;--bmax:420px}
+  /* rechter-medaillon: kaart rechts naast het medaillon */
+  .art-next.next-groot:has(.art-rechter) .next-card{margin:18px 0 0 18px}
+  .art-next.next-groot .art-rechter{order:1;margin:0;--rh:min(340px,calc(100cqw - var(--nc-w) - 18px))}
+}
+@media (min-width:1001px) and (max-width:1180px){
+  /* kleinere figuur: de kaart reikt relatief lager, tot de schouderlijn */
+  .art-next.next-groot{--ext:.90}
+  .art-next.next-groot.next-vol{--ext:.75}
+}
+
+/* ── Praktijkvoorbeeld proces-verbaal (r260922a): iedere waarneming op een eigen regel, witregel tussen alinea's (houdt het lijnenpatroon aan) ── */
+.pvdoc-b p.pv-alinea{margin:0}
+.pvdoc-b p.pv-alinea+p.pv-alinea{margin-top:34px;margin-top:1lh}
+/* ── Certificaat (r260922a): toelichting status certificaat ── */
+.cert .cert-disc{max-width:620px;margin:8px auto 0;font-size:.84rem;line-height:1.45;color:var(--ink2)}
+@media print{.cert .cert-disc{font-size:9.5pt;margin-top:6px}}
+@media (min-width:1001px){
+  /* langer praktijkvoorbeeld: breder document zodat iedere waarneming meestal op één regel past; figuur blijft zichtbaar */
+  .split:has(.pv-alinea){grid-template-columns:minmax(0,2.4fr) minmax(0,.75fr);align-items:start}
+  .split:has(.pv-alinea)>.media{position:sticky;top:90px}
+  .split:has(.pv-alinea) .pv-intro{max-width:none}
+}
+@media (min-width:761px){
+  .pvdoc-b:has(.pv-alinea){padding-top:14px;background:repeating-linear-gradient(#fffdf8 0 25px,#eee7d6 25px 26px)}
+  .pvdoc-b p.pv-alinea{font-size:.92rem;line-height:26px}
+  .pvdoc-b p.pv-alinea+p.pv-alinea{margin-top:26px}
+}
