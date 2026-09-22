@@ -1,4 +1,4 @@
-const ASSET_V='r260922k';
+const ASSET_V='r260922l';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -671,7 +671,7 @@ function exVraag(){
   const art=q.art||(q.casus?(['boa-notitie','boa-uitleg','boa-dossier'][orig%3]):(['vraag','wetboek','doelwit','weegschaal'][orig%4]));
   let html='<article class="card qcard exam"><div class="pagehead"><span class="ph-ic">'+di('toets')+'</span><div><span class="ph-k">Eindtoets · '+esc(q.thema||'')+'</span><span class="ph-t">Vraag '+(p+1)+' van '+N+'</span></div><span class="ph-count">'+beantwoord+' van '+N+' beantwoord</span></div>'
    +'<div class="exdots" aria-hidden="true">'+ex.sel.map((s,i)=>'<i class="'+(i===p?'cur ':'')+(s!==null?'done':'')+'"></i>').join('')+'</div>'
-   +'<div class="q-layout"><div class="q-side">'+(q.artPos||q.artRatio?artHTML(art,{rev:1,sz:'mid'}).replace('<img ','<img style="'+(q.artPos?'object-position:'+q.artPos+';':'')+(q.artRatio?'aspect-ratio:'+q.artRatio+';height:auto;':'')+'" '):artHTML(art,{rev:1,sz:'mid'}))+'</div><div class="q-main">'
+   +'<div class="q-layout'+(q.artWide?' q-wide':'')+'"><div class="q-side">'+(q.artPos||q.artRatio?artHTML(art,{rev:1,sz:'mid'}).replace('<img ','<img style="'+(q.artPos?'object-position:'+q.artPos+';':'')+(q.artRatio?'aspect-ratio:'+q.artRatio+';height:auto;':'')+'" '):artHTML(art,{rev:1,sz:'mid'}))+'</div><div class="q-main">'
    +'<div class="q-head"><span class="q-soort">'+di(q.casus?'boa':'boek')+(q.casus?'Praktijkcasus':'Kennisvraag')+'</span>'
    +'<div class="q-lab">De vraag</div></div><h2 class="q-text'+(q.vraag.length>150?' q-long':'')+'">'+esc(q.vraag)+'</h2><p class="q-hint">Kies één antwoord. Je kunt je keuze wijzigen tot je de toets afrondt.</p>'
    +'<div class="opts" id="opts" role="radiogroup" aria-label="Antwoordmogelijkheden">'+perm.map((o,slot)=>{const on=(ex.sel[p]===o);return '<button class="opt'+(on?' sel':'')+'" role="radio" aria-checked="'+on+'" data-orig="'+o+'"><span class="lt">'+L(slot)+'</span><span class="ot">'+esc(q.opties[o])+'</span></button>';}).join('')+'</div>'

@@ -1835,3 +1835,11 @@ img.foto{display:block;background:#dfe6f1}
 @media (max-width:760px){
   .casus-page.stack:has(.cmp-gedrag) .casus-card{margin-top:14px}
 }
+
+/* Eindtoets: bredere fotokolom alleen voor vragen met artWide (portiekcasus) */
+@media (min-width:1001px){
+  .card.qcard.exam .q-layout.q-wide{grid-template-columns:clamp(300px,23vw,340px) minmax(0,1fr)}
+}
+@media (min-width:761px) and (max-width:1000px){
+  .card.qcard.exam .q-layout.q-wide{grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr)}
+}
