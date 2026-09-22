@@ -1,4 +1,4 @@
-const ASSET_V='r260922b';
+const ASSET_V='r260922c';
 /* ── JS Legal Force duotone-iconenset (48×48) ── */
 const DI=(()=>{
   const S=(b)=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+b+'</svg>';
@@ -203,7 +203,7 @@ const L_SPEC={
 '3.4':{t:'split',a:{vis:'context'},rows:['context']},
 '3.5':{t:'split',a:{icon:'document',orbit:['duur','herhaling','locatie']},rev:1,rows:['document']},
 '3.6':{t:'info',v:'vergelijk'},
-'3.7':{t:'casus',a:{compare:1}},
+'3.7':{t:'casus',a:{vis:'gedrag'},stack:1},
 '3.8':{t:'casus',a:'scene-steeg-nacht-2'},
 '3.9':{t:'praktijk',a:'boa-notitie'},
 '3.10':{t:'praktijk',a:'weegschaal',ic:'oog'},
@@ -299,14 +299,14 @@ const ART_ALT={
 'rechter':'Nederlandse rechter in zwarte toga met witte bef en een dossier in de hand, in een Nederlandse rechtszaal','rechter-dicht':'Nederlandse rechter in zwarte toga met witte bef en een dossier in de hand, in een Nederlandse rechtszaal','rechter-med':'Nederlandse rechter in zwarte toga met witte bef, met de rechtszaal op de achtergrond','ovj':'Officier van justitie met dossier',
 'burger-vrouw':'Volwassen vrouw in straatkleding','burger-man':'Volwassen man in straatkleding','burger-vrouw2':'Volwassen vrouw in straatkleding','burger-man2':'Volwassen man in straatkleding',
 'scene-winkelstraat':'Druk plein met winkels en terrassen: een man loopt dicht achter een vrouw; zij kijkt ongemakkelijk achterom','scene-plein-dag':'Druk plein bij daglicht: een man loopt dicht achter een vrouw; zij kijkt ongemakkelijk achterom','scene-steeg-nacht':'Smal steegje in het donker: dezelfde man loopt even dicht achter dezelfde vrouw; zij kijkt ongemakkelijk achterom',
-'scene-online':'Openbaar bericht op sociale media','cmp-plein-dag':'Druk plein bij daglicht: een man loopt dicht achter een vrouw en kijkt glimlachend naar haar; zij kijkt ongemakkelijk opzij','cmp-station-avond':'Treinperron in de avond: dezelfde man loopt even dicht achter dezelfde vrouw en kijkt glimlachend naar haar; zij kijkt ongemakkelijk opzij','proces-boa':'Boa in uniform op straat','proces-pv':'Close-up van een proces-verbaal met aangevinkte punten','proces-ovj':'Officier van justitie met dossier bij het Openbaar Ministerie','proces-rechter':'Rechter in toga in de rechtszaal','scene-steeg-nacht-2':'Smal steegje in het donker: een man loopt achter een vrouw; zij kijkt alert om','scene-vernederend':'Plein bij daglicht: drie mannen kijken lachend naar een vrouw en één van hen wijst naar haar; zij kijkt ongemakkelijk om','scene-aanraking-schouder':'Marktplein bij daglicht: een man legt zijn hand op de schouder van een vrouw; zij kijkt ongemakkelijk om','scene-een-ander':'Winkelstraat bij daglicht: twee vrouwen lopen naast elkaar; een man loopt mee en spreekt hen allebei aan','scene-nafluiten':'Drukke winkelstraat bij daglicht: een man fluit op afstand één keer naar een vrouw die voor hem loopt; zij kijkt opzij','scene-samenleving':'Straat in de stad: een volwassen vrouw kijkt ongemakkelijk opzij; op de achtergrond staan twee mannen die naar haar kijken','wetboek':'Wetboek van Strafrecht, artikel 429ter',
+'scene-online':'Openbaar bericht op sociale media','gedrag-eenmalig':'Winkelstraat bij daglicht: een man maakt in het voorbijgaan een opmerking tegen een vrouw; zij kijkt ongemakkelijk opzij','gedrag-herhalen':'Parkeergarage in de avond: een man blijft achter een vrouw lopen en spreekt haar opnieuw aan; zij kijkt ongemakkelijk om','cmp-plein-dag':'Druk plein bij daglicht: een man loopt dicht achter een vrouw en kijkt glimlachend naar haar; zij kijkt ongemakkelijk opzij','cmp-station-avond':'Treinperron in de avond: dezelfde man loopt even dicht achter dezelfde vrouw en kijkt glimlachend naar haar; zij kijkt ongemakkelijk opzij','proces-boa':'Boa in uniform op straat','proces-pv':'Close-up van een proces-verbaal met aangevinkte punten','proces-ovj':'Officier van justitie met dossier bij het Openbaar Ministerie','proces-rechter':'Rechter in toga in de rechtszaal','scene-steeg-nacht-2':'Smal steegje in het donker: een man loopt achter een vrouw; zij kijkt alert om','scene-vernederend':'Plein bij daglicht: drie mannen kijken lachend naar een vrouw en één van hen wijst naar haar; zij kijkt ongemakkelijk om','scene-aanraking-schouder':'Marktplein bij daglicht: een man legt zijn hand op de schouder van een vrouw; zij kijkt ongemakkelijk om','scene-een-ander':'Winkelstraat bij daglicht: twee vrouwen lopen naast elkaar; een man loopt mee en spreekt hen allebei aan','scene-nafluiten':'Drukke winkelstraat bij daglicht: een man fluit op afstand één keer naar een vrouw die voor hem loopt; zij kijkt opzij','scene-samenleving':'Straat in de stad: een volwassen vrouw kijkt ongemakkelijk opzij; op de achtergrond staan twee mannen die naar haar kijken','wetboek':'Wetboek van Strafrecht, artikel 429ter',
 'scene-uitgaan':'Uitgaansgebied in de avond bij het station: een man spreekt een vrouw aan die alleen doorloopt',
 'pv-document':'Proces-verbaal met handtekening','doelwit':'Doelwit met pijl','vraag':'Vraagteken','weegschaal':'Weegschaal'
 };
 
 /* ── Infographics en procesplaten (HTML + duotone iconen) ── */
 /* semi-realistische praktijkscènes (vervangen de oude vectorscènes) */
-const ART_FILE={'proces-boa':'../images/proces-boa.webp','proces-pv':'../images/proces-pv.webp','proces-ovj':'../images/proces-ovj.webp','proces-rechter':'../images/proces-rechter.webp','scene-steeg-nacht-2':'../images/steegje-donker-achter-vrouw.webp','scene-vernederend':'../images/vreesaanjagend-vernederend-plein.webp','scene-aanraking-schouder':'../images/aanraking-schouder-marktplein.webp','scene-een-ander':'../images/bestanddeel-een-ander-meerdere-personen.webp','scene-nafluiten':'../images/indringend-nafluiten-daglicht.webp','scene-samenleving':'scene-samenleving.webp','scene-plein-dag':'scene-plein-dag.webp','scene-steeg-nacht':'scene-steeg-nacht.webp','scene-winkelstraat':'scene-plein-dag.webp','scene-uitgaan':'../images/uitgaansgebied-opmerking-station.webp','cmp-plein-dag':'../images/context-plein-daglicht.webp','cmp-station-avond':'../images/context-station-avond.webp'};
+const ART_FILE={'proces-boa':'../images/proces-boa.webp','proces-pv':'../images/proces-pv.webp','proces-ovj':'../images/proces-ovj.webp','proces-rechter':'../images/proces-rechter.webp','scene-steeg-nacht-2':'../images/steegje-donker-achter-vrouw.webp','scene-vernederend':'../images/vreesaanjagend-vernederend-plein.webp','scene-aanraking-schouder':'../images/aanraking-schouder-marktplein.webp','scene-een-ander':'../images/bestanddeel-een-ander-meerdere-personen.webp','scene-nafluiten':'../images/indringend-nafluiten-daglicht.webp','scene-samenleving':'scene-samenleving.webp','scene-plein-dag':'scene-plein-dag.webp','scene-steeg-nacht':'scene-steeg-nacht.webp','scene-winkelstraat':'scene-plein-dag.webp','scene-uitgaan':'../images/uitgaansgebied-opmerking-station.webp','cmp-plein-dag':'../images/context-plein-daglicht.webp','cmp-station-avond':'../images/context-station-avond.webp','gedrag-eenmalig':'../images/eenmalige_opmerking_licht.webp','gedrag-herhalen':'../images/volgen_en_herhalen_donker.webp'};
 const IMG=(n,alt,cls)=>'<img class="'+(cls||'')+(ART_FILE[n]?' foto':'')+'" src="assets/illustraties/'+(ART_FILE[n]||n+'.svg')+'?v='+ASSET_V+'" alt="'+(alt==null?(ART_ALT[n]||''):alt)+'" loading="eager" decoding="async">';
 /* ── BOA-illustratieset (stijlreferentie JS Legal Force) ── */
 const BOA_POSE={'boa-armen':{},'boa-uitleg':{chip:'lamp'},'boa-notitie':{prop:'notitieblok',chip:'oog'},'boa-dossier':{prop:'pv-los'},'boa-observeer':{chip:'oog'}};
@@ -381,6 +381,9 @@ const VIS={
   },
   compare(){
     return '<div class="vis vis-cmp"><figure class="cmp">'+IMG('scene-plein-dag')+'<figcaption>'+di('zon')+'Plein · daglicht</figcaption></figure><span class="cmp-ne" aria-hidden="true">≠</span><figure class="cmp cmp-n">'+IMG('scene-steeg-nacht')+'<figcaption>'+di('maan')+'Steegje · donker</figcaption></figure></div>';
+  },
+  gedrag(){
+    return '<div class="vis vis-cmp cmp-gedrag"><figure class="cmp">'+IMG('gedrag-eenmalig')+'<figcaption>'+di('zon')+'<span class="cg-t"><b>Eenmalige opmerking</b><small>maakt een opmerking en loopt verder</small></span></figcaption></figure><span class="cmp-ne" aria-hidden="true">≠</span><figure class="cmp cmp-n">'+IMG('gedrag-herhalen')+'<figcaption>'+di('maan')+'<span class="cg-t"><b>Volgen en herhalen</b><small>blijft haar benaderen en maakt meerdere opmerkingen</small></span></figcaption></figure></div>';
   },
   proces2(){
     const L=(ic,t)=>'<li>'+di(ic)+'<span>'+t+'</span></li>';
@@ -921,14 +924,14 @@ T.wet=(P,spec,st)=>{
   return box;
 };
 T.casus=(P,spec,st)=>{
-  const box=el('div','casus-page'+(spec.a&&spec.a.compare?' stack':''));
+  const box=el('div','casus-page'+((spec.a&&spec.a.compare)||spec.stack?' stack':''));
   const scene=el('div','casus-scene',artHTML(spec.a,spec));
   const card=el('div','casus-card');
   const ch=soortChip(P,'boa');if(ch){ch.classList.add('chip-praktijk');card.appendChild(ch);}
   card.appendChild(el('p','kicker','Praktijksituatie'));
   card.appendChild(titleEl(P));
   const nodes=mainParas(P);
-  const body=el('div','casus-body');nodes.forEach(n=>body.appendChild(n));card.appendChild(body);
+  const body=el('div','casus-body');nodes.forEach(n=>body.appendChild(n));body.querySelectorAll('.irow').forEach(r=>r.insertAdjacentHTML('afterbegin',di('ballon')));card.appendChild(body);
   box.appendChild(scene);box.appendChild(card);
   return box;
 };

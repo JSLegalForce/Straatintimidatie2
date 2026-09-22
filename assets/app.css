@@ -1818,3 +1818,20 @@ img.foto{display:block;background:#dfe6f1}
   .pvdoc-b p.pv-alinea{font-size:.92rem;line-height:26px}
   .pvdoc-b p.pv-alinea+p.pv-alinea{margin-top:26px}
 }
+
+/* O4 p8 – Niet alleen de woorden tellen (alleen .cmp-gedrag en .casus-body .irow) */
+.cmp figcaption span.cg-t{display:flex;flex-direction:column;gap:2px;font-family:var(--ui);font-weight:700;color:inherit}
+.cmp .cg-t b{font-weight:700}
+.cmp .cg-t small{font-family:var(--txt);font-weight:500;font-size:.92rem;color:var(--ink2)}
+.cmp-n .cg-t small{color:#b9c6e3}
+.vis-cmp.cmp-gedrag .cmp figcaption{align-items:center}
+@media (max-width:1000px){
+  .casus-page.stack .vis-cmp.cmp-gedrag .cmp img.foto{height:auto;aspect-ratio:3/2;object-position:50% 20%}
+}
+.casus-body .irow{margin-top:14px;align-items:center}
+.casus-body .irow .di{flex-shrink:0}
+.casus-body .irow p{margin:0;font-size:1.05rem;line-height:1.5}
+.casus-body .irow b{font-family:var(--ui);color:var(--navy)}
+@media (max-width:760px){
+  .casus-page.stack:has(.cmp-gedrag) .casus-card{margin-top:14px}
+}
