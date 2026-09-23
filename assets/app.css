@@ -1843,3 +1843,10 @@ img.foto{display:block;background:#dfe6f1}
 @media (min-width:761px) and (max-width:1000px){
   .card.qcard.exam .q-layout.q-wide{grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr)}
 }
+
+/* Eindtoets vraag 3 en 7: vierkante illustraties (wetboek 429ter / rechter met dossier) — overal volledig zichtbaar */
+.q-side .art-scene:has(img[src*="eindtoets_wetboek_429ter"]),.q-side .art-scene:has(img[src*="eindtoets_rechter_dossier"]){border-radius:20px;aspect-ratio:1/1;max-height:none}
+.q-side img[src*="eindtoets_wetboek_429ter"],.q-side img[src*="eindtoets_rechter_dossier"]{width:100%;height:auto!important;max-height:none!important;aspect-ratio:1/1;object-fit:cover;object-position:50% 50%!important}
+@media (max-width:760px){
+  .q-side .art-scene:has(img[src*="eindtoets_wetboek_429ter"]),.q-side .art-scene:has(img[src*="eindtoets_rechter_dossier"]){width:min(100%,300px);margin:0 auto;border-radius:16px}
+}
